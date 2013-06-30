@@ -1,0 +1,3 @@
+[submodule "provisioning/drupal-vagrant"]
+	path = provisioning/drupal-vagrant
+	url = http://git.drupal.org/project/vagrant.git
