@@ -2,6 +2,13 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  settings = {
+    :domains => {
+      "nci.dev" => {}
+    },
+    :docroot_base => "/home/vagrant/domains"
+  }
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -31,7 +38,10 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  settings[:domains].each do |key, value|
+    config.vm.synced_folder key, "/home/vagrant/domains/" + key
+  end
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
