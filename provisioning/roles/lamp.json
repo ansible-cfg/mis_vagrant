@@ -23,6 +23,7 @@
     "recipe[mysql::client]",
     "recipe[mysql::server]",
     "recipe[php::module_apc]",
+    "recipe[php::module_mysql]",
     "recipe[php::module_gd]"
   ]
 }
