@@ -2,6 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
+  settings = {
+    :domain => "ncihd7.mcdev",
+    :docroot => "/home/vagrant/domains/ncihd7.mcdev"
+  }
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -31,7 +36,8 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  config.vm.synced_folder settings[:domain], settings[:docroot]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -94,7 +100,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe "ncihd7-mcdev"
 
     # You may also specify custom JSON attributes:
-    chef.json = {}
+    chef.json = {}.merge(settings)
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
