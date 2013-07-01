@@ -92,7 +92,7 @@ Vagrant.configure("2") do |config|
     chef.add_role "drupal7"
 
     # You may also specify custom JSON attributes:
-    chef.json = { :mysql_password => "password" }
+    chef.json = {}
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
