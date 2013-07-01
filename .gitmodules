@@ -25,3 +25,6 @@
 [submodule "provisioning/cookbooks/vendor-cookbooks/openssl"]
 	path = provisioning/cookbooks/vendor-cookbooks/openssl
 	url = git@github.com:opscode-cookbooks/openssl.git
+[submodule "provisioning/cookbooks/vendor-cookbooks/build-essential"]
+	path = provisioning/cookbooks/vendor-cookbooks/build-essential
+	url = git@github.com:opscode-cookbooks/build-essential.git
