@@ -3,10 +3,8 @@
 
 Vagrant.configure("2") do |config|
   settings = {
-    :domains => {
-      "nci.dev" => {}
-    },
-    :docroot_base => "/home/vagrant/domains"
+    :domain => "ncihd7.mcdev",
+    :docroot => "/home/vagrant/domains/ncihd7.mcdev"
   }
 
   # All Vagrant configuration is done here. The most common configuration
@@ -39,9 +37,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
 
-  settings[:domains].each do |key, value|
-    config.vm.synced_folder key, "/home/vagrant/domains/" + key
-  end
+  config.vm.synced_folder settings[:domain], settings[:docroot]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -102,7 +98,7 @@ Vagrant.configure("2") do |config|
     chef.add_role "drupal7"
 
     # You may also specify custom JSON attributes:
-    chef.json = {}
+    chef.json = {}.merge(settings)
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
