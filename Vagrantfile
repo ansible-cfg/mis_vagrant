@@ -91,6 +91,8 @@ Vagrant.configure("2") do |config|
     chef.add_role "dev"
     chef.add_role "drupal7"
 
+    chef.add_recipe "ncihd7-mcdev"
+
     # You may also specify custom JSON attributes:
     chef.json = {}
   end

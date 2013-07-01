@@ -13,6 +13,7 @@
   "run_list": [
     "recipe[apache2]",
     "recipe[cron]",
+    "recipe[database]",
     "recipe[mysql]",
     "recipe[openssl]",
     "recipe[php]",
