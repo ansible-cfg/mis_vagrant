@@ -7,6 +7,8 @@
     "recipe[apache2]",
     "recipe[cron]",
     "recipe[mysql]",
+    "recipe[mysql::client]",
+    "recipe[mysql::server]",
     "recipe[php]",
     "recipe[apache2::mod_php5]",
     "recipe[apache2::mod_rewrite]",

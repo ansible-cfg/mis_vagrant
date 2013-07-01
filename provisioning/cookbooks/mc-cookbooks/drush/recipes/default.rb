@@ -9,7 +9,7 @@
 
 git "/opt/drush" do
   repository "git://drupalcode.org/project/drush.git"
-  reference "cea2ca02d09a2dd2241b840d7509921760d6f82a"
+  revision node['drush']['version']
   action :sync
 end
 
