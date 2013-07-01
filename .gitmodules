@@ -22,3 +22,6 @@
 [submodule "provisioning/cookbooks/vendor-cookbooks/database"]
 	path = provisioning/cookbooks/vendor-cookbooks/database
 	url = https://github.com/opscode-cookbooks/database.git
+[submodule "provisioning/cookbooks/vendor-cookbooks/openssl"]
+	path = provisioning/cookbooks/vendor-cookbooks/openssl
+	url = git@github.com:opscode-cookbooks/openssl.git
