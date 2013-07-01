@@ -1,0 +1,14 @@
+{
+  "name": "drupal7",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "description": "The Drupal 7 requirements.",
+  "run_list": [
+    "recipe[drush]"
+  ],
+  "override_attributes": {
+    "drush": {
+      "version": "7.x-5.8"
+    }
+  }
+}

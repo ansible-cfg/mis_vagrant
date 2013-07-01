@@ -16,3 +16,6 @@
 [submodule "provisioning/cookbooks/vendor-cookbooks/vim"]
 	path = provisioning/cookbooks/vendor-cookbooks/vim
 	url = git@github.com:opscode-cookbooks/vim.git
+[submodule "provisioning/cookbooks/vendor-cookbooks/cron"]
+	path = provisioning/cookbooks/vendor-cookbooks/cron
+	url = git@github.com:opscode-cookbooks/cron.git
