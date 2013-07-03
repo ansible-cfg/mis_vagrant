@@ -28,3 +28,6 @@
 [submodule "provisioning/cookbooks/vendor-cookbooks/build-essential"]
 	path = provisioning/cookbooks/vendor-cookbooks/build-essential
 	url = git@github.com:opscode-cookbooks/build-essential.git
+[submodule "provisioning/cookbooks/vendor-cookbooks/apt"]
+	path = provisioning/cookbooks/vendor-cookbooks/apt
+	url = git@github.com:opscode-cookbooks/apt.git

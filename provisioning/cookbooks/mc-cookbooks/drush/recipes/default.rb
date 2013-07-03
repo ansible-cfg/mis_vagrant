@@ -6,12 +6,16 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "git"
+include_recipe "php"
 
 git "/opt/drush" do
   repository "git://drupalcode.org/project/drush.git"
   revision node['drush']['version']
   action :sync
 end
+
+# @todo: Apply patch to allow Drush Make Sync to work.
 
 link "/usr/local/bin/drush" do
   to "/opt/drush/drush"

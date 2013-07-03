@@ -2,9 +2,9 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  settings = {
-    :domain => "ncihd7.mcdev",
-    :docroot => "/home/vagrant/domains/ncihd7.mcdev"
+  mc_settings = {
+    :domain => 'ncihd7.mcdev',
+    :docroot => '/home/vagrant/domains/ncihd7.mcdev'
   }
 
   # All Vagrant configuration is done here. The most common configuration
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.network :private_network, ip: "192.168.50.4"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
 
-  config.vm.synced_folder settings[:domain], settings[:docroot]
+  config.vm.synced_folder mc_settings[:domain], mc_settings[:docroot]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -91,16 +91,14 @@ Vagrant.configure("2") do |config|
       'provisioning/cookbooks/mc-cookbooks',
       'provisioning/cookbooks/vendor-cookbooks'
     ]
-    chef.roles_path = "provisioning/roles"
 
-    chef.add_role "lamp"
-    chef.add_role "dev"
-    chef.add_role "drupal7"
-
-    chef.add_recipe "ncihd7-mcdev"
+    chef.add_recipe 'lamp'
+    chef.add_recipe 'dev-tools'
+    chef.add_recipe 'drush'
+    chef.add_recipe 'ncihd7-mcdev'
 
     # You may also specify custom JSON attributes:
-    chef.json = {}.merge(settings)
+    chef.json = {}.merge(mc_settings)
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,

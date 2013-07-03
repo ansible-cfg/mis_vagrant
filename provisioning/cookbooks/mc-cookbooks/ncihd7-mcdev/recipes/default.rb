@@ -6,11 +6,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+#
+include_recipe "lamp"
 
 # Create a mysql database for homeimprovement.
 mysql_database 'hi_ncihd7_mcdev' do
   connection ({
-    :host => "localhost",
+    :host => 'localhost',
     :username => 'root',
     :password => node['mysql']['server_root_password']
   })
