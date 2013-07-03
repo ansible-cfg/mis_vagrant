@@ -1,4 +1,7 @@
 # Description
+
+A base Vagrant + Chef development environment. 
+
 # Requirements
 
 * Vagrant 1.2.2
@@ -31,8 +34,16 @@ be reflected on the dev site.
 # Recipes
 
 * dev-tools
-    - phpmyadmin
-    - webgrind
-    - xhprof
+Installs drush, rsync, and vim.
+    - dev-tools::phpmyadmin
+    - dev-tools::webgrind
+
+      **Not compatiable with** ```dev-tools::xhprof```
+
+    - dev-tools::xhprof
+
+      **Not compatiable with** ```dev-tools::webgrind```
+
 * drush
 * lamp
+A fully functioning LAMP stack.
