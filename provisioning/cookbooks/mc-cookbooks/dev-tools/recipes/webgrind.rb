@@ -6,14 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "git"
 include_recipe "lamp"
 
-package 'subversion'
-
-subversion "webgrind" do
-  repository "http://webgrind.googlecode.com/svn/tags/release-1.0"
-  revision "HEAD"
-  destination "/var/www/webgrind"
+git "/var/www/webgrind" do
+  repository "git://github.com/jokkedk/webgrind.git"
+  reference "master"
   action :sync
 end
 
