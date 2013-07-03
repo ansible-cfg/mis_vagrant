@@ -34,7 +34,9 @@ be reflected on the dev site.
 # Recipes
 
 * dev-tools
-Installs drush, rsync, and vim.
+
+    Installs drush, rsync, and vim.
+
     - dev-tools::phpmyadmin
     - dev-tools::webgrind
 
@@ -46,4 +48,5 @@ Installs drush, rsync, and vim.
 
 * drush
 * lamp
-A fully functioning LAMP stack.
+
+    A fully functioning LAMP stack.
