@@ -11,7 +11,7 @@ node.default['phpmyadmin']['fpm'] = false
 include_recipe "lamp"
 include_recipe "phpmyadmin"
 
-phpmyadmin_db 'Test DB' do
+phpmyadmin_db 'phpmyadmin' do
     host '127.0.0.1'
     port 3306
     username 'root'

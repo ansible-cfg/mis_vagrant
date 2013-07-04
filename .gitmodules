@@ -31,3 +31,6 @@
 [submodule "provisioning/cookbooks/vendor-cookbooks/apt"]
 	path = provisioning/cookbooks/vendor-cookbooks/apt
 	url = git@github.com:opscode-cookbooks/apt.git
+[submodule "provisioning/cookbooks/vendor-cookbooks/phpmyadmin"]
+	path = provisioning/cookbooks/vendor-cookbooks/phpmyadmin
+	url = git@github.com:priestjim/chef-phpmyadmin.git

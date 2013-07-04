@@ -1,6 +1,6 @@
 # Description
 
-A base Vagrant + Chef development environment. 
+A base Vagrant + Chef development environment.
 
 # Requirements
 
