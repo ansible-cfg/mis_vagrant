@@ -13,6 +13,10 @@ php_pear "xhprof" do
   action :install
 end
 
+package "graphviz" do
+  action :install
+end
+
 link "/var/www/xhprof" do
   to "/usr/share/php/xhprof_html"
 end

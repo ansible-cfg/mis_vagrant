@@ -15,6 +15,19 @@ git "/var/www/webgrind" do
   action :sync
 end
 
+# @todo: Set the following inside of the config.php for webgrind. For graphviz
+#        to work.
+# static $dotExecutable = '/usr/bin/dot';
+
+package "graphviz" do
+  action :install
+end
+
 apache_site "default" do
   enable true
+end
+
+php_pear "Image_GraphViz" do
+  preferred_state "beta"
+  action :install
 end

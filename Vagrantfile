@@ -77,6 +77,9 @@ Vagrant.configure("2") do |config|
 
     chef.add_recipe 'lamp'
     chef.add_recipe 'dev-tools'
+    chef.add_recipe 'dev-tools::phpmyadmin'
+    #chef.add_recipe 'dev-tools::xhprof'
+    #chef.add_recipe 'dev-tools::webgrind'
     chef.add_recipe 'drush'
     chef.add_recipe 'ncihd7-mcdev'
 
