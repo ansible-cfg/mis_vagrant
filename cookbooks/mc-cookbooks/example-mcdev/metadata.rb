@@ -1,4 +1,4 @@
-name             'ncihd7_mcdev'
+name             'example-mcdev'
 maintainer       'Mediacurrent'
 maintainer_email 'kelly.beck@mediacurrent.com'
 license          'All rights reserved'

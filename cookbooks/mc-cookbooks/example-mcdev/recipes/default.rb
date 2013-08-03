@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: ncihd7-mcdev
+# Cookbook Name:: example-mcdev
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent, LLC
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -10,7 +10,7 @@
 include_recipe "lamp"
 
 # Create a mysql database for homeimprovement.
-mysql_database 'hi_ncihd7_mcdev' do
+mysql_database 'example_mcdev' do
   connection ({
     :host => 'localhost',
     :username => 'root',
