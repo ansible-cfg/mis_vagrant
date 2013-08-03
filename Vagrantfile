@@ -3,8 +3,8 @@
 
 Vagrant.configure("2") do |config|
   mc_settings = {
-    :domain => 'ncihd7.mcdev',
-    :docroot => '/home/vagrant/domains/ncihd7.mcdev'
+    :domain => 'example.mcdev',
+    :docroot => '/home/vagrant/domains/example.mcdev'
   }
 
   # All Vagrant configuration is done here. The most common configuration
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.50.4"
+  config.vm.network :private_network, ip: "192.168.50.1"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
