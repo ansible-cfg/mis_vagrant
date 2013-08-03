@@ -21,7 +21,7 @@
 	url = git@github.com:opscode-cookbooks/cron.git
 [submodule "cookbooks/vendor-cookbooks/database"]
 	path = cookbooks/vendor-cookbooks/database
-	url = https://github.com/opscode-cookbooks/database.git
+	url = git@github.com:opscode-cookbooks/database.git
 [submodule "cookbooks/vendor-cookbooks/openssl"]
 	path = cookbooks/vendor-cookbooks/openssl
 	url = git@github.com:opscode-cookbooks/openssl.git
