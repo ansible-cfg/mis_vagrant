@@ -71,8 +71,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [
-      'provisioning/cookbooks/mc-cookbooks',
-      'provisioning/cookbooks/vendor-cookbooks'
+      'cookbooks/mc-cookbooks',
+      'cookbooks/vendor-cookbooks'
     ]
 
     chef.add_recipe 'lamp'
@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
     #chef.add_recipe 'dev-tools::xhprof'
     #chef.add_recipe 'dev-tools::webgrind'
     chef.add_recipe 'drush'
-    chef.add_recipe 'ncihd7-mcdev'
+    chef.add_recipe 'example-mcdev'
 
     # You may also specify custom JSON attributes:
     chef.json = {}.merge(mc_settings)
