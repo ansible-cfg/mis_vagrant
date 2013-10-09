@@ -4,7 +4,8 @@
 Vagrant.configure("2") do |config|
   mc_settings = {
     :domain => 'example.mcdev',
-    :docroot => '/home/vagrant/domains/example.mcdev'
+    :docroot => '/home/vagrant/docroot',
+    :host_docroot => '../docroot'
   }
 
   # All Vagrant configuration is done here. The most common configuration
@@ -37,7 +38,7 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
 
-  config.vm.synced_folder mc_settings[:domain], mc_settings[:docroot]
+  config.vm.synced_folder mc_settings[:host_docroot], mc_settings[:docroot]
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
