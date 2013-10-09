@@ -34,3 +34,6 @@
 [submodule "cookbooks/vendor-cookbooks/phpmyadmin"]
 	path = cookbooks/vendor-cookbooks/phpmyadmin
 	url = git@github.com:priestjim/chef-phpmyadmin.git
+[submodule "cookbooks/vendor-cookbooks/memcached"]
+	path = cookbooks/vendor-cookbooks/memcached
+	url = git@github.com:opscode-cookbooks/memcached.git

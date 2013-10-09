@@ -26,6 +26,13 @@ include_recipe 'php::module_apc'
 include_recipe 'php::module_gd'
 include_recipe 'php::module_mysql'
 
+template "#{node['lamp']['php']['apache_conf_dir']}/php.ini" do
+  source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
 # Add uploadprogress pecl package.
 php_pear "uploadprogress" do
   action :install

@@ -8,6 +8,12 @@
 
 
 include_recipe "lamp"
+include_recipe "memcached"
+
+# Add memcache pecl package.
+php_pear "memcache" do
+  action :install
+end
 
 # Create a mysql database for homeimprovement.
 mysql_database 'example_mcdev' do
@@ -26,3 +32,5 @@ web_app node[:domain] do
   server_aliases []
   server_name node[:domain]
 end
+
+
