@@ -2,10 +2,9 @@
 # Cookbook Name:: dev-tools
 # Attributes:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent
 #
 # All rights reserved - Do Not Redistribute
-#
 
 default['dev-tools']['xdebug']['default_enable']  = 1
 default['dev-tools']['xdebug']['profiler_append']  = 0

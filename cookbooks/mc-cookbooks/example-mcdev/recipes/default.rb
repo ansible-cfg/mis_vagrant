@@ -5,8 +5,8 @@
 # Copyright 2013, Mediacurrent, LLC
 #
 # All rights reserved - Do Not Redistribute
-#
-#
+
+
 include_recipe "lamp"
 
 # Create a mysql database for homeimprovement.

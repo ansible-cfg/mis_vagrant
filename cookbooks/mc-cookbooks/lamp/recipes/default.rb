@@ -2,10 +2,9 @@
 # Cookbook Name:: lamp
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent
 #
 # All rights reserved - Do Not Redistribute
-#
 
 include_recipe 'apt'
 # Must be above mysql to install make.
@@ -26,3 +25,8 @@ include_recipe 'mysql::server'
 include_recipe 'php::module_apc'
 include_recipe 'php::module_gd'
 include_recipe 'php::module_mysql'
+
+# Add uploadprogress pecl package.
+php_pear "uploadprogress" do
+  action :install
+end
