@@ -48,22 +48,4 @@ $ vagrant ssh
 Changes may be made in the host docroot filesystem and they will
 be reflected on the dev site.
 
-# Recipes
 
-* dev-tools
-
-    Installs drush, rsync, and vim.
-
-    - dev-tools::phpmyadmin
-    - dev-tools::webgrind
-
-      **Not compatiable with** ```dev-tools::xhprof```
-
-    - dev-tools::xhprof
-
-      **Not compatiable with** ```dev-tools::webgrind```
-
-* drush
-* lamp
-
-    A fully functioning LAMP stack.

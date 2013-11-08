@@ -78,6 +78,26 @@ To configure the platform for your specific needs, compose your *Vagrantfile* ru
 
 Details on what each recipe provides are forthcoming.
 
+# Recipes
+
+* dev-tools
+
+    Installs drush, rsync, and vim.
+
+    - dev-tools::phpmyadmin
+    - dev-tools::webgrind
+
+      **Not compatiable with** ```dev-tools::xhprof```
+
+    - dev-tools::xhprof
+
+      **Not compatiable with** ```dev-tools::webgrind```
+
+* drush
+* lamp
+
+    A fully functioning LAMP stack.
+
 Once you are satisfied with your build, create a branch within the mc_vagrant project for your own and commit the changes there. When that is complete, add the submodule to your project repo or provide instructions on where to place it relative to the project root.
 
 ## Troubleshooting
