@@ -38,3 +38,7 @@ end
 php_pear "uploadprogress" do
   action :install
 end
+
+package "mysqltuner" do
+    action :install
+end
