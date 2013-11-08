@@ -23,6 +23,7 @@ include_recipe 'mysql::client'
 include_recipe 'mysql::ruby'
 include_recipe 'mysql::server'
 include_recipe 'php::module_apc'
+include_recipe 'php-apc-ini'
 include_recipe 'php::module_gd'
 include_recipe 'php::module_mysql'
 
