@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
+include_attribute "mysql::server"
 include_attribute "php"
 
 # Install build-essential.
@@ -17,7 +18,7 @@ default['mysql']['server_root_password'] = 'password'
 default['mysql']['server_debian_password'] = 'password'
 default['mysql']['server_repl_password'] = 'password'
 
-# sane settings for development environment 
+# Sane settings for development environment.
 # http://project.mediacurrent.com/mct/node/21400
 default['mysql']['tunable']['max_allowed_packet'] = "64M"
 default['mysql']['tunable']['max_connections'] = "40"
