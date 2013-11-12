@@ -37,3 +37,6 @@
 [submodule "cookbooks/vendor-cookbooks/memcached"]
 	path = cookbooks/vendor-cookbooks/memcached
 	url = git@github.com:opscode-cookbooks/memcached.git
+[submodule "cookbooks/vendor-cookbooks/varnish"]
+	path = cookbooks/vendor-cookbooks/varnish
+	url = https://github.com/opscode-cookbooks/varnish.git
