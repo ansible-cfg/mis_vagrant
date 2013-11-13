@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   config.vm.provider :virtualbox do |vb|
-    # Don't boot with headless mode
+    # Boot in headless mode.
     vb.gui = false
 
     # Use VBoxManage to customize the VM. For example to change memory:
@@ -72,14 +72,14 @@ Vagrant.configure("2") do |config|
       'cookbooks/vendor-cookbooks'
     ]
 
-    chef.add_recipe 'lamp'
-    #chef.add_recipe 'lamp::varnish'
-    chef.add_recipe 'dev-tools'
-    #chef.add_recipe 'dev-tools::phpmyadmin'
-    #chef.add_recipe 'dev-tools::xhprof'
-    #chef.add_recipe 'dev-tools::webgrind'
-    chef.add_recipe 'drush'
-    chef.add_recipe 'example-mcdev'
+    chef.add_recipe "lamp"
+    chef.add_recipe "lamp::varnish"
+    chef.add_recipe "dev-tools"
+    #chef.add_recipe "dev-tools::phpmyadmin"
+    #chef.add_recipe "dev-tools::xhprof"
+    #chef.add_recipe "dev-tools::webgrind"
+    chef.add_recipe "drush"
+    chef.add_recipe "example-mcdev"
 
     # You may also specify custom JSON attributes:
     chef.json = {}.merge(mc_settings)

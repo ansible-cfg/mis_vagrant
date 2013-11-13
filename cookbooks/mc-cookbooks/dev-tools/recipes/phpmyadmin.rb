@@ -8,7 +8,6 @@
 #
 node.default['phpmyadmin']['fpm'] = false
 
-include_recipe "lamp"
 include_recipe "phpmyadmin"
 
 phpmyadmin_db 'phpmyadmin' do
