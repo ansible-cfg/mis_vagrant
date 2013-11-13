@@ -6,7 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "lamp"
 
 php_pear "xhprof" do
   preferred_state "beta"

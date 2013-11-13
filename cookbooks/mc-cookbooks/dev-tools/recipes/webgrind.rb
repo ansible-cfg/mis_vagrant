@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "git"
-include_recipe "lamp"
 
 git "/var/www/webgrind" do
   repository "git://github.com/jokkedk/webgrind.git"

@@ -6,10 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe 'drush'
-include_recipe 'lamp'
-include_recipe 'vim'
-include_recipe 'rsync'
+include_recipe "git"
+include_recipe "vim"
+include_recipe "rsync"
 
 # Install xdebug via pear.
 php_pear "xdebug" do
