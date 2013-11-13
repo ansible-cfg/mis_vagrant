@@ -15,8 +15,8 @@
 # server.
 #
 backend default {
-  .host = "127.0.0.1";
-  .port = "80";
+  .host = "<%= node['varnish']['backend_host'] %>";
+  .port = "<%= node['varnish']['backend_port'] %>";
 }
 
 # Respond to incoming requests.
