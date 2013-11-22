@@ -1,5 +1,0 @@
-maintainer       "Mediacurrent Interactive Solutions, LLC"
-maintainer_email "derek.deraps@mediacurrent.com"
-license          "All Rights Reserved"
-description      "Configures PHP-APC."
-version          "0.1.0"
