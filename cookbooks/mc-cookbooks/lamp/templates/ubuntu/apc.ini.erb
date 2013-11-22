@@ -2,20 +2,20 @@
 ;Setup only shows overridden defaults. Please review the documentation!
 ;http://php.net/manual/en/apc.configuration.php
 extension=apc.so
-apc.enabled=1
+apc.enabled=<%= node['lamp']['apc']['enabled'] %>
 
 ;Min memory of 64M for a very basic Drupal install.
 ;Review and adjust periodically the first few days and then every few months or 
 ;whenever dev changes are made.
-apc.shm_size=128M
-apc.shm_segments=1
+apc.shm_size=<%= node['lamp']['apc']['shm_size'] %>
+apc.shm_segments=<%= node['lamp']['apc']['shm_segments'] %>
 
 ;On production set to 0 for the best performance so APC doesn't check the file
 ;before caching it.
 ;While in active dev setting to 1 may be a better choice.
-apc.stat=0
+apc.stat=<%= node['lamp']['apc']['stat'] %>
 
-;Default 1 but if you want to use apc.filters set to 0. 
+;Default 1 but if you want to use apc.filters set to 0.
 apc.cache_by_default=1
 
 ;Filter files, only used if apc.cache_by_default is disabled. Uses posix
@@ -33,12 +33,12 @@ apc.user_entries_hint=8000
 ;Idle cache entry lifetime in seconds, 7200 = 2hrs
 ;Setting ttl to live to 0 means forever and an apache restart would be needed
 ;after each code update to clear the caches.
-apc.ttl=14400
+apc.ttl=<%= node['lamp']['apc']['ttl'] %>
 apc.user_ttl=600
 apc.gc_ttl=600
 
 ;Defaults to 1M, if you profile you should note any heavy files.
-apc.max_file_size=2M
+apc.max_file_size=<%= node['lamp']['apc']['max_file_size'] %>
 
 ;Enable upload progress, useful in Drupal.
 apc.rfc1867=1
