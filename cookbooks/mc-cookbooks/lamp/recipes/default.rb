@@ -50,5 +50,5 @@ end
 
 # Add MySQLTuner via package manager.
 package "mysqltuner" do
-    action :install
+  action :install
 end
