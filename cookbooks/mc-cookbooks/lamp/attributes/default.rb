@@ -28,3 +28,4 @@ default['mysql']['tunable']['query_cache_size'] = "64M"
 # Custom PHP settings.
 default['lamp']['php']['apache_conf_dir'] = '/etc/php5/apache2'
 default['lamp']['php']['error_reporting'] = 'E_ALL'
+default['lamp']['php']['memory_limit'] = '128M'
