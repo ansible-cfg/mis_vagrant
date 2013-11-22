@@ -7,5 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_attribute "phpmyadmin"
+
 node['phpmyadmin']['home'] = '/var/www/phpmyadmin'
 node['phpmyadmin']['fpm'] = false

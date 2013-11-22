@@ -6,7 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-node.default['phpmyadmin']['fpm'] = false
 
 include_recipe "phpmyadmin"
 

@@ -6,17 +6,17 @@
 #
 # All rights reserved - Do Not Redistribute
 
+include_attribute "build-essential"
 include_attribute "mysql::server"
 include_attribute "php"
 
 # Install build-essential.
 node['build_essential']['compiletime'] = true
 
-
-# Mysql settings.
-node['mysql']['server_root_password'] = 'password'
-node['mysql']['server_debian_password'] = 'password'
-node['mysql']['server_repl_password'] = 'password'
+# MySQL settings.
+default['mysql']['server_root_password'] = 'password'
+default['mysql']['server_debian_password'] = 'password'
+default['mysql']['server_repl_password'] = 'password'
 
 # Sane settings for development environment.
 # http://project.mediacurrent.com/mct/node/21400
