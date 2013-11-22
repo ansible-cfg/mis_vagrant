@@ -25,9 +25,20 @@ include_recipe 'mysql::server'
 include_recipe 'php::module_apc'
 include_recipe 'php::module_gd'
 include_recipe 'php::module_mysql'
+include_recipe 'php::module_curl'
 
+# PHP.ini configuration.
 template "#{node['lamp']['php']['apache_conf_dir']}/php.ini" do
   source "php.ini.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
+# PHP APC configuration from Chris Hales.
+# @see https://gist.github.com/chales/6370187
+template "#{node['php']['ext_conf_dir']}/apc.ini" do
+  source "apc.ini.erb"
   owner "root"
   group "root"
   mode "0644"
@@ -38,6 +49,7 @@ php_pear "uploadprogress" do
   action :install
 end
 
+# Add MySQLTuner via package manager.
 package "mysqltuner" do
-    action :install
+  action :install
 end
