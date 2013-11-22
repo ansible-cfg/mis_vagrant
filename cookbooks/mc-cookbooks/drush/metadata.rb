@@ -1,6 +1,6 @@
 name             "drush"
-maintainer       "YOUR_COMPANY_NAME"
-maintainer_email "YOUR_EMAIL"
+maintainer       "Mediacurrent"
+maintainer_email "jonathan.delaigle@mediacurrent.com"
 license          "All rights reserved"
 description      "Installs/Configures drush"
 long_description IO.read(File.join(File.dirname(__FILE__), "README.md"))
