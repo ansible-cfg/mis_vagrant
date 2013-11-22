@@ -9,15 +9,19 @@
 include_recipe "git"
 include_recipe "lamp"
 
-git "/var/www/webgrind" do
+git "#{node['webgrind']['docroot']}" do
   repository "git://github.com/jokkedk/webgrind.git"
   reference "master"
   action :sync
 end
 
-# @todo: Set the following inside of the config.php for webgrind. For graphviz
-#        to work.
-# static $dotExecutable = '/usr/bin/dot';
+# Custom settings for webgrind's config.php to make graphviz work.
+template "#{node['webgrind']['docroot']}/config.php" do
+  source "config.php.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
 
 package "graphviz" do
   action :install
