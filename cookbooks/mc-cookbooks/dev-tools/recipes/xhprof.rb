@@ -2,11 +2,10 @@
 # Cookbook Name:: lamp
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "lamp"
 
 php_pear "xhprof" do
   preferred_state "beta"

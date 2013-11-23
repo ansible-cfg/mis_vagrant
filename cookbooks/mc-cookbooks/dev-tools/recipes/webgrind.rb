@@ -2,12 +2,10 @@
 # Cookbook Name:: webgrind
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "git"
-include_recipe "lamp"
 
 git "#{node['webgrind']['docroot']}" do
   repository "git://github.com/jokkedk/webgrind.git"

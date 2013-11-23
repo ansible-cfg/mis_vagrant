@@ -2,13 +2,11 @@
 # Cookbook Name:: phpmyadmin
 # Recipe:: default
 #
-# Copyright 2013, YOUR_COMPANY_NAME
+# Copyright 2013, Mediacurrent
 #
 # All rights reserved - Do Not Redistribute
 #
-node.default['phpmyadmin']['fpm'] = false
 
-include_recipe "lamp"
 include_recipe "phpmyadmin"
 
 phpmyadmin_db 'phpmyadmin' do
