@@ -12,12 +12,19 @@ raise "Only Varnish 3 is supported at this time." if node['varnish']['version'] 
 
 package "varnish"
 
+# Create the secure key file if there is a non-secure secret set.
 if node['varnish']['secret-non_secure']
-  file node['varnish']['secret_file'] do
-    content node['varnish']['secret-non_secure']
+  file "#{node['varnish']['secret_file']}" do
+    # T new line is required because it is normally created there by the uuidgen
+    # which generates this secret file. The Drupal module also accomodates this
+    # in its interactions automatically.
+    #
+    # @see http://michaelphipps.com/how-create-varnish-secret-file
+    # @see https://drupal.org/comment/5872422#comment-5872422
+    content "#{node['varnish']['secret-non_secure']}\n"
     owner "root"
     group "root"
-    mode 0644
+    mode 0600
     action :create
   end
 end
