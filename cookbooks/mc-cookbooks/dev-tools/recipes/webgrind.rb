@@ -15,6 +15,15 @@ git "#{node['webgrind']['docroot']}" do
   action :sync
 end
 
+# Create virtual host and enable site.
+web_app "webgrind.#{node[:domain]}" do
+  cookbook "apache2"
+  allow_override "All"
+  docroot node['webgrind']['docroot']
+  server_aliases []
+  server_name "webgrind.#{node[:domain]}"
+end
+
 # Custom settings for webgrind's config.php to make graphviz work.
 template "#{node['webgrind']['docroot']}/config.php" do
   source "config.php.erb"
@@ -25,10 +34,6 @@ end
 
 package "graphviz" do
   action :install
-end
-
-apache_site "default" do
-  enable true
 end
 
 php_pear "Image_GraphViz" do
