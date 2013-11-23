@@ -19,6 +19,11 @@ phpmyadmin_db 'phpmyadmin' do
     hide_dbs %w{ information_schema mysql phpmyadmin performance_schema }
 end
 
-apache_site "default" do
-  enable true
+# Create virtual host and enable site.
+web_app "phpmyadmin.#{node[:domain]}" do
+  cookbook "apache2"
+  allow_override "All"
+  docroot "/var/www/phpmyadmin"
+  server_aliases []
+  server_name "phpmyadmin.#{node[:domain]}"
 end

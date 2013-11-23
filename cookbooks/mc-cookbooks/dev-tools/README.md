@@ -1,5 +1,15 @@
 # Development tools
 
+## phpMyAdmin
+
+1. Uncomment ```dev-tools::phpmyadmin``` recipe from the run list.
+2. Navigate to the phpmyadmin interface by going to http://phpmyadmin.<host>
+
+```
+User name: root
+Password: password
+```
+
 ## Webgrind
 
 1. Uncomment ```dev-tools::webgrind``` recipe from the run list.
