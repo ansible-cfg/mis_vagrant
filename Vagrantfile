@@ -58,7 +58,7 @@ Vagrant.configure("2") do |config|
       apt-get update
 
       # Mysql keeps firing off before build_essentials can be added... I don't
-      # know why just yet
+      # know why just yet.
       apt-get -y install build-essential
     EOH
   end

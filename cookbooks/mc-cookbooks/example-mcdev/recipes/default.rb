@@ -32,7 +32,7 @@ web_app node[:domain] do
 end
 
 ###############################################################################
-# Post post installation/up scripts.
+# Post installation/up scripts.
 #
 # This should almost always be the last thing you want to run.
 #
@@ -54,13 +54,19 @@ config_file = "/tmp/mis_vagrant.config.json"
 post_install = "#{node[:docroot]}/sites/all/mis_vagrant/post-install.sh"
 post_up = "#{node[:docroot]}/sites/all/mis_vagrant/post-up.sh"
 
+# Clone the node object and run its deep merge.
+#
+# @see http://docs.opscode.com/chef/essentials_node_object.html
+# @see http://rubydoc.info/gems/chef/0.10.4/Chef/Node#expand!-instance_method
+config = node.to_hash
+
 # Write the configuration file.
 file config_file do
   # @todo: Figure out a way to get the final value of the entire node object.
   #        Because right now it splits it out into default, normal, override.
   #        If not possible we need to add the specific variables that we think
   #        would be most usefule.
-  content node.to_json
+  content config.to_json
   mode "0644"
   owner "vagrant"
   group "vagrant"
