@@ -60,9 +60,7 @@ $ drush @example.mcdev site-install minimal
 $ drush sql-sync @example.dev @example.mcdev
 ```
 
-10. To start working on the codebase, open up PhpStorm (or editor of your choice) and create a new project with project base as workspace/twc\_cms folder.
-
-11. To ssh into your new pre-configured development environment, use the following. (Optional)
+10. To ssh into your new pre-configured development environment, use the following. (Optional)
 ```
 $ vagrant ssh
 ```
