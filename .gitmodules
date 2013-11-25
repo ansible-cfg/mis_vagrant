@@ -1,39 +1,42 @@
 [submodule "cookbooks/vendor-cookbooks/apache2"]
 	path = cookbooks/vendor-cookbooks/apache2
-	url = git@github.com:opscode-cookbooks/apache2.git
+	url = https://github.com/opscode-cookbooks/apache2.git
 [submodule "cookbooks/vendor-cookbooks/php"]
 	path = cookbooks/vendor-cookbooks/php
-	url = git@github.com:opscode-cookbooks/php.git
+	url = https://github.com/opscode-cookbooks/php.git
 [submodule "cookbooks/vendor-cookbooks/mysql"]
 	path = cookbooks/vendor-cookbooks/mysql
-	url = git@github.com:opscode-cookbooks/mysql.git
+	url = https://github.com/opscode-cookbooks/mysql.git
 [submodule "cookbooks/vendor-cookbooks/git"]
 	path = cookbooks/vendor-cookbooks/git
-	url = git@github.com:opscode-cookbooks/git.git
+	url = https://github.com/opscode-cookbooks/git.git
 [submodule "cookbooks/vendor-cookbooks/rsync"]
 	path = cookbooks/vendor-cookbooks/rsync
-	url = git@github.com:opscode-cookbooks/rsync.git
+	url = https://github.com/opscode-cookbooks/rsync.git
 [submodule "cookbooks/vendor-cookbooks/vim"]
 	path = cookbooks/vendor-cookbooks/vim
-	url = git@github.com:opscode-cookbooks/vim.git
+	url = https://github.com/opscode-cookbooks/vim.git
 [submodule "cookbooks/vendor-cookbooks/cron"]
 	path = cookbooks/vendor-cookbooks/cron
-	url = git@github.com:opscode-cookbooks/cron.git
+	url = https://github.com/opscode-cookbooks/cron.git
 [submodule "cookbooks/vendor-cookbooks/database"]
 	path = cookbooks/vendor-cookbooks/database
-	url = git@github.com:opscode-cookbooks/database.git
+	url = https://github.com/opscode-cookbooks/database.git
 [submodule "cookbooks/vendor-cookbooks/openssl"]
 	path = cookbooks/vendor-cookbooks/openssl
-	url = git@github.com:opscode-cookbooks/openssl.git
+	url = https://github.com/opscode-cookbooks/openssl.git
 [submodule "cookbooks/vendor-cookbooks/build-essential"]
 	path = cookbooks/vendor-cookbooks/build-essential
-	url = git@github.com:opscode-cookbooks/build-essential.git
+	url = https://github.com/opscode-cookbooks/build-essential.git
 [submodule "cookbooks/vendor-cookbooks/apt"]
 	path = cookbooks/vendor-cookbooks/apt
-	url = git@github.com:opscode-cookbooks/apt.git
+	url = https://github.com/opscode-cookbooks/apt.git
 [submodule "cookbooks/vendor-cookbooks/phpmyadmin"]
 	path = cookbooks/vendor-cookbooks/phpmyadmin
-	url = git@github.com:priestjim/chef-phpmyadmin.git
+	url = https://github.com/priestjim/chef-phpmyadmin.git
 [submodule "cookbooks/vendor-cookbooks/memcached"]
 	path = cookbooks/vendor-cookbooks/memcached
-	url = git@github.com:opscode-cookbooks/memcached.git
+	url = https://github.com/opscode-cookbooks/memcached.git
+[submodule "cookbooks/vendor-cookbooks/varnish"]
+	path = cookbooks/vendor-cookbooks/varnish
+	url = https://github.com/opscode-cookbooks/varnish.git

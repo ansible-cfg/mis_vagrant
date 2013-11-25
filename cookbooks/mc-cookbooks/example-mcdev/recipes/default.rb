@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 
-
-include_recipe "lamp"
 include_recipe "memcached"
 
 # Add memcache pecl package.

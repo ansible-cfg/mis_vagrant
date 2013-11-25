@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "git"
-include_recipe "php"
 
 git "/opt/drush" do
   repository "git://drupalcode.org/project/drush.git"
