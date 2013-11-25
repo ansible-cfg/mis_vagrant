@@ -61,7 +61,7 @@ At some point during the process, you will be prompted for an administrator pass
 The drush aliases below are for the mis_example project. You can find the proper aliases to use for your project in [my repo]/docroot/sites/all/drush
 ```
 $ cd [my repo]/docroot
-$ drush @example.mcdev site-install minimal
+$ drush @example.mcdev site-install minimal --sites-subdir=example.mcdev --db-url=mysql://root:password@localhost/example_mcdev
 $ drush sql-sync @example.dev @example.mcdev
 ```
 
