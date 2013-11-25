@@ -34,6 +34,7 @@ Note the `--recursive` flag, that is necessary to checkout the submodules as par
 Alternatively, you can clone the repo and provision the vendor recipes separately.
 ```
 $ git clone [my repo]
+$ cd [my repo]
 $ git submodule init
 $ git submodule update
 ```
@@ -45,9 +46,10 @@ $ git submodule update
         
 Replace example.mcdev and the IP address with whatever your particular project admin states.
 
-7. Now, cd into the cloned directory and execute `vagrant up` - This command will download and bring up the virtual machine.
+7. Now, change directories into the mc_vagrant directory and execute `vagrant up` - This command will download and bring up the virtual machine.
 **(Be patient.  This will take a few minutes and will take longer the first time it is run.)**
 ```
+$ cd [my repo]/mc_vagrant
 $ vagrant up
 ```
 At some point during the process, you will be prompted for an administrator password. This is to create the NFS export to share your local filesystem with the VM and is safe to acknowledge.
@@ -55,13 +57,17 @@ At some point during the process, you will be prompted for an administrator pass
 8. Once step 7 is complete, the virtual machine is up and running in your local. Congratulations! View your site using the domain configured in step 6.
 
 9. Install site with drush install profile and optionally synch with shared dev environment. Your project admin may provide an installation profile specific to the project. If not, minimal will be fine for now.
+
+The drush aliases below are for the mis_example project. You can find the proper aliases to use for your project in [my repo]/docroot/sites/all/drush
 ```
+$ cd [my repo]/docroot
 $ drush @example.mcdev site-install minimal
 $ drush sql-sync @example.dev @example.mcdev
 ```
 
 10. To ssh into your new pre-configured development environment, use the following. (Optional)
 ```
+$ cd [my repo]/mc_vagrant
 $ vagrant ssh
 ```
 Changes may be made in the host docroot filesystem and they will
