@@ -54,10 +54,10 @@ config_file = "/tmp/mis_vagrant.config.json"
 post_install = "#{node[:docroot]}/sites/all/mis_vagrant/post-install.sh"
 post_up = "#{node[:docroot]}/sites/all/mis_vagrant/post-up.sh"
 
-# Clone the node object and run its deep merge.
+# Run deep merge on the node config.
 #
 # @see http://docs.opscode.com/chef/essentials_node_object.html
-# @see http://rubydoc.info/gems/chef/0.10.4/Chef/Node#expand!-instance_method
+# @see http://rubydoc.info/gems/chef/0.10.4/Chef/Node:to_hash
 config = node.to_hash
 
 # Write the configuration file.
