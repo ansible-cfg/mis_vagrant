@@ -103,13 +103,15 @@ following.
 
 9. Check in your vagrant configuration and push into your projects/client--project
 branch.
+
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
         [vagrant_repo]$ git push origin projects/client--project
 
 10. (Only necessary if you chose to use a submodule) Add the mis_vagrant
-    directory and check in your projects' repo. This will need to be done anytime
-    anytime a change is made to mis_vagrant as the submodule keeps track of a
-    sha hash that the submodule should be pointing to.
+directory and check in your projects' repo. This will need to be done anytime
+anytime a change is made to mis_vagrant as the submodule keeps track of a
+sha hash that the submodule should be pointing to.
+
         [myrepo]$ git submodule add mis_vagrant
         [myrepo]$ git push origin branchspec
         
