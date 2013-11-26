@@ -75,9 +75,9 @@ You will get something like the following off the last column.
         #Vagrant Hosts Entries
         192.168.50.4 example.mcdev
 
-Instructions have been provided in the user quickstart guide to add an entry
-to their /etc/hosts file that matches this. Please provide this to your team
-members after setup.
+    Instructions have been provided in the user quickstart guide to add an entry
+    to their /etc/hosts file that matches this. Please provide this to your team
+    members after setup.
 
 7. Modify the line in the Vagrantfile with the IP generated in step 6.
 
