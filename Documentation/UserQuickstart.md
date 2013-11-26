@@ -35,12 +35,12 @@ Note: Steps 1-4 are only needed for the initial install of vagrant.
 
 Note the `--recursive` flag, that is necessary to checkout the submodules as part of the initial clone.
 Alternatively, you can clone the repo and provision the vendor recipes separately.
-```
-    `$ git clone [my repo]`
-    `$ cd [my repo]`
-    `$ git submodule init`
-    `$ git submodule update`
-```
+    ```
+    $ git clone [my repo]
+    $ cd [my repo]
+    $ git submodule init
+    $ git submodule update
+    ```
 
 6. Make sure the `/etc/hosts` file contains the latest hosts entries from [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/pub?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&output=html). If there are multiple entries for localhost, move the 127.0.0.1 mapping to the top.
 ```
