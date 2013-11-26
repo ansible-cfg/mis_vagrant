@@ -127,14 +127,12 @@ Details on what each recipe provides are forthcoming.
 
 * utils
 
-  Various utilities.
+    Various utilities.
 
-  - scripts
-
-    Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
-    projects docroot.
-
-  - varnish
+    - scripts
+      Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
+      projects docroot.
+    - varnish
 
 Once you are satisfied with your build, create a branch within the mc_vagrant project for your own and commit the changes there. When that is complete, add the submodule to your project repo or provide instructions on where to place it relative to the project root.
 
