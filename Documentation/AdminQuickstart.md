@@ -10,6 +10,7 @@ It is expected that you have installed and tested out the MIS Example project
 build prior to attempting to set up a vagrant build for your own project. This
 will provide you with a working vagrant environment and knowledge of what will
 need to be provided to other team members.
+    
     * The example client project branch is found on bitbucket
         git clone git@bitbucket.org:mediacurrent/mis_example.git
         git checkout develop
