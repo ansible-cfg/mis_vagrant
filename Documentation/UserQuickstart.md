@@ -81,7 +81,7 @@ the project. If not, minimal will be fine for now.
     proper aliases to use for your project in [my repo]/docroot/sites/all/drush
 
         $ cd [my repo]/docroot
-        $ drush @example.mcdev site-install minimal --sites-subdir=example.mcdev 
+        $ drush @example.mcdev site-install minimal --sites-subdir=example.mcdev \
           --db-url=mysql://root:password@localhost/example_mcdev
         $ drush sql-sync @example.dev @example.mcdev
 
