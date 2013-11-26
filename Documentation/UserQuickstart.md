@@ -35,7 +35,7 @@ Note: Steps 1-4 are only needed for the initial install of vagrant.
 
 Note the `--recursive` flag, that is necessary to checkout the submodules as part of the initial clone.
 Alternatively, you can clone the repo and provision the vendor recipes separately.
-
+```
     `$ git clone [my repo]`
     `$ cd [my repo]`
     `$ git submodule init`
