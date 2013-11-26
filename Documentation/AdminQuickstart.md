@@ -12,7 +12,7 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 
 2. Once your project repo is created, you have two options:
   - Clone the mc_vagrant project into a folder parallel to your repo (so as to avoid mixing the codebases).
-  - ``` [myrepo]$ cd ..; git clone git clone git@github.com:grndlvl/mc_vagrant.git
+  ```[myrepo]$ cd .. && git clone git clone git@bitbucket.org:mediacurrent/mis_vagrant.git```
   - Clone the mc_vagrant project into the repo itself (to avoid requiring devs from performing extra steps) as a submodule. see [this](http://git-scm.com/book/en/Git-Tools-Submodules) for more details.
 
 3. Modify the Vagrantfile to match the desired server configuration (more detail below).
