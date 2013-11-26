@@ -28,7 +28,7 @@ Follow all instructions in the User quickstart to ensure that you have all requi
           :host_docroot => '../docroot'
         }
 
-        *host_docroot refers to the location of the project docroot relative to this file.*
+*host_docroot refers to the location of the project docroot relative to this file.*
 
 6. Add the domain/IP for this installation to the devops google doc [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). Select the next IP in the current range and add to the proper column in the spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for you. If you do not have access to edit this spreadsheet, a member of DevOps can help you.
 
