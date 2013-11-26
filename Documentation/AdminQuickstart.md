@@ -11,13 +11,14 @@ build prior to attempting to set up a vagrant build for your own project. This
 will provide you with a working vagrant environment and knowledge of what will
 need to be provided to other team members.
     
-    * The example client project branch is found on bitbucket
+The example client project branch is found on bitbucket
         git clone git@bitbucket.org:mediacurrent/mis_example.git
         git checkout develop
-    * This example project is configured with a submodule to track the
-      projects/mc-mis_example branch on the vagrant side and is used to test
-      and train internally. This vagrant projects branch is built off master
-      like any other vagrant projects branch should be.
+
+This example project is configured with a submodule to track the
+projects/mc-mis_example branch on the vagrant side and is used to test and train
+internally. This vagrant projects branch is built off master like any other
+vagrant projects branch should be.
 
 ## Installation
 
