@@ -2,32 +2,31 @@
 
 ## Introduction
 
-The vagrant build is designed to be added to an existing project and may sit 
-alongside or live within the project repository (as a git submodule). Which 
+The vagrant build is designed to be added to an existing project and may sit
+alongside or live within the project repository (as a git submodule). Which
 method makes the most sense depends on project needs and architecture.
 
 ## Installation
 
-Follow all instructions in the User quickstart to ensure that you have all 
+Follow all instructions in the User quickstart to ensure that you have all
 required dependencies.
 
 1. Create (or clone locally) your project repo.
 
 2. Once your project repo is created, you have two options:
-    * Make mis_vagrant a submodule of your project's repo (As long as the 
-    docroot is not the root of your repo.) Via 
-        [myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git
+    * Make mis_vagrant a submodule of your project's repo (As long as the
+      docroot is not the root of your repo.) Via
+      ```[myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git```
     * Clone the mc_vagrant project into a directory parallel to your repo.
-        [myrepo]$ cd .. && git clone git clone \
-          git@bitbucket.org:mediacurrent/mis_vagrant.git
+      ```[myrepo]$ cd .. && git clone git clone git@bitbucket.org:mediacurrent/mis_vagrant.git```
 
 3. Change into the mis_vagrant repo and create a new branch
-        git checkout -b projects/client--project
+   ```git checkout -b projects/client--project```
 
-4. Modify the Vagrantfile to match the desired server configuration 
+4. Modify the Vagrantfile to match the desired server configuration
 (more detail below).
 
-5. Modify the Vagrantfile mc_settings to specify the docroot for your project 
+5. Modify the Vagrantfile mc_settings to specify the docroot for your project
 relative to the Vagrantfile.
 
         mc_settings = {
@@ -36,24 +35,24 @@ relative to the Vagrantfile.
           :host_docroot => '../docroot'
         }
 
-    *host_docroot refers to the location of the project docroot relative to 
+    *host_docroot refers to the location of the project docroot relative to
     this file.*
 
-6. Add the domain/IP for this installation to the devops google doc 
-[here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). 
-Select the next IP in the current range and add to the proper column in the 
-spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for 
-you. If you do not have access to edit this spreadsheet, a member of DevOps 
+6. Add the domain/IP for this installation to the devops google doc
+[here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing).
+Select the next IP in the current range and add to the proper column in the
+spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for
+you. If you do not have access to edit this spreadsheet, a member of DevOps
 can help you.
 
-7. Provide instructions to add the "domain" to their /etc/hosts file that 
+7. Provide instructions to add the "domain" to their /etc/hosts file that
 matches the IP as specified by the line below in the Vagrantfile
 
         # Create a private network, which allows host-only access to the machine
         # using a specific IP.
         config.vm.network :private_network, ip: "192.168.50.4"
 
-8. Create or add to existing drushrc file at 
+8. Create or add to existing drushrc file at
 docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the following
 
         // Vagrant local development vm.
@@ -78,32 +77,32 @@ docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the followi
 
 ### Some background on Vagrant/Chef
 
-Vagrant is a scriptable wrapper for Virtualbox and Chef. The **Vagrantfile** 
+Vagrant is a scriptable wrapper for Virtualbox and Chef. The **Vagrantfile**
 determines the vm and manifest configuration and launches them respectively.
 
-Configuration in vagrant/chef is managed through a combination of cookbooks, 
-recipes, attributes and roles. For our specific use case roles are not used 
-and are only mentioned because they may come up in your own documentation 
+Configuration in vagrant/chef is managed through a combination of cookbooks,
+recipes, attributes and roles. For our specific use case roles are not used
+and are only mentioned because they may come up in your own documentation
 searches.
 
-**recipes**  are the basic *action* wrappers for Chef and are where the atomic 
+**recipes**  are the basic *action* wrappers for Chef and are where the atomic
 configuration and provisioning happen.
 
 **cookbooks** are collections of related recipes packaged for reuse.
 
-**attributes** are the instance configurable parameters for a particular 
-recipe. For example, there are attributes to control the memory allocated to 
-APC. Attributes may be present in the recipe, role and Vagrantfile and are 
+**attributes** are the instance configurable parameters for a particular
+recipe. For example, there are attributes to control the memory allocated to
+APC. Attributes may be present in the recipe, role and Vagrantfile and are
 overridden in that order.
 
-**roles** are collections of recipes and configuration that represent a 
-responsibility. You may have a "dev web server" role that includes recipes 
-and default attributes for apache, xhprof and other debugging tools. The 
+**roles** are collections of recipes and configuration that represent a
+responsibility. You may have a "dev web server" role that includes recipes
+and default attributes for apache, xhprof and other debugging tools. The
 Mediacurrent Vagrant uses recipes to perform this task as recipes may be nested.
 
 ### Configuration
 
-To configure the platform for your specific needs, compose your *Vagrantfile* 
+To configure the platform for your specific needs, compose your *Vagrantfile*
 run list.
 
 
