@@ -21,12 +21,13 @@ Note: Steps 1-4 are only needed for the initial install of vagrant.
 3. Add the vagrant ssh key to your .ssh directory
     
     `$ ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
+
     `$ chmod 600 ~/.ssh/vagrant_insecure_private_key`
 
 4. Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines
-Host *.mcdev
-IdentityFile ~/.ssh/vagrant_insecure_private_key
-User vagrant
+    Host *.mcdev
+    IdentityFile ~/.ssh/vagrant_insecure_private_key
+    User vagrant
 
 
 5. Clone the repo, Retrieve the submodules. Consult with project lead for the repo information.
