@@ -23,7 +23,8 @@ need to be provided to other team members.
 Follow all instructions in the User quickstart to ensure that you have all
 required dependencies.
 
-1. Create (or clone locally) your client project repo.
+1. Create (or clone locally) your client project repo. This will be referred to
+as [myrepo] for the remainder of this document.
 
 2. Once your client project repo is created, you have two options:
     * Make mis_vagrant a submodule of your project's repo (As long as the
@@ -36,10 +37,12 @@ required dependencies.
 create a new projects branch. **Important:** all projects branches must be
 branched from master for maintainability. The project branch is where changes
 specific to your project are kept and maintained over time. Remember to replace
-"client" and "project" with names that are appropriate for your project.
+"client" and "project" with names that are appropriate for your project. Your
+project's vagrant branch will be referred to as [vagrant_repo] throughout this
+document.
 
-        git checkout master
-        git checkout -b projects/client--project
+        [vagrant_repo]$ git checkout master
+        [vagrant_repo]$ git checkout -b projects/client--project
 
 4. Modify the Vagrantfile to match the desired server configuration
 (more detail below).
@@ -97,15 +100,15 @@ following.
 
 9. Check in your vagrant configuration and push into your projects/client--project
 branch.
-        git commit -a -m 'creating branch for project name'
-        git push origin projects/client--project
+        [vagrant_repo]$ git commit -a -m 'creating branch for project name'
+        [vagrant_repo]$ git push origin projects/client--project
 
 10. (Only necessary if you chose to use a submodule) Add the mis_vagrant
     directory and check in your projects' repo. This will need to be done anytime
     anytime a change is made to mis_vagrant as the submodule keeps track of a
     sha hash that the submodule should be pointing to.
-        git submodule add mis_vagrant
-        git push origin branchspec
+        [myrepo]$ git submodule add mis_vagrant
+        [myrepo]$ git push origin branchspec
         
 
 ## Bending Vagrant to your will
