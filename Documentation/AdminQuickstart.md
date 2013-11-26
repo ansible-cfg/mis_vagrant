@@ -21,6 +21,7 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 4. Modify the Vagrantfile to match the desired server configuration (more detail below).
 
 5. Modify the Vagrantfile mc_settings to specify the docroot for your project relative to the Vagrantfile.
+
 ```
   mc_settings = {
     :domain       => 'example.mcdev',
@@ -28,11 +29,13 @@ Follow all instructions in the User quickstart to ensure that you have all requi
     :host_docroot => '../docroot'
   }
 ```
-host_docroot refers to the location of the project docroot relative to this file.
+
+**host_docroot refers to the location of the project docroot relative to this file.**
 
 6. Add the domain/IP for this installation to the devops google doc [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). Select the next IP in the current range and add to the proper column in the spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for you. If you do not have access to edit this spreadsheet, a member of DevOps can help you.
 
 7. Provide instructions to add the "domain" to their /etc/hosts file that matches the IP as specified by the line below in the Vagrantfile
+
 ```
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -40,6 +43,7 @@ host_docroot refers to the location of the project docroot relative to this file
 ```
 
 8. Create or add to existing drushrc file at docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the following
+
 ```
 // vagrant local development vm
 $aliases['mcdev'] = array(
@@ -131,8 +135,10 @@ Details on what each recipe provides are forthcoming.
   Various utilities.
 
   - scripts
+
     Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
     projects docroot.
+
   - varnish
 
 Once you are satisfied with your build, create a branch within the mc_vagrant project for your own and commit the changes there. When that is complete, add the submodule to your project repo or provide instructions on where to place it relative to the project root.
