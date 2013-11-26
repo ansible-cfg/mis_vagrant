@@ -25,22 +25,21 @@ Note: Steps 1-4 are only needed for the initial install of vagrant.
     `$ chmod 600 ~/.ssh/vagrant_insecure_private_key`
 
 4. Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines
-    Host *.mcdev
-    IdentityFile ~/.ssh/vagrant_insecure_private_key
-    User vagrant
+    > Host *.mcdev
+    > IdentityFile ~/.ssh/vagrant_insecure_private_key
+    > User vagrant
 
 
 5. Clone the repo, Retrieve the submodules. Consult with project lead for the repo information.
-~~~~
-$ git clone --recursive [my repo]
-~~~~
+    `$ git clone --recursive [my repo]`
+
 Note the `--recursive` flag, that is necessary to checkout the submodules as part of the initial clone.
 Alternatively, you can clone the repo and provision the vendor recipes separately.
-```
-$ git clone [my repo]
-$ cd [my repo]
-$ git submodule init
-$ git submodule update
+
+    `$ git clone [my repo]`
+    `$ cd [my repo]`
+    `$ git submodule init`
+    `$ git submodule update`
 ```
 
 6. Make sure the `/etc/hosts` file contains the latest hosts entries from [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/pub?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&output=html). If there are multiple entries for localhost, move the 127.0.0.1 mapping to the top.
