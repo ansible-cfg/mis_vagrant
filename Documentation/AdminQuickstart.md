@@ -22,40 +22,40 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 
 5. Modify the Vagrantfile mc_settings to specify the docroot for your project relative to the Vagrantfile.
 
-```
-  mc_settings = {
-    :domain       => 'example.mcdev',
-    :docroot      => '/home/vagrant/docroot',
-    :host_docroot => '../docroot'
-  }
-```
+  ```
+    mc_settings = {
+      :domain       => 'example.mcdev',
+      :docroot      => '/home/vagrant/docroot',
+      :host_docroot => '../docroot'
+    }
+  ```
 
-**host_docroot refers to the location of the project docroot relative to this file.**
+  *host_docroot refers to the location of the project docroot relative to this file.*
 
 6. Add the domain/IP for this installation to the devops google doc [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). Select the next IP in the current range and add to the proper column in the spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for you. If you do not have access to edit this spreadsheet, a member of DevOps can help you.
 
 7. Provide instructions to add the "domain" to their /etc/hosts file that matches the IP as specified by the line below in the Vagrantfile
 
-```
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
-  config.vm.network :private_network, ip: "192.168.50.4"
-```
+  ```
+    # Create a private network, which allows host-only access to the machine
+    # using a specific IP.
+    config.vm.network :private_network, ip: "192.168.50.4"
+  ```
 
 8. Create or add to existing drushrc file at docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the following
 
-```
-// vagrant local development vm
-$aliases['mcdev'] = array(
-  'uri' => 'example.mcdev',
-  'root' => '/home/vagrant/docroot',
-  'remote-host' => 'example.mcdev',
-  'path-aliases' => array(
-  '%drush-script' => '/usr/local/bin/drush',
-  ),
-  'remote-user' => 'vagrant',
-);
-```
+  ```
+  // vagrant local development vm
+  $aliases['mcdev'] = array(
+    'uri' => 'example.mcdev',
+    'root' => '/home/vagrant/docroot',
+    'remote-host' => 'example.mcdev',
+    'path-aliases' => array(
+    '%drush-script' => '/usr/local/bin/drush',
+    ),
+    'remote-user' => 'vagrant',
+  );
+  ```
 
 9. Check in your changes and push into your branch.
 
