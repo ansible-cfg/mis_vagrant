@@ -11,13 +11,16 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 1. Create (or clone locally) your project repo.
 
 2. Once your project repo is created, you have two options:
-  - Clone the mc_vagrant project into a folder parallel to your repo (so as to avoid mixing the codebases).
+  - Make mis_vagrant a submodule of your project's repo (As long as the docroot
+    is not the root of your repo.) Via ```[myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git```
+  - Clone the mc_vagrant project into a directory parallel to your repo.
   ```[myrepo]$ cd .. && git clone git clone git@bitbucket.org:mediacurrent/mis_vagrant.git```
-  - Clone the mc_vagrant project into the repo itself (to avoid requiring devs from performing extra steps) as a submodule. see [this](http://git-scm.com/book/en/Git-Tools-Submodules) for more details.
 
-3. Modify the Vagrantfile to match the desired server configuration (more detail below).
+3. Change into the mis_vagrant repo and create a new branch ```git checkout -b project/client--project```
 
-4. Modify the Vagrantfile mc_settings to specify the docroot for your project relative to the Vagrantfile.
+4. Modify the Vagrantfile to match the desired server configuration (more detail below).
+
+5. Modify the Vagrantfile mc_settings to specify the docroot for your project relative to the Vagrantfile.
 ```
   mc_settings = {
     :domain       => 'example.mcdev',
@@ -27,16 +30,16 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 ```
 host_docroot refers to the location of the project docroot relative to this file.
 
-5. Add the domain/IP for this installation to the devops google doc [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). Select the next IP in the current range and add to the proper column in the spreadsheet. Use this IP in step 6. The /etc/hosts entry will be populated for you. If you do not have access to edit this spreadsheet, a member of DevOps can help you.
+6. Add the domain/IP for this installation to the devops google doc [here](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing). Select the next IP in the current range and add to the proper column in the spreadsheet. Use this IP in step 7. The /etc/hosts entry will be populated for you. If you do not have access to edit this spreadsheet, a member of DevOps can help you.
 
-6. Provide instructions to add the "domain" to their /etc/hosts file that matches the IP as specified by the line below in the Vagrantfile
+7. Provide instructions to add the "domain" to their /etc/hosts file that matches the IP as specified by the line below in the Vagrantfile
 ```
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network :private_network, ip: "192.168.50.4"
 ```
 
-7. Create or add to existing drushrc file at docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the following
+8. Create or add to existing drushrc file at docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the following
 ```
 // vagrant local development vm
 $aliases['mcdev'] = array(
@@ -49,6 +52,13 @@ $aliases['mcdev'] = array(
   'remote-user' => 'vagrant',
 );
 ```
+
+9. Check in your changes and push into your branch.
+
+10. (Only necessary if you chose to use a submodule) Add the mis_vagrant
+    directory and check in your projects repo. This will need to be done anytime
+    anytime a change is made to mis_vagrant as the submodule keeps track of a
+    sha hash that the submodule should be pointing to.
 
 ## Bending Vagrant to your will
 
@@ -121,6 +131,8 @@ Details on what each recipe provides are forthcoming.
   Various utilities.
 
   - scripts
+    Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
+    projects docroot.
   - varnish
 
 Once you are satisfied with your build, create a branch within the mc_vagrant project for your own and commit the changes there. When that is complete, add the submodule to your project repo or provide instructions on where to place it relative to the project root.
