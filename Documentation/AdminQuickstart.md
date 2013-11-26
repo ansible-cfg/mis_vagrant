@@ -11,7 +11,6 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 1. Create (or clone locally) your project repo.
 
 2. Once your project repo is created, you have two options:
-
   - Make mis_vagrant a submodule of your project's repo (As long as the docroot
     is not the root of your repo.) Via ```[myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git```
 
