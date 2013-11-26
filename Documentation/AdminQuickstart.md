@@ -81,11 +81,13 @@ To configure the platform for your specific needs, compose your *Vagrantfile* ru
 
     chef.add_recipe 'lamp'
     chef.add_recipe 'dev-tools'
+    #chef.add_recipe 'utils::varnish'
     #chef.add_recipe 'dev-tools::phpmyadmin'
     #chef.add_recipe 'dev-tools::xhprof'
     #chef.add_recipe 'dev-tools::webgrind'
     chef.add_recipe 'drush'
     chef.add_recipe 'example-mcdev'
+    #chef.add_recipe 'utils::scripts'
 
     # You may also specify custom JSON attributes:
     chef.json = {}.merge(mc_settings)
@@ -113,6 +115,13 @@ Details on what each recipe provides are forthcoming.
 * lamp
 
     A fully functioning LAMP stack.
+
+* utils
+
+  Various utilities.
+
+  - scripts
+  - varnish
 
 Once you are satisfied with your build, create a branch within the mc_vagrant project for your own and commit the changes there. When that is complete, add the submodule to your project repo or provide instructions on where to place it relative to the project root.
 

@@ -1,1 +1,1 @@
-Documentation and quickstarts can be found in the /Documentation folder
+Documentation and quickstarts can be found in the /Documentation folder.
