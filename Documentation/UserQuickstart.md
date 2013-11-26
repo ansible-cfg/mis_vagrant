@@ -63,7 +63,7 @@ If there are multiple entries for localhost, move the 127.0.0.1 mapping to the t
 This command will download and bring up the virtual machine.
 **(Be patient.  This will take a few minutes.)**
 
-        $ cd [my repo]/mc_vagrant
+        $ cd [my repo]/mis_vagrant
         $ vagrant up
 
     At some point during the process, you will be prompted for an administrator 
