@@ -22,13 +22,13 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 
 5. Modify the Vagrantfile mc_settings to specify the docroot for your project relative to the Vagrantfile.
 
-    ```
-      mc_settings = {
-        :domain       => 'example.mcdev',
-        :docroot      => '/home/vagrant/docroot',
-        :host_docroot => '../docroot'
-      }
-    ```
+        ```
+        mc_settings = {
+          :domain       => 'example.mcdev',
+          :docroot      => '/home/vagrant/docroot',
+          :host_docroot => '../docroot'
+        }
+        ```
 
     *host_docroot refers to the location of the project docroot relative to this file.*
 
