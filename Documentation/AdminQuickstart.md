@@ -11,10 +11,9 @@ Follow all instructions in the User quickstart to ensure that you have all requi
 1. Create (or clone locally) your project repo.
 
 2. Once your project repo is created, you have two options:
-  - Make mis_vagrant a submodule of your project's repo (As long as the docroot
+  * Make mis_vagrant a submodule of your project's repo (As long as the docroot
     is not the root of your repo.) Via ```[myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git```
-
-  - Clone the mc_vagrant project into a directory parallel to your repo.
+  * Clone the mc_vagrant project into a directory parallel to your repo.
   ```[myrepo]$ cd .. && git clone git clone git@bitbucket.org:mediacurrent/mis_vagrant.git```
 
 3. Change into the mis_vagrant repo and create a new branch ```git checkout -b project/client--project```
