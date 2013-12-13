@@ -86,6 +86,7 @@ the project. If not, minimal will be fine for now.
 
     For the sql sync here, you may need to add the standard mcstage entry to your
     host machine's ~/.ssh/config
+
         $ vi ~/.ssh/config      
         Host mcstage
           HostName 174.143.170.119
