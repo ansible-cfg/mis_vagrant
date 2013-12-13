@@ -18,7 +18,7 @@ Note: Steps 1-4 are only needed for the initial install of vagrant.
 from [here](https://www.virtualbox.org/wiki/Downloads).
 
 2. Download and install Vagrant 1.3.5 or later 
-from [here](http://downloads.vagrantup.com/).
+from [here]( http://www.vagrantup.com/downloads.html).
 
 3. Add the vagrant ssh key to your .ssh directory
 
@@ -83,6 +83,15 @@ the project. If not, minimal will be fine for now.
         $ cd [my repo]/docroot
         $ drush @example.mcdev site-install minimal --sites-subdir=example.mcdev \
           --db-url=mysql://root:password@localhost/example_mcdev
+
+    For the sql sync here, you may need to add the standard mcstage entry to your
+    host machine's ~/.ssh/config
+        $ vi ~/.ssh/config      
+        Host mcstage
+          HostName 174.143.170.119
+          Port 7022
+          ForwardAgent yes
+          User your-mc-user-name
         $ drush sql-sync @example.dev @example.mcdev
 
 10. To ssh into your new pre-configured development environment, use the 
