@@ -85,6 +85,8 @@ if ::File.exists?(post_up) and ::File.executable?(post_up)
   scripts_ran = true
 end
 
+# @todo: Figure out a clean way to allow for the POST install scripts to tell
+#        us if it failed...
 if !scripts_ran
   raise "No scripts where ran. Either create a 'post-install.sh' or 'post-up.sh' in '#{node[:docroot]}/#{scripts_path}' or disable this recipe 'utils::scripts'."
 end
