@@ -96,10 +96,10 @@ Recipies section of this document.
 
     Example project-specific cookbook that:
 
-        * lists system build information in metadata and readme files        
-        * installes memcached        
-        * sets up the mysql database
-        * creates an apache virthost based on template web_app.conf.erb
+    - lists system build information in metadata and readme files
+    - installes memcached
+    - sets up the mysql database
+    - creates an apache virthost based on template web_app.conf.erb
 * lamp
 
     A fully functioning LAMP stack.
