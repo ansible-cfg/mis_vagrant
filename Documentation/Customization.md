@@ -125,7 +125,7 @@ development with chef.
 
     Various utilities.
 
-    - scripts
+    - scripts (coming soon)
       Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
       projects docroot.
     - varnish
