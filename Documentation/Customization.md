@@ -1,7 +1,7 @@
 # Customization Guide
 
 This guide will describe and show usage of many configuration elements for
-this Vagrant build. The intended audience is system builders. If you are
+MC Vagrant. The intended audience is system builders. If you are
 looking for a way to make MC Vagrant do more stuff, you are in the right
 place.
 
@@ -38,11 +38,11 @@ by the system builder:
 1. Editing the Vagrantfile (located in the top-level directory)
 2. Creating a project-specific cookbook (under the mc-cookbooks directory)
 
-### Using the Vagrantfile 
+### Editing the Vagrantfile 
 
-To configure the platform by enabling specific recipies, edit the *Vagrantfile*
-run list. In most cases, you will only need to uncomment or comment out recipies
-already listed in the recipie section of the *Vagrantfile*
+To configure the platform by enabling specific recipes, edit the *Vagrantfile*
+run list. In most cases, you will only need to uncomment or comment out recipes
+already listed in the recipe section of the *Vagrantfile*
 
 
         # Enable provisioning with chef solo, specifying a cookbooks path, roles
@@ -70,11 +70,30 @@ already listed in the recipie section of the *Vagrantfile*
 
 
 Details on what each recipe provides are forthcoming and listed in the
-Recipies section of this document.
+*recipes* section of this document.
 
-### Project Specific Cookbooks
+### Creating Project Specific Cookbooks
 
+The system ships with a base project cookbook named *example-mcdev*. This
+cookbook performs core setup tasks that should be sufficient in many
+use cases.
 
+The following tasks are implemented:
+- Capture system build information in metadata and readme files
+- installs memcached for system performance
+- sets up the platform mysql database named example_mcdev
+- creates an apache virthost based on template web_app.conf.erb
+
+*Important Note*: Many projects will run this cookbook to set up the
+platform. Only create a new project specific cookbook if your project
+requires additional customization (running multiple databases, virthosts,
+etc.); as, the project team will be responsible for maintaining it.
+
+Chef cookbooks are written in ruby and consist of attributes, templates,
+and recipes. You will notice that there are directories named to match. The
+default.rb file is the default execution entry point for a given cookbook.
+Beyond that, please refer to other sources better suited for beginning
+development with chef.
 
 # Recipes
 
@@ -92,14 +111,11 @@ Recipies section of this document.
       **Not compatiable with** ```dev-tools::webgrind```
 
 * drush
+
 * example-mcdev
 
-    Example project-specific cookbook that:
+    The base project-specific cookbook.
 
-    - lists system build information in metadata and readme files
-    - installes memcached
-    - sets up the mysql database
-    - creates an apache virthost based on template web_app.conf.erb
 * lamp
 
     A fully functioning LAMP stack.

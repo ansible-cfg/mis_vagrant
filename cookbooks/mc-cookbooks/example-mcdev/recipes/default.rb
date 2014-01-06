@@ -13,7 +13,7 @@ php_pear "memcache" do
   action :install
 end
 
-# Create a mysql database for homeimprovement.
+# Create a mysql database.
 mysql_database 'example_mcdev' do
   connection ({
     :host => 'localhost',

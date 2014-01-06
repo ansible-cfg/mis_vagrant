@@ -116,6 +116,10 @@ that the submodule should be pointing to.
         [myrepo]$ git push origin branchspec
         
 
+11. *Note:* Additional configuration is possible and explained in the customization
+guide. The two areas of intended configuration are by editing the *Vagrantfile* and
+through the creation of project-specific cookbooks.
+
 
 ## Troubleshooting
 
