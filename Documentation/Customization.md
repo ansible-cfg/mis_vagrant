@@ -79,6 +79,7 @@ cookbook performs core setup tasks that should be sufficient in many
 use cases.
 
 The following tasks are implemented:
+
 - Capture system build information in metadata and readme files
 - installs memcached for system performance
 - sets up the platform mysql database named example_mcdev
