@@ -109,102 +109,13 @@ branch.
 
 10. (Only necessary if you chose to use a submodule) Add the mis_vagrant
 directory and check in your projects' repo. This will need to be done anytime
-anytime a change is made to mis_vagrant as the submodule keeps track of a
-sha hash that the submodule should be pointing to.
+a change is made to mis_vagrant as the submodule keeps track of a sha hash
+that the submodule should be pointing to.
 
         [myrepo]$ git submodule add mis_vagrant
         [myrepo]$ git push origin branchspec
         
 
-## Bending Vagrant to your will
-
-### Some background on Vagrant/Chef
-
-Vagrant is a scriptable wrapper for Virtualbox and Chef. The **Vagrantfile**
-determines the vm and manifest configuration and launches them respectively.
-
-Configuration in vagrant/chef is managed through a combination of cookbooks,
-recipes, attributes and roles. For our specific use case roles are not used
-and are only mentioned because they may come up in your own documentation
-searches.
-
-**recipes**  are the basic *action* wrappers for Chef and are where the atomic
-configuration and provisioning happen.
-
-**cookbooks** are collections of related recipes packaged for reuse.
-
-**attributes** are the instance configurable parameters for a particular
-recipe. For example, there are attributes to control the memory allocated to
-APC. Attributes may be present in the recipe, role and Vagrantfile and are
-overridden in that order.
-
-**roles** are collections of recipes and configuration that represent a
-responsibility. You may have a "dev web server" role that includes recipes
-and default attributes for apache, xhprof and other debugging tools. The
-Mediacurrent Vagrant uses recipes to perform this task as recipes may be nested.
-
-### Configuration
-
-To configure the platform for your specific needs, compose your *Vagrantfile*
-run list.
-
-
-        # Enable provisioning with chef solo, specifying a cookbooks path, roles
-        # path, and data_bags path (all relative to this Vagrantfile), and adding
-        # some recipes and/or roles.
-        config.vm.provision :chef_solo do |chef|
-          chef.cookbooks_path = [
-            'cookbooks/mc-cookbooks',
-            'cookbooks/vendor-cookbooks'
-          ]
-
-          chef.add_recipe 'lamp'
-          chef.add_recipe 'dev-tools'
-          #chef.add_recipe 'utils::varnish'
-          #chef.add_recipe 'dev-tools::phpmyadmin'
-          #chef.add_recipe 'dev-tools::xhprof'
-          #chef.add_recipe 'dev-tools::webgrind'
-          chef.add_recipe 'drush'
-          chef.add_recipe 'example-mcdev'
-          #chef.add_recipe 'utils::scripts'
-
-          # You may also specify custom JSON attributes:
-          chef.json = {}.merge(mc_settings)
-        end
-
-
-Details on what each recipe provides are forthcoming.
-
-# Recipes
-
-* dev-tools
-
-    Installs drush, rsync, and vim.
-
-    - dev-tools::phpmyadmin
-    - dev-tools::webgrind
-
-      **Not compatiable with** ```dev-tools::xhprof```
-
-    - dev-tools::xhprof
-
-      **Not compatiable with** ```dev-tools::webgrind```
-
-* drush
-* lamp
-
-    A fully functioning LAMP stack.
-
-* utils
-
-    Various utilities.
-
-    - scripts
-      Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
-      projects docroot.
-    - varnish
-
-**Don't forget to update your mis_vagrant branch and project repo.**
 
 ## Troubleshooting
 
