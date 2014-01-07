@@ -8,7 +8,7 @@
 
 ## Mediacurrent recipes
 
-* [dev-tools](HEAD/cookbooks/mc-cookbooks/dev-tools/README.md)
+* [dev-tools](cookbooks/mc-cookbooks/dev-tools/README.md)
 * [drush](cookbooks/mc-cookbooks/drush/README.md)
 * [example-mcdev](cookbooks/mc-cookbooks/example-mcdev/README.md)
 * [lamp](cookbooks/mc-cookbooks/lamp/README.md)
