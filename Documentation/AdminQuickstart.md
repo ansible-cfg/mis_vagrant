@@ -56,14 +56,15 @@ host_docroot for your project relative to the Vagrantfile.
         mc_settings = {
           :domain       => 'example.mcdev',
           :docroot      => '/home/vagrant/docroot',
-          :host_docroot => '../docroot'
+          :host_docroot => '../docroot',
+          :database_name => 'example_mcdev'
         }
 
-    * :host_docroot: The location of the project docroot relative to
-    this file on the host machine.
     * :docroot: The path to the apache docroot on the guest virtual machine
     (running inside virtualBox) and should not be changed unless you really
     know what you are doing.
+    * :host_docroot: The location of the project docroot relative to
+    this file on the host machine.
 
 6. Add the domain/IP for this installation to the [Vagrant IP address allocation](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing).
 spreadsheet. Specify the next IP in the current range and add to the proper

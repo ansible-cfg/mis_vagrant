@@ -79,7 +79,7 @@ The following tasks are implemented:
 
 - Capture system build information in metadata and readme files.
 - Installs memcached for system performance.
-- Sets up the platform mysql database named example_mcdev.
+- Sets up the platform mysql database.
 - Creates an apache virtualhost based on template web_app.conf.erb.
 
 *Important Note*: Many projects will run the base project cookbook. Only create
