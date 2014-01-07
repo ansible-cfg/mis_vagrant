@@ -20,8 +20,8 @@
 2. Set the following variables in your settings.php (Be sure to replace <host> with your domain.)
 
         /**
-        * XHPROF settings.
-        */
+         * XHPROF settings.
+         */
         $conf['devel_xhprof_enabled'] = 1;
         $conf['devel_xhprof_directory'] = '/usr/share/php';
         $conf['devel_xhprof_url'] = 'http://xhprof.<host>';
