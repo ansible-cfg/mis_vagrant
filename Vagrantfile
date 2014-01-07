@@ -5,7 +5,8 @@ Vagrant.configure("2") do |config|
   mc_settings = {
     :domain => 'example.mcdev',
     :docroot => '/home/vagrant/docroot',
-    :host_docroot => '../docroot'
+    :host_docroot => '../docroot',
+    :database_name => 'example_mcdev'
   }
 
   # All Vagrant configuration is done here. The most common configuration
