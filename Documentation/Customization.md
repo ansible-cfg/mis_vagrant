@@ -77,7 +77,6 @@ use cases.
 
 The following tasks are implemented:
 
-- Capture system build information in metadata and readme files.
 - Installs memcached for system performance.
 - Sets up the platform mysql database.
 - Creates an apache virtualhost based on template web_app.conf.erb.
@@ -92,6 +91,15 @@ and recipes. You will notice that there are directories named to match. The
 default.rb file is the default execution entry point for a given cookbook.
 Beyond that, please refer to other sources better suited for beginning
 development with chef.
+
+*Documentation:* Recipies have two built-in documentation files found in the
+recipe root: metadata.rb and README.md. Use these files to provide critical
+system build data to chef and document the cookbook for maintenance.
+
+- metadata.rb is used to provide chef with system dependencies, version number,
+responsible party, licence info, and other system build data.
+- README.md is used to provide the long description of the cookbook and additional
+instructions and notices.
 
 # Recipes
 
