@@ -38,16 +38,14 @@ by the system builder:
 1. Editing the Vagrantfile (located in the top-level directory)
 2. Creating a project-specific cookbook (under the mc-cookbooks directory)
 
-### Editing the Vagrantfile 
+### Editing the Vagrantfile
 
 To configure the platform by enabling specific recipes, edit the *Vagrantfile*
 run list. In most cases, you will only need to uncomment or comment out recipes
 already listed in the recipe section of the *Vagrantfile*
 
-
-        # Enable provisioning with chef solo, specifying a cookbooks path, roles
-        # path, and data_bags path (all relative to this Vagrantfile), and adding
-        # some recipes and/or roles.
+        # Enable provisioning with chef solo, specifying a cookbook's path and
+        # adding some recipes.
         config.vm.provision :chef_solo do |chef|
           chef.cookbooks_path = [
             'cookbooks/mc-cookbooks',
@@ -68,7 +66,6 @@ already listed in the recipe section of the *Vagrantfile*
           chef.json = {}.merge(mc_settings)
         end
 
-
 Details on what each recipe provides are forthcoming and listed in the
 *recipes* section of this document.
 
@@ -80,15 +77,15 @@ use cases.
 
 The following tasks are implemented:
 
-- Capture system build information in metadata and readme files
-- installs memcached for system performance
-- sets up the platform mysql database named example_mcdev
-- creates an apache virthost based on template web_app.conf.erb
+- Capture system build information in metadata and readme files.
+- Installs memcached for system performance.
+- Sets up the platform mysql database named example_mcdev.
+- Creates an apache virtualhost based on template web_app.conf.erb.
 
-*Important Note*: Many projects will run this cookbook to set up the
-platform. Only create a new project specific cookbook if your project
-requires additional customization (running multiple databases, virthosts,
-etc.); as, the project team will be responsible for maintaining it.
+*Important Note*: Many projects will run the base project cookbook. Only create
+a new project specific cookbook if your project requires additional customization
+(running multiple databases, virthosts,
+etc.). The custom recipe will have to be maintained by the responsible project team.
 
 Chef cookbooks are written in ruby and consist of attributes, templates,
 and recipes. You will notice that there are directories named to match. The
@@ -131,4 +128,3 @@ development with chef.
     - varnish
 
 **Don't forget to update your mis_vagrant branch and project repo.**
-
