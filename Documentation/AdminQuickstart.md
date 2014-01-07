@@ -23,7 +23,7 @@ Vagrant projects branch should be.
 
 ## Installation
 
-Follow all instructions in the [User Quickstart](UserQuickStart.md) to ensure
+Follow all instructions in the [User Quickstart](UserQuickstart.md) to ensure
 that you have all required dependencies.
 
 1. Create (or clone locally) your client project repo. This will be referred to
