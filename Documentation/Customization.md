@@ -115,7 +115,7 @@ instructions and notices.
 
 * dev-tools
 
-    Installs drush, rsync, and vim.
+    Installs xdebug, rsync, and vim.
 
     - dev-tools::phpmyadmin
     - dev-tools::webgrind
@@ -127,6 +127,8 @@ instructions and notices.
       **Not compatiable with** ```dev-tools::webgrind```
 
 * drush
+
+    Installs and configures drush.
 
 * example-mcdev
 
@@ -140,9 +142,12 @@ instructions and notices.
 
     Various utilities.
 
-    - scripts (coming soon)
+    - utils::scripts (coming soon)
       Runs a set of scripts ```post-install.sh``` and ```post-up.sh``` from your
       projects docroot.
-    - varnish
+    - utils::solr
+      Installs and configures ApacheSolr, Java, and Jetty.
+    - utils::varnish
+      Installs and configures Varnish.
 
 **Don't forget to update your mis_vagrant branch and project repo.**
