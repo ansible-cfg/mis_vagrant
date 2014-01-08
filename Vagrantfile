@@ -64,9 +64,8 @@ Vagrant.configure("2") do |config|
     EOH
   end
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
+  # Enable provisioning with chef solo, specifying a cookbooks path
+  # (relative to this Vagrantfile), and adding some recipes and/or roles.
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [
       'cookbooks/mc-cookbooks',
@@ -80,6 +79,7 @@ Vagrant.configure("2") do |config|
     #chef.add_recipe "dev-tools::xhprof"
     #chef.add_recipe "dev-tools::webgrind"
     chef.add_recipe "drush"
+    chef.add_recipe "utils::solr"
     chef.add_recipe "example-mcdev"
 
     # You may also specify custom JSON attributes:
