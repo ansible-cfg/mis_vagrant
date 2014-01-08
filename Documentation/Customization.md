@@ -61,9 +61,19 @@ already listed in the recipe section of the *Vagrantfile*
           chef.add_recipe 'drush'
           chef.add_recipe 'example-mcdev'
           #chef.add_recipe 'utils::scripts'
+          #chef.add_recipe "utils::solr"
 
-          # You may also specify custom JSON attributes:
-          chef.json = {}.merge(mc_settings)
+          # You may also specify custom attribute overrides:
+          chef.json = {
+            #:solr => {
+            #  :version => '3.6.2'
+            #}
+            #:utils => {
+            #  :solr => {
+            #    :drupal_module_path = "#{mc_settings[:docroot]}/sites/all/modules/apachesolr"
+            #  }
+            #}
+          }.merge(mc_settings)
         end
 
 Details on what each recipe provides are forthcoming and listed in the

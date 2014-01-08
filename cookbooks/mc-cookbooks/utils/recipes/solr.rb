@@ -17,6 +17,7 @@ config_dir = node['utils']['solr']['config_dir']
 node['utils']['solr']['solr_config_files'].each do |config_file|
   file "#{node['solr']['home']}/#{config_dir}/#{config_file}" do
     content IO.read("#{node['utils']['solr']['drupal_module_path']}/#{drupal_conf_dir}/#{config_file}")
+    # @todo: Set file permissions.
     notifies :restart, 'service[jetty]'
   end
 end

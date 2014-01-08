@@ -11,7 +11,6 @@ include_attribute "hipsnip-solr"
 include_attribute "hipsnip-jetty"
 
 node['jetty']['port'] = 8983
-node['solr']['version'] = '4.6.0'
 
 default['utils']['solr']['drupal_module_path'] = "#{node[:docroot]}/sites/all/modules/apachesolr"
 
