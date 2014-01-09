@@ -54,12 +54,13 @@ Vagrant.configure("2") do |config|
   # information on available options.
 
   config.vm.provision :shell do |shell|
+    # @todo: Evaluate if this is still necessary.
     shell.inline = <<-EOH
       # We should update packages so that chef can get all the pkgs it needs.
       apt-get update
 
       # Mysql keeps firing off before build_essentials can be added... I don't
-      # know why just yet
+      # know why just yet.
       apt-get -y install build-essential
     EOH
   end
@@ -81,6 +82,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'drush'
     chef.add_recipe 'example-mcdev'
     #chef.add_recipe 'utils::solr'
+    chef.add_recipe "utils::scripts"
 
     # You may also specify custom attribute overrides:
     chef.json = {
