@@ -5,7 +5,8 @@ Vagrant.configure("2") do |config|
   mc_settings = {
     :domain => 'example.mcdev',
     :docroot => '/home/vagrant/docroot',
-    :host_docroot => '../docroot'
+    :host_docroot => '../docroot',
+    :database_name => 'example_mcdev'
   }
 
   # All Vagrant configuration is done here. The most common configuration
@@ -64,26 +65,35 @@ Vagrant.configure("2") do |config|
     EOH
   end
 
-  # Enable provisioning with chef solo, specifying a cookbooks path, roles
-  # path, and data_bags path (all relative to this Vagrantfile), and adding
-  # some recipes and/or roles.
+  # Enable provisioning with chef solo, specifying a cookbooks path
+  # (relative to this Vagrantfile), and adding some recipes and/or roles.
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = [
       'cookbooks/mc-cookbooks',
       'cookbooks/vendor-cookbooks'
     ]
 
-    chef.add_recipe "lamp"
-    #chef.add_recipe "utils::varnish"
-    chef.add_recipe "dev-tools"
-    #chef.add_recipe "dev-tools::phpmyadmin"
-    #chef.add_recipe "dev-tools::xhprof"
-    #chef.add_recipe "dev-tools::webgrind"
-    chef.add_recipe "drush"
-    chef.add_recipe "example-mcdev"
+    chef.add_recipe 'lamp'
+    #chef.add_recipe 'utils::varnish'
+    chef.add_recipe 'dev-tools'
+    #chef.add_recipe 'dev-tools::phpmyadmin'
+    #chef.add_recipe 'dev-tools::xhprof'
+    #chef.add_recipe 'dev-tools::webgrind'
+    chef.add_recipe 'drush'
+    chef.add_recipe 'example-mcdev'
+    #chef.add_recipe 'utils::solr'
     chef.add_recipe "utils::scripts"
 
-    # You may also specify custom JSON attributes:
-    chef.json = {}.merge(mc_settings)
+    # You may also specify custom attribute overrides:
+    chef.json = {
+      #:solr => {
+      #  :version => '3.6.2'
+      #}
+      #:utils => {
+      #  :solr => {
+      #    :drupal_module_path = "#{mc_settings[:docroot]}/sites/all/modules/apachesolr"
+      #  }
+      #}
+    }.merge(mc_settings)
   end
 end

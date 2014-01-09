@@ -14,7 +14,7 @@ php_pear "memcache" do
 end
 
 # Create a mysql database for homeimprovement.
-mysql_database 'example_mcdev' do
+mysql_database node[:database_name] do
   connection ({
     :host => 'localhost',
     :username => 'root',
