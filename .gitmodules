@@ -40,3 +40,12 @@
 [submodule "cookbooks/vendor-cookbooks/varnish"]
 	path = cookbooks/vendor-cookbooks/varnish
 	url = https://github.com/opscode-cookbooks/varnish.git
+[submodule "cookbooks/vendor-cookbooks/hipsnip-jetty"]
+	path = cookbooks/vendor-cookbooks/hipsnip-jetty
+	url = https://github.com/hipsnip-cookbooks/jetty.git
+[submodule "cookbooks/vendor-cookbooks/hipsnip-solr"]
+	path = cookbooks/vendor-cookbooks/hipsnip-solr
+	url = https://github.com/hipsnip-cookbooks/solr.git
+[submodule "cookbooks/vendor-cookbooks/java"]
+	path = cookbooks/vendor-cookbooks/java
+	url = https://github.com/socrata-cookbooks/java.git
