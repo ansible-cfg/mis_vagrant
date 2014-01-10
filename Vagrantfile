@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'drush'
     chef.add_recipe 'example-mcdev'
     #chef.add_recipe 'utils::solr'
-    chef.add_recipe "utils::scripts"
+    #chef.add_recipe "utils::scripts"
 
     # You may also specify custom attribute overrides:
     chef.json = {
