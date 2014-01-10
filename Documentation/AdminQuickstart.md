@@ -13,8 +13,8 @@ need to be provided to other team members.
 
 The example client project branch is found on bitbucket
 
-    git clone git@bitbucket.org:mediacurrent/mis_example.git
-    git checkout develop
+    git clone --recursive git@bitbucket.org:mediacurrent/mis_example.git
+    git checkout master
 
 This example project is configured with a submodule to track the
 projects/mc-mis_example branch on the vagrant side and is used to test and train
@@ -32,9 +32,12 @@ as [myrepo] for the remainder of this document.
 2. Once your client project repo is created, you have two options:
     * Make mis_vagrant a submodule of your project's repo (As long as the
       docroot is not the root of your repo).
-      ```[myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git```
+
+      [myrepo]$ git submodule add git@bitbucket.org:mediacurrent/mis_vagrant.git
+
     * Clone the mis_vagrant project into a directory parallel to your repo.
-      ```[myrepo]$ cd .. && git clone git clone git@bitbucket.org:mediacurrent/mis_vagrant.git```
+
+      [myrepo]$ cd .. && git clone --recursive git@bitbucket.org:mediacurrent/mis_vagrant.git
 
 3. Change into the mis_vagrant repo, switch to the master branch, and
 create a new projects branch. **Important:** all projects branches must be
@@ -44,7 +47,10 @@ specific to your project are kept and maintained over time. Remember to replace
 project's vagrant branch will be referred to as [vagrant_repo] throughout this
 document.
 
-        [vagrant_repo]$ git checkout master
+        [vagrant_repo]$ git checkout beta
+        [vagrant_repo]$ git submodule init && git submodule update
+        *Note:* You do not have to do the submodule init and update if you used
+                recursive from above.
         [vagrant_repo]$ git checkout -b projects/client--project
 
 4. Modify the Vagrantfile to match the desired server configuration
