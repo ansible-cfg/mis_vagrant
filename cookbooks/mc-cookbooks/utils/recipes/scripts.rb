@@ -59,6 +59,7 @@ if !is_installed and ::File.exists?(post_install) and ::File.executable?(post_in
     command "#{post_install} #{config_file}"
     action :run
     cwd node[:docroot]
+    user 'vagrant'
   end
 
   # Lets us know if the system install has already ran.
@@ -80,6 +81,7 @@ if ::File.exists?(post_up) and ::File.executable?(post_up)
     command "#{post_up} #{config_file}"
     action :run
     cwd node[:docroot]
+    user 'vagrant'
   end
 
   scripts_ran = true
