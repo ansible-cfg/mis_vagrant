@@ -26,7 +26,7 @@ installed_tracker = "/home/vagrant/.mc-utils-scripts.installed"
 is_installed = ::File.exists?(installed_tracker)
 
 # The config file output.
-config_file = "/tmp/mc-utils-scripts.config.json"
+config_file = node['utils']['scripts']['config_file']
 
 # Script paths.
 scripts_path = (!node[:script_paths].nil?) ? node[:script_paths] : node['utils']['scripts']['script_paths']
