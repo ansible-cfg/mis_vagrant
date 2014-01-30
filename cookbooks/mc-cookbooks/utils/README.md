@@ -4,7 +4,7 @@
 * [Scripts](#markdown-header-scripts)
 * [Varnish](#markdown-header-varnish)
 
-## [ApacheSolr]((#markdown-header-apachesolr))
+## [ApacheSolr](#markdown-header-apachesolr)
 
 1. Uncomment ```utils::solr``` recipe from the run list.
 2. Be sure that the apachesolr module is part of your project.
