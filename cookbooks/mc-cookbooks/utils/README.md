@@ -4,7 +4,7 @@
 * [Scripts](#scripts)
 * [Varnish](#varnish)
 
-## ApacheSolr <a name="apachesolr"></a>
+## ApacheSolr <a id="apachesolr"></a>
 
 1. Uncomment ```utils::solr``` recipe from the run list.
 2. Be sure that the apachesolr module is part of your project.
@@ -24,7 +24,7 @@
 
 * Drupal module path: "[docroot]/sites/all/modules/apachesolr"
 
-## Scripts <a name="scripts"></a>
+## Scripts <a id="scripts"></a>
 
 1. Uncomment ``utils::scripts``` recipe from the run list.
 2. Copy the "mis_vagrant" directory from the mis_example repo into your sites
@@ -60,7 +60,7 @@
    and the post-up script will execute on the guest machine.
 
 
-## Varnish <a name="varnish"></a>
+## Varnish <a id="varnish"></a>
 
 1. Uncomment ```utils::varnish``` recipe from the run list.
 2. Set the following variables in your settings.php
