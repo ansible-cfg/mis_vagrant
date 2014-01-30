@@ -10,6 +10,7 @@
 * Version: 3.6.2
 
   **Note**
+
   If you are using version ApacheSolr 4.6.x and apachesolr <= version 7.x-1.6,
   you'll need to manually edit the file solrconfig.xml and remove three lines.
 
@@ -27,11 +28,11 @@
 3. Edit the post-up.sh and post-install.sh scripts with commands that you will
    need to run.
 
-        Note use the misVagrantAdapter::execute() method when executing scripts
+        *Note* use the misVagrantAdapter::execute() method when executing scripts
         so that proper script termination is used so that Vagrant/Chef will be
         notified if the command fails.
 
-        Note all configs associated with Vagrant/Chef are compiled in the
+        *Note* all configs associated with Vagrant/Chef are compiled in the
         misVagrantAdapter::config object.
 
 4. It may be necessary to specify the location of these scripts. You may do so
