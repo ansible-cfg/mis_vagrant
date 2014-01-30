@@ -4,7 +4,7 @@
 * [Scripts](#markdown-header-scripts)
 * [Varnish](#markdown-header-varnish)
 
-## ApacheSolr
+## [ApacheSolr]((#markdown-header-apachesolr))
 
 1. Uncomment ```utils::solr``` recipe from the run list.
 2. Be sure that the apachesolr module is part of your project.
@@ -24,7 +24,7 @@
 
 * Drupal module path: "[docroot]/sites/all/modules/apachesolr"
 
-## Scripts
+## [Scripts](#markdown-header-scripts)
 
 1. Uncomment ``utils::scripts``` recipe from the run list.
 2. Copy the "mis_vagrant" directory from the mis_example repo into your sites
@@ -60,7 +60,7 @@
    and the post-up script will execute on the guest machine.
 
 
-## Varnish
+## [Varnish](#markdown-header-varnish)
 
 1. Uncomment ```utils::varnish``` recipe from the run list.
 2. Set the following variables in your settings.php
