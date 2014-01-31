@@ -90,7 +90,7 @@ time vagrant provision is ran. A few things to remember is that everytime you
 ```vagrant destroy``` the current vagrant machine it will re-run the install
 script when you run a ```vagrant up```. Whereas, ```post-up.sh``` runs every time
 ```vagrant up``` or ```vagrant provision``` is ran.
-See ```utils::scripts``` [README](cookbooks/mc-cookbooks/utils/README.md#markdown-header-scripts)
+See ```utils::scripts``` [README](../cookbooks/mc-cookbooks/utils/README.md#markdown-header-scripts)
 for implmentation notes.
 
 ### Creating Project Specific Cookbooks
