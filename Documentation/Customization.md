@@ -79,6 +79,20 @@ already listed in the recipe section of the *Vagrantfile*
 Details on what each recipe provides are forthcoming and listed in the
 *recipes* section of this document.
 
+### Running post install/update changes
+
+One of the very first things that might need to happen is to pull down the db
+and files from the dev or testing server. In order to do this ```utils::scripts```
+was created. ```utils::scripts``` use a similar concept as git hooks where there
+are two different scripts that can be ran ```post-install.sh```, which runs only
+once when a new vagrant machine is created and ```post-up.sh```, which runs every
+time vagrant provision is ran. A few things to remember is that everytime you
+```vagrant destroy``` the current vagrant machine it will re-run the install
+script when you run a ```vagrant up```. Whereas, ```post-up.sh``` runs every time
+```vagrant up``` or ```vagrant provision``` is ran.
+See ```utils::scripts``` [README](cookbooks/mc-cookbooks/utils/README.md#markdown-header-scripts)
+for implmentation notes.
+
 ### Creating Project Specific Cookbooks
 
 The system ships with a base project cookbook named *example-mcdev*. This
