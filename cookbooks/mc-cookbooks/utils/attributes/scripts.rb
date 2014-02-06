@@ -8,3 +8,4 @@
 
 # Relative to the docroot.
 default['utils']['scripts']['script_paths'] = 'sites/all/mis_vagrant'
+default['utils']['scripts']['config_file'] = '/home/vagrant/.mc-utils-scripts.config.json'
