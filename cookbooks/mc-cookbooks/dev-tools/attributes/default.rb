@@ -18,3 +18,5 @@ default['dev-tools']['xdebug']['remote_handler']  = 'dbgp'
 default['dev-tools']['xdebug']['remote_host']  = '127.0.0.1'
 default['dev-tools']['xdebug']['remote_port']  = 9000
 default['dev-tools']['xdebug']['trace_output_dir']  = '/tmp'
+
+node['drush']['version'] = '6.2.0.0'

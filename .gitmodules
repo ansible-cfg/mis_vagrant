@@ -49,3 +49,6 @@
 [submodule "cookbooks/vendor-cookbooks/java"]
 	path = cookbooks/vendor-cookbooks/java
 	url = https://github.com/socrata-cookbooks/java.git
+[submodule "cookbooks/vendor-cookbooks/drush"]
+	path = cookbooks/vendor-cookbooks/drush
+	url = https://github.com/msonnabaum/chef-drush.git

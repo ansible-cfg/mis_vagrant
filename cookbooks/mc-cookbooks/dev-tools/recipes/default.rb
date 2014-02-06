@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "drush::pear"
+include_recipe "drush::install_console_table"
 include_recipe "git"
 include_recipe "vim"
 include_recipe "rsync"
@@ -30,4 +32,9 @@ php_pear "xdebug" do
     :remote_port => node['dev-tools']['xdebug']['remote_port'],
     :trace_output_dir => node['dev-tools']['xdebug']['trace_output_dir']
   )
+end
+
+link '/usr/local/bin/drush' do
+  to '/usr/bin/drush'
+  action :create
 end
