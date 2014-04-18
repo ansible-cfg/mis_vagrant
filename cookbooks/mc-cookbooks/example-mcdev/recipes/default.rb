@@ -31,6 +31,7 @@ web_app node[:domain] do
   server_name node[:domain]
 end
 
+# Append configured domain to /etc/hosts file.
 ruby_block "append_hosts" do
   block do
     file = Chef::Util::FileEdit.new("/etc/hosts")
