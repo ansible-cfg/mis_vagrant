@@ -9,6 +9,8 @@ Vagrant.configure("2") do |config|
     :database_name => 'example_mcdev'
   }
 
+  config.ssh.forward_agent = true
+
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
@@ -63,6 +65,13 @@ Vagrant.configure("2") do |config|
       # know why just yet.
       apt-get -y install build-essential
     EOH
+
+    # Turn off StrictHostKeyChecking so that it doesn't ask us to add the host
+    # key to known hosts especially during provision when we can't respond.
+    sshconfig = "/home/vagrant/.ssh/config"
+    shell.inline = "touch #{sshconfig} " +
+      " && grep -q 'StrictHostKeyChecking' #{sshconfig} || echo 'StrictHostKeyChecking no' >> #{sshconfig}" +
+      " && chown -R vagrant:vagrant /home/vagrant/.ssh"
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path
@@ -79,7 +88,6 @@ Vagrant.configure("2") do |config|
     #chef.add_recipe 'dev-tools::phpmyadmin'
     #chef.add_recipe 'dev-tools::xhprof'
     #chef.add_recipe 'dev-tools::webgrind'
-    chef.add_recipe 'drush'
     chef.add_recipe 'example-mcdev'
     #chef.add_recipe 'utils::solr'
     #chef.add_recipe "utils::scripts"

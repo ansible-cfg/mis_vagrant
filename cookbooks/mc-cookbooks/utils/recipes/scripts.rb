@@ -26,7 +26,7 @@ installed_tracker = "/home/vagrant/.mc-utils-scripts.installed"
 is_installed = ::File.exists?(installed_tracker)
 
 # The config file output.
-config_file = "/tmp/mc-utils-scripts.config.json"
+config_file = node['utils']['scripts']['config_file']
 
 # Script paths.
 scripts_path = (!node[:script_paths].nil?) ? node[:script_paths] : node['utils']['scripts']['script_paths']
@@ -59,6 +59,7 @@ if !is_installed and ::File.exists?(post_install) and ::File.executable?(post_in
     command "#{post_install} #{config_file}"
     action :run
     cwd node[:docroot]
+    user 'vagrant'
   end
 
   # Lets us know if the system install has already ran.
@@ -80,6 +81,7 @@ if ::File.exists?(post_up) and ::File.executable?(post_up)
     command "#{post_up} #{config_file}"
     action :run
     cwd node[:docroot]
+    user 'vagrant'
   end
 
   scripts_ran = true

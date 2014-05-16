@@ -1,6 +1,10 @@
 # Utils
 
-## ApacheSolr
+* [ApacheSolr](#markdown-header-apachesolr)
+* [Scripts](#markdown-header-scripts)
+* [Varnish](#markdown-header-varnish)
+
+## [ApacheSolr](#markdown-header-apachesolr)
 
 1. Uncomment ```utils::solr``` recipe from the run list.
 2. Be sure that the apachesolr module is part of your project.
@@ -10,6 +14,7 @@
 * Version: 3.6.2
 
   **Note**
+
   If you are using version ApacheSolr 4.6.x and apachesolr <= version 7.x-1.6,
   you'll need to manually edit the file solrconfig.xml and remove three lines.
 
@@ -19,7 +24,43 @@
 
 * Drupal module path: "[docroot]/sites/all/modules/apachesolr"
 
-## Varnish
+## [Scripts](#markdown-header-scripts)
+
+1. Uncomment ``utils::scripts``` recipe from the run list.
+2. Copy the "mis_vagrant" directory from the mis_example repo into your sites
+   directory.
+3. Edit the post-up.sh and post-install.sh scripts with commands that you will
+   need to run.
+
+        *Note* use the misVagrantAdapter::execute() method when executing scripts
+        so that proper script termination is used so that Vagrant/Chef will be
+        notified if the command fails.
+
+        *Note* all configs associated with Vagrant/Chef are compiled in the
+        misVagrantAdapter::config object.
+
+4. It may be necessary to specify the location of these scripts. You may do so
+   by overriding the ```scripts_path``` attribute for the scripts recipe. The
+   default is currently ```sites/all/mis_vagrant```.
+
+**Optional**
+
+1. When ```vagrant up``` is ran the very first time the "post-install.sh" script
+   will run, while, "post-up.sh" will run everytime the provision is ran
+   (Yes even vagrant up).
+2. I also recommend setting up a drush shell alias so that people can run the
+   post-up.sh script at will. You may do this by adding the following shell alias
+   to your drush_rc file.
+
+        'shell-aliases' => array(
+          'post-up' => '!sites/all/mis_vagrant/post-up.sh',
+        ),
+
+   With the above shell-alias in place users my execute ```drush @example.mcdev post-up```
+   and the post-up script will execute on the guest machine.
+
+
+## [Varnish](#markdown-header-varnish)
 
 1. Uncomment ```utils::varnish``` recipe from the run list.
 2. Set the following variables in your settings.php
