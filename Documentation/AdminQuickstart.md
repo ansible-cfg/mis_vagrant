@@ -47,7 +47,7 @@ specific to your project are kept and maintained over time. Remember to replace
 project's vagrant branch will be referred to as [vagrant_repo] throughout this
 document.
 
-        [vagrant_repo]$ git checkout beta
+        [vagrant_repo]$ git checkout 1.0.1
         [vagrant_repo]$ git submodule init && git submodule update
         *Note:* You do not have to do the submodule init and update if you used
                 recursive from above.
