@@ -83,6 +83,7 @@ Vagrant.configure("2") do |config|
     ]
 
     chef.add_recipe 'lamp'
+    #chef.add_recipe 'lamp::mod_speling'
     #chef.add_recipe 'utils::varnish'
     chef.add_recipe 'dev-tools'
     #chef.add_recipe 'dev-tools::phpmyadmin'
