@@ -88,7 +88,7 @@ Vagrant.configure("2") do |config|
     #chef.add_recipe 'dev-tools::phpmyadmin'
     #chef.add_recipe 'dev-tools::xhprof'
     #chef.add_recipe 'dev-tools::webgrind'
-    chef.add_recipe 'example-mcdev'
+    chef.add_recipe 'default-mcdev'
     #chef.add_recipe 'utils::solr'
     #chef.add_recipe "utils::scripts"
 
