@@ -59,7 +59,7 @@ already listed in the recipe section of the *Vagrantfile*
           #chef.add_recipe 'dev-tools::xhprof'
           #chef.add_recipe 'dev-tools::webgrind'
           chef.add_recipe 'drush'
-          chef.add_recipe 'example-mcdev'
+          chef.add_recipe 'default-mcdev'
           #chef.add_recipe 'utils::scripts'
           #chef.add_recipe "utils::solr"
 
@@ -95,7 +95,7 @@ for implmentation notes.
 
 ### Creating Project Specific Cookbooks
 
-The system ships with a base project cookbook named *example-mcdev*. This
+The system ships with a base project cookbook named *default-mcdev*. This
 cookbook performs core setup tasks that should be sufficient in many
 use cases.
 
@@ -144,7 +144,7 @@ instructions and notices.
 
     Installs and configures drush.
 
-* example-mcdev
+* default-mcdev
 
     The base project-specific cookbook.
 
