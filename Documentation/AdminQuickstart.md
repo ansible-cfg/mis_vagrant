@@ -75,7 +75,7 @@ specific to your project are kept and maintained over time. Remember to replace
         to their /etc/hosts file that matches this. Please provide this to your team
         members after setup.
 
-    3. Modify the line in the Vagrantfile with the IP generated in step 6.
+    3. Modify the line in the Vagrantfile with the IP generated in previous step.
 
             # Create a private network, which allows host-only access to the machine
             # using a specific IP.
@@ -101,12 +101,12 @@ following.
 branch.
 
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
-        [vagrant_repo]$ git push origin projects/client--project
+        [vagrant_repo]$ git push origin master
 
 8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
 
-9. Test your setup guide by following it exactly in a testing directory. Make sure
+9. Test your setup guide by following it exactly in a temporary directory. Make sure
 everything works as expected.
 
 10. *Note:* Additional configuration is possible and explained in the [Customization
