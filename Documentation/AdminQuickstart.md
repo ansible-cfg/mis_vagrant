@@ -3,22 +3,22 @@
 ## Introduction
 
 The vagrant build is designed to be added to an existing project and may sit
-alongside or live within the project repository (as a git submodule). Which
-method makes the most sense depends on project needs and architecture.
+alongside or live within the project repository (as a git submodule). The
+"alongside" method is the standard directory configuration expected for new
+projects and will be covered here. Some legacy projects have integrated MIS vagrant
+as a submodule.
 
 It is expected that you have installed and tested out the MIS Example project
 build prior to attempting to set up a vagrant build for your own project. This
-will provide you with a working vagrant environment and knowledge of what will
-need to be provided to other team members.
+will provide you with a working vagrant environment and knowledge of what new
+team members will need.
 
-The example client project branch is found on bitbucket
+The example client project branch is found on bitbucket and provides a working
+example of a properly configured vagrant instance.
 
     git clone --recursive -b master git@bitbucket.org:mediacurrent/mis_example.git
     git clone --recursive -b master git@bitbucket.org:mediacurrent/mis_vagrant_example.git
 
-This example project is intended to be used with a fork of the mis_vagrant project.
-This Vagrant project's branch is built off master like any other Vagrant projects 
-branch should be.
 
 ## Installation
 
@@ -26,32 +26,35 @@ Follow all instructions in the [User Quickstart](UserQuickstart.md) to ensure
 that you have all required dependencies.
 
 1. Create (or clone locally) your client project repo. This will be referred to
-as [client_repo] for the remainder of this document.
+as [client_repo] for the remainder of this document. This repo will normally
+contain Drupal and any other attendant files for the client software.
 
 2. Contact a Vagrant team member to create your project fork. This repo will be 
-used exclusively to track this instance of vagrant and will be referred to as 
+used exclusively to track your teams' instance of vagrant and will be referred to as 
 [vagrant_repo] for the remainder of this document.
 
-3. Clone the project fork repo into a directory parallel to your repo.
+3. Clone the [vagrant_repo] into a directory parallel to your [client_repo].
 
       [client_repo]$ cd .. && git clone --recursive -b master git@bitbucket.org:mediacurrent/[project-code]_vagrant.git
 
 4. Change directory into the [vagrant_repo]. The master branch is where changes
 specific to your project are kept and maintained over time. Remember to replace
-"client" and "project" with names that are appropriate for your project.
+"client" and "project" with names that are appropriate for your project. Since
+git submodules are in use, ensure the submodules are downloaded:
 
-        [vagrant_repo]$ git submodule init && git submodule update
+      [vagrant_repo]$ git submodule init && git submodule update
 
-5. Modify the Vagrantfile to match the desired server configuration
+5. Modify the Vagrantfile to create the desired server configuration
 (more detail below).
 
-    1. Modify the Vagrantfile mc_settings to specify the local domain and
-    host_docroot for your project relative to the Vagrantfile.
+    1. Modify the Vagrantfile mc_settings to specify the local domain name, the
+    host_docroot for your project (relative to the Vagrantfile), and the database
+    name (usually [project-code]_mcdev).
 
             mc_settings = {
               :domain       => 'example.mcdev',
               :docroot      => '/home/vagrant/docroot',
-              :host_docroot => '../docroot',
+              :host_docroot => '../[client_repo]/docroot',
               :database_name => 'example_mcdev'
             }
 
@@ -72,8 +75,9 @@ specific to your project are kept and maintained over time. Remember to replace
             192.168.50.4 example.mcdev
 
         Instructions have been provided in the user quickstart guide to add an entry
-        to their /etc/hosts file that matches this. Please provide this to your team
-        members after setup.
+        to the host machine's /etc/hosts file that matches this. Please provide
+        this new IP/Domain to your team members as a part of the setup guide you
+        will create in step 8.
 
     3. Modify the line in the Vagrantfile with the IP generated in previous step.
 
@@ -81,10 +85,10 @@ specific to your project are kept and maintained over time. Remember to replace
             # using a specific IP.
             config.vm.network :private_network, ip: "192.168.50.4"
 
-6. Create or add to existing drushrc file within your project repository
-(not the vagrant branch you just created)
+6. Create or add to existing drushrc file within the [client_repo] at
 docroot/sites/all/drush/[project shortname].aliases.drushrc.php with the
-following.
+following (if the client does not allow this alias to exist, you may put it in
+the [vagrant_repo] and provide instructions to the project team on how to use it).
 
         // Vagrant local development vm.
         $aliases['mcdev'] = array(
@@ -97,20 +101,21 @@ following.
           'remote-user' => 'vagrant',
         );
 
-7. Check in your vagrant configuration and push to a project specific *projects/client--project*
-branch.
+7. Check in your vagrant configuration and push to the master branch of your [vagrant_repo].
 
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
         [vagrant_repo]$ git push origin master
 
 8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
+New members of your project team will use this guide to setup their local environment
+for the first time. Make sure it is accurate and tested well to save project time.
 
 9. Test your setup guide by following it exactly in a temporary directory. Make sure
-everything works as expected.
+everything works as expected. Any problems with the setup guide will be yours to address
+later.
 
 10. *Note:* Additional configuration is possible and explained in the [Customization
-guide](Customization.md). The two areas of intended configuration are by editing the *Vagrantfile* and
-through the creation of project-specific cookbooks.
+guide](Customization.md). The two areas of intended configuration are by editing the
+*Vagrantfile* and through the creation of project-specific cookbooks.
 
-## Troubleshooting
