@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: example-mcdev
+# Cookbook Name:: default-mcdev
 # Attributes:: default
 #
 # Copyright 2013, Mediacurrent

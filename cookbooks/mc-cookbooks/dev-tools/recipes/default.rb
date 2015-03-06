@@ -14,6 +14,7 @@ include_recipe "rsync"
 
 # Install xdebug via pear.
 php_pear "xdebug" do
+  version "2.2.7"
   # Specify that xdebug.so must be loaded as a zend extension
   zend_extensions ['xdebug.so']
   action :install

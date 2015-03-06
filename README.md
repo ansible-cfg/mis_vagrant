@@ -10,6 +10,6 @@
 
 * [dev-tools](cookbooks/mc-cookbooks/dev-tools/README.md)
 * [drush](cookbooks/mc-cookbooks/drush/README.md)
-* [example-mcdev](cookbooks/mc-cookbooks/example-mcdev/README.md)
+* [default-mcdev](cookbooks/mc-cookbooks/default-mcdev/README.md)
 * [lamp](cookbooks/mc-cookbooks/lamp/README.md)
 * [utils](cookbooks/mc-cookbooks/utils/README.md)
