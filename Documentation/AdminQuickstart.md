@@ -29,19 +29,22 @@ that you have all required dependencies.
 as [client_repo] for the remainder of this document. This repo will normally
 contain Drupal and any other attendant files for the client software.
 
-2. Contact a Vagrant team member to create your project fork. This repo will be 
-used exclusively to track your teams' instance of vagrant and will be referred to as 
-[vagrant_repo] for the remainder of this document.
+2. Contact a Vagrant team member in the #mis-vagrant slack channel to create your
+project's fork. This repo will be used exclusively to track your teams' instance
+of vagrant and will be referred to as [vagrant_repo] for the remainder of this
+document. At the same time, request someone in the channel to reserve a unique
+IP address for your project. Specify the hostname that will be used (ex. projectsite.mcdev).
 
 3. Clone the [vagrant_repo] into a directory parallel to your [client_repo].
 
       [client_repo]$ cd .. && git clone --recursive -b master git@bitbucket.org:mediacurrent/[project-code]_vagrant.git
 
-4. Change directory into the [vagrant_repo]. The master branch is where changes
+4. Change directory into the [vagrant_repo]. The project branch is where changes
 specific to your project are kept and maintained over time. Remember to replace
 "client" and "project" with names that are appropriate for your project. Since
 git submodules are in use, ensure the submodules are downloaded:
 
+      [vagrant_repo]$ git checkout -b project
       [vagrant_repo]$ git submodule init && git submodule update
 
 5. Modify the Vagrantfile to create the desired server configuration
@@ -64,12 +67,10 @@ git submodules are in use, ensure the submodules are downloaded:
         * :host_docroot: The location of the project docroot relative to
         this file on the host machine.
 
-    2. Add the domain/IP for this installation to the [Vagrant IP address allocation](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing).
-    spreadsheet. Specify the next IP in the current range and add to the proper
-    column in the spreadsheet. Use this IP/domain combination in the following steps.
-    The /etc/hosts entry will be populated for you by the spreadsheet. If you do
-    not have access to edit this spreadsheet, a member of DevOps will help you.
-    You will get something like the following from the "All hosts" column.
+    2. The domain/IP requested earlier is accessible in the [Vagrant IP address allocation](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing).
+    spreadsheet. Use this IP/domain combination in the following steps.
+    The /etc/hosts entry will be populated for you by the spreadsheet and will look
+    something like this.
 
             #Vagrant Hosts Entries
             192.168.50.4 example.mcdev
@@ -104,7 +105,7 @@ the [vagrant_repo] and provide instructions to the project team on how to use it
 7. Check in your vagrant configuration and push to the master branch of your [vagrant_repo].
 
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
-        [vagrant_repo]$ git push origin master
+        [vagrant_repo]$ git push origin project
 
 8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
