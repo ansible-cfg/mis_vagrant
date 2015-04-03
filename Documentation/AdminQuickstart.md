@@ -102,10 +102,10 @@ the [vagrant_repo] and provide instructions to the project team on how to use it
           'remote-user' => 'vagrant',
         );
 
-7. Check in your vagrant configuration and push to the master branch of your [vagrant_repo].
+7. Create a working branch named 'project--sitename' or a name of your choosing (other than master) and push up your vagrant configuration.
 
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
-        [vagrant_repo]$ git push origin project
+        [vagrant_repo]$ git push origin [project_branch]
 
 8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
