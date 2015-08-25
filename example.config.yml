@@ -47,7 +47,7 @@ drupal_install_profile: standard
 drupal_enable_modules: [ 'devel' ]
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_mysql_user: rppt
+drupal_mysql_user: root
 drupal_mysql_password: password
 drupal_mysql_database: example_mcdev
 
