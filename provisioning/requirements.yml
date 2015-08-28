@@ -1,0 +1,32 @@
+---
+
+- src: arknoll.selenium
+- src: geerlingguy.adminer
+- src: geerlingguy.apache
+- src: geerlingguy.composer
+- src: geerlingguy.daemonize
+- src: geerlingguy.drupal-console
+- src: geerlingguy.drush
+- src: geerlingguy.firewall
+- src: geerlingguy.git
+- src: geerlingguy.java
+- src: geerlingguy.mailhog
+- src: geerlingguy.memcached
+- src: geerlingguy.mysql
+- src: geerlingguy.nodejs
+- src: geerlingguy.php
+- src: geerlingguy.php-memcached
+- src: geerlingguy.php-mysql
+- src: geerlingguy.php-pecl
+- src: geerlingguy.php-xdebug
+- src: geerlingguy.php-xhprof
+- src: geerlingguy.pimpmylog
+- src: geerlingguy.repo-remi
+- src: geerlingguy.security
+- src: geerlingguy.solr
+- src: geerlingguy.varnish
+
+# Install pa11y role.
+- src: https://github.com/joestewart/ansible-role-pa11y.git
+  version: master
+  name: joestewart.pa11y

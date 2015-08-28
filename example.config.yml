@@ -95,6 +95,8 @@ installed_extras:
   - adminer
   - mailhog
   # - memcached
+  # - nodejs
+  # - pa11y
   - pimpmylog
   # - selenium
   # - solr
