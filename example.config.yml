@@ -96,7 +96,7 @@ installed_extras:
   - mailhog
   # - memcached
   # - nodejs
-  # - pa11y
+  - pa11y
   - pimpmylog
   # - selenium
   # - solr
@@ -140,8 +140,11 @@ php_max_input_vars: "4000"
 
 composer_path: /usr/bin/composer
 composer_home_path: '/home/vagrant/.composer'
-# composer_global_packages:
-#   - { name: phpunit/phpunit, release: '@stable' }
+composer_global_packages:
+  - { name: behat/mink, release: '1.5.*@stable' }
+  - { name: behat/mink-goutte-driver, release: '*' }
+  # - { name: behat/mink-selenium2-driver, release: '*' }
+  - { name: drupal/drupal-extension, release: '*' }
 
 # MySQL Configuration.
 mysql_root_password: password
