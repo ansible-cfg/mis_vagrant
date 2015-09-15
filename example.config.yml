@@ -178,6 +178,7 @@ php_xdebug_max_nesting_level: 256
 solr_version: "4.10.4"
 solr_xms: "64M"
 solr_xmx: "128M"
+drupal_apachesolr_solr_conf: "solr-4.x"
 
 # Selenium configuration
 selenium_version: 2.46.0
