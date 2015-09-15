@@ -41,7 +41,7 @@ install_site: false
 # is 'true').
 drupal_major_version: 7
 drupal_core_path: "/home/vagrant/docroot"
-drupal_domain: "example.mcdev"
+drupal_domain: "{{ vagrant_hostname }}"
 drupal_site_name: "Drupal"
 drupal_install_profile: standard
 drupal_enable_modules: [ 'devel' ]
@@ -49,7 +49,7 @@ drupal_account_name: admin
 drupal_account_pass: admin
 drupal_mysql_user: root
 drupal_mysql_password: password
-drupal_mysql_database: example_mcdev
+drupal_mysql_database: "{{ vagrant_machine_name }}"
 
 # Cron jobs are added to the root user's crontab. Keys include name (required),
 # minute, hour, day, weekday, month, job (required), and state.
