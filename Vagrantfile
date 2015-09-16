@@ -33,7 +33,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   config.vm.box = vconfig['vagrant_box']
-  config.vm.box_url = vconfig['vagrant_box_url']
 
   # If hostsupdater plugin is installed, add all servernames as aliases.
   if Vagrant.has_plugin?("vagrant-hostsupdater")
