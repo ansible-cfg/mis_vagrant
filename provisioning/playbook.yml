@@ -41,8 +41,6 @@
     - { role: arknoll.selenium, when: '"selenium" in installed_extras' }
     - { role: geerlingguy.solr, when: '"solr" in installed_extras' }
     - { role: geerlingguy.varnish, when: '"varnish" in installed_extras' }
-    - { role: geerlingguy.nodejs, when: '"nodejs" in installed_extras or "pa11y" in installed_extras'}
-    - { role: joestewart.pa11y, when: '"pa11y" in installed_extras'}
     - { role: joestewart.drupal-apachesolr, when: '"solr" in installed_extras' }
 
     # Roles for security and stability on production.

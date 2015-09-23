@@ -29,11 +29,6 @@
 - src: geerlingguy.solr
 - src: geerlingguy.varnish
 
-# Install pa11y role.
-- src: https://github.com/joestewart/ansible-role-pa11y.git
-  version: master
-  name: joestewart.pa11y
-
   # Install Drupal Apachesolr role.
 - src: https://github.com/joestewart/ansible-role-drupal-apachesolr.git
   version: master
