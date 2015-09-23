@@ -13,6 +13,7 @@
 - src: geerlingguy.mailhog
 - src: geerlingguy.memcached
 - src: geerlingguy.mysql
+- src: geerlingguy.nginx
 - src: geerlingguy.nodejs
 - src: geerlingguy.php
 - src: geerlingguy.php-memcached
@@ -21,7 +22,9 @@
 - src: geerlingguy.php-xdebug
 - src: geerlingguy.php-xhprof
 - src: geerlingguy.pimpmylog
+- src: geerlingguy.postfix
 - src: geerlingguy.repo-remi
+- src: geerlingguy.ruby
 - src: geerlingguy.security
 - src: geerlingguy.solr
 - src: geerlingguy.varnish
