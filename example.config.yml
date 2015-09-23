@@ -10,6 +10,11 @@ vagrant_hostname: example.mcdev
 vagrant_machine_name: example_mcdev
 vagrant_ip: 192.168.50.4
 
+# Allow Drupal VM to be accessed via a public network interface on your host.
+# Vagrant boxes are insecure by default, so be careful. You've been warned!
+# See: https://docs.vagrantup.com/v2/networking/public_network.html
+vagrant_public_ip: ""
+
 # A list of synced folders, with the keys 'local_path', 'destination', 'id', and
 # a 'type' of [nfs|rsync|smb] (leave empty for slow native shares). See
 # http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
@@ -19,13 +24,15 @@ vagrant_synced_folders:
   - local_path: ../docroot
     destination: /home/vagrant/docroot
     # /var/www/html
-    id: drupal
     type: nfs
     create: true
 
 # Memory and CPU to use for this VM.
 vagrant_memory: 2048
 vagrant_cpus: 2
+
+# The web server software to use. Can be either 'apache' or 'nginx'.
+drupalvm_webserver: apache
 
 # Set this to false if you are using a different site deployment strategy and
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
@@ -36,7 +43,7 @@ drush_makefile_path: /vagrant/drupal.make.yml
 # settings below), but instead copy down a database (e.g. using drush sql-sync).
 install_site: false
 
-# Settings for building a Drupal site from a makefile (if 'build_from_makefile'
+# Settings for building a Drupal site from a makefile (if 'build_makefile:'
 # is 'true').
 drupal_major_version: 7
 drupal_core_path: "/home/vagrant/docroot"
@@ -49,6 +56,9 @@ drupal_account_pass: admin
 drupal_mysql_user: root
 drupal_mysql_password: password
 drupal_mysql_database: "{{ vagrant_machine_name }}"
+
+# Additional arguments or options to pass to `drush site-install`.
+drupal_site_install_extra_args: []
 
 # Cron jobs are added to the root user's crontab. Keys include name (required),
 # minute, hour, day, weekday, month, job (required), and state.
@@ -65,17 +75,49 @@ configure_local_drush_aliases: false
 
 # Apache VirtualHosts. Add one for each site you are running inside the VM. For
 # multisite deployments, you can point multiple servernames at one documentroot.
+# View the geerlingguy.apache Ansible Role README for more options.
 apache_vhosts:
-  - {servername: "{{ drupal_domain }}", documentroot: "{{ drupal_core_path }}"}
-  - {servername: "xhprof.{{ drupal_domain }}", documentroot: "/usr/share/php/xhprof_html"}
-  - {servername: "pimpmylog.{{ drupal_domain }}", documentroot: "/usr/share/php/pimpmylog"}
+  - servername: "{{ drupal_domain }}"
+    documentroot: "{{ drupal_core_path }}"
+
+  - servername: "adminer.drupalvm.dev"
+    documentroot: "/opt/adminer"
+
+  - servername: "xhprof.drupalvm.dev"
+    documentroot: "/usr/share/php/xhprof_html"
+
+  - servername: "pimpmylog.drupalvm.dev"
+    documentroot: "/usr/share/php/pimpmylog"
+
 apache_remove_default_vhost: true
 apache_mods_enabled:
   - expires.load
   - ssl.load
   - rewrite.load
 
-# MySQL Databases and users. If build_from_makefile is true, first database will
+# Nginx hosts. Each site will get a server entry using the configuration defined
+# here. Set the 'is_php' property for document roots that contain PHP apps like
+# Drupal.
+nginx_hosts:
+  - server_name: "{{ drupal_domain }}"
+    root: "{{ drupal_core_path }}"
+    is_php: true
+
+  - server_name: "adminer.drupalvm.dev"
+    root: "/opt/adminer"
+    is_php: true
+
+  - server_name: "xhprof.drupalvm.dev"
+    root: "/usr/share/php/xhprof_html"
+    is_php: true
+
+  - server_name: "pimpmylog.drupalvm.dev"
+    root: "/usr/share/php/pimpmylog"
+    is_php: true
+
+nginx_remove_default_vhost: true
+
+# MySQL Databases and users. If build_makefile: is true, first database will
 # be used for the makefile-built site.
 mysql_databases:
   - name: "{{ drupal_mysql_database }}"
@@ -97,6 +139,7 @@ installed_extras:
   # - nodejs
   - pa11y
   - pimpmylog
+  # - ruby
   # - selenium
   # - solr
   # - varnish
@@ -105,6 +148,13 @@ installed_extras:
 
 # Add any extra packages you'd like to install.
 extra_packages: []
+
+# `nodejs` must be in installed_extras for this to work.
+nodejs_version: "0.12"
+nodejs_npm_global_packages: []
+
+# `ruby` must be in installed_extras for this to work.
+ruby_install_gems: []
 
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
@@ -150,7 +200,7 @@ mysql_root_password: password
 mysql_slow_query_log_enabled: true
 mysql_slow_query_time: 2
 mysql_wait_timeout: 300
-adminer_add_apache_config: true
+adminer_install_filename: index.php
 
 # Varnish Configuration.
 varnish_listen_port: "6081"

@@ -24,7 +24,7 @@ This project aims to make spinning up a simple local Drupal test/development env
 
 It will install the following on an Ubuntu 14.04 (by default) linux VM:
 
-  - Apache 2.4.x
+  - Apache 2.4.x (or Nginx 1.x)
   - PHP 5.5.x (configurable)
   - MySQL 5.5.x
   - Drush (configurable)
@@ -33,7 +33,9 @@ It will install the following on an Ubuntu 14.04 (by default) linux VM:
   - Optional:
     - Varnish 4.x
     - Apache Solr 4.10.x (configurable)
+    - Node.js
     - Selenium, for testing your sites via Behat
+    - Ruby
     - Memcached
     - XHProf, for profiling your code
     - XDebug, for debugging your code
@@ -93,7 +95,7 @@ Note: *If there are any errors during the course of running `vagrant up`, and it
 ### 3 - Configure your host machine to access the VM.
 
   1. [Edit your hosts file](http://www.rackspace.com/knowledge_center/article/how-do-i-modify-my-hosts-file), adding the line `192.168.88.88  drupalvm.dev` so you can connect to the VM.
-    - You can have Vagrant automatically configure your hosts file if you install the `hostsupdater` plugin (`vagrant plugin install vagrant-hostsupdater`). All hosts defined in `apache_vhosts` will be automatically managed.
+    - You can have Vagrant automatically configure your hosts file if you install the `hostsupdater` plugin (`vagrant plugin install vagrant-hostsupdater`). All hosts defined in `apache_vhosts` or `nginx_hosts` will be automatically managed.
     - You can also have Vagrant automatically assign an available IP address to your VM if you install the `auto_network` plugin (`vagrant plugin install vagrant-auto_network`), and set `vagrant_ip` to `0.0.0.0` inside `config.yml`.
   2. Open your browser and access [http://drupalvm.dev/](http://drupalvm.dev/). The default login for the admin account is `admin` for both the username and password.
 
