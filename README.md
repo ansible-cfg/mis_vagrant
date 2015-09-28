@@ -1,3 +1,75 @@
+# MIS Example
+## Setting up a local [Vagrant](http://vagrantup.com) environment
+
+
+### Download and install VirtualBox (>= 4.3.x) from [here](https://www.virtualbox.org/wiki/Downloads).
+
+### Download and install Vagrant from [here](http://www.vagrantup.com/downloads-archive.html).
+
+### Add the vagrant ssh key to your .ssh directory
+- `$ ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
+- `$ chmod 600 ~/.ssh/vagrant_insecure_private_key`
+
+### Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines
+    Host *.mcdev
+        ForwardAgent yes
+        IdentityFile ~/.ssh/vagrant_insecure_private_key
+        User vagrant
+
+### Clone these repos into the directory of your choice:
+- `$ git clone --recursive git@bitbucket.org:mediacurrent/mis_vagrant_example.git`
+
+### Initialize the submodules to get the mis_example codebase
+- `$ cd mis_vagrant_example`
+- `$ git submodule init && git submodule update`
+- `$ git submodule foreach git pull origin develop`
+
+The Example codebase ( git@bitbucket.org:mediacurrent/mis_example.git_)
+is now installed in the "mis_example" directory.
+
+### Edit your local `/etc/hosts` file to include the new box ips
+    192.168.50.4 example.mcdev
+
+### Start the box from the `mis_vagrant_example` directory
+- `$ vagrant up`
+*You may be prompted for your sudo password for the NFS mount*
+
+### Install site
+
+@example.mcdev
+
+* `$ cd path/to/docroot`
+
+* `$ drush @example.mcdev si minimal --sites-subdir='example.mcdev' --db-url='mysql://root:password@localhost/example_mcdev' --account-mail='nothing@example.com' --account-name='admin' --account-pass='password' --site-name='Example' --site-mail='nothing@example.com' -y`
+
+* `$ chmod -R ugo+w sites/example.mcdev/files`
+
+### Generate a login link
+- `$ cd path/to/docroot`
+- `$ drush @example.mcdev uli`
+  or
+- `$ vagrant ssh`
+- `$ cd /home/vagrant/docroot/sites/example.mcdev`
+- `$ drush uli`
+
+- Log out of the vagrant server (ctrl-d usually works well)
+
+### Run the code-review.sh tests.
+(Drupal 7 only)
+
+*NOTE* There will be not tests run until modules are in the "sites/all/modules/custom" directory.
+
+- `$ vagrant ssh -c "/vagrant/tests/code-review.sh example.mcdev /home/vagrant/docroot"`
+
+### Run the security-review.sh tests.
+(Drupal 7 only)
+
+- `$ vagrant ssh -c "/vagrant/tests/security-review.sh example.mcdev /home/vagrant/docroot"`
+
+### Run the pa11y-review.sh tests.
+
+- `$ vagrant ssh -c "/vagrant/tests/pa11y/pa11y-review.sh example.mcdev"`
+
 ## [Documentation](Documentation)
 
 * [UserQuickstart](Documentation/UserQuickstart.md)
@@ -5,14 +77,6 @@
 * [Customization](Documentation/Customization.md)
 * [FAQ](Documentation/FAQ.md)
 * [Gitflow](Documentation/Gitflow.md)
-
-## Mediacurrent recipes
-
-* [dev-tools](cookbooks/mc-cookbooks/dev-tools/README.md)
-* [drush](cookbooks/mc-cookbooks/drush/README.md)
-* [default-mcdev](cookbooks/mc-cookbooks/default-mcdev/README.md)
-* [lamp](cookbooks/mc-cookbooks/lamp/README.md)
-* [utils](cookbooks/mc-cookbooks/utils/README.md)
 
 ![Drupal VM Logo](https://raw.githubusercontent.com/geerlingguy/drupal-vm/master/docs/images/drupal-vm-logo.png)
 
