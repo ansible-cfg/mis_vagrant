@@ -96,7 +96,7 @@ the [vagrant_repo] and provide instructions to the project team on how to use it
 7. Check in your vagrant configuration and push to the project branch of your [vagrant_repo].
 
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
-        [vagrant_repo]$ git push origin project
+        [vagrant_repo]$ git push origin projects/[client_repo]
 
 8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
