@@ -77,7 +77,7 @@ configure_local_drush_aliases: false
 # multisite deployments, you can point multiple servernames at one documentroot.
 # View the geerlingguy.apache Ansible Role README for more options.
 apache_vhosts:
-  - servername: "{{ drupal_domain }}"
+  - servername: "example.mcdev"
     documentroot: "{{ drupal_core_path }}"
 
   - servername: "adminer.{{ drupal_domain }}"
@@ -99,7 +99,7 @@ apache_mods_enabled:
 # here. Set the 'is_php' property for document roots that contain PHP apps like
 # Drupal.
 nginx_hosts:
-  - server_name: "{{ drupal_domain }}"
+  - server_name: "example.mcdev"
     root: "{{ drupal_core_path }}"
     is_php: true
 
