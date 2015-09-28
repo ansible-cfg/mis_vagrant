@@ -63,6 +63,10 @@ git submodules are in use, ensure the submodules are downloaded:
 			servername: "example.mcdev"
 			...
 			server_name: "example.mcdev"
+      ...
+      drupal_major_version: 7
+      ...
+      drush_version: 7.0.0
 
     2. The domain/IP requested earlier is accessible in the [Vagrant IP address allocation](https://docs.google.com/a/mediacurrent.com/spreadsheet/ccc?key=0AuLhQk3Txl-JdFNGOGNEV0twcUlwR09tWkU1NVNMZnc&usp=sharing).
     spreadsheet. Use this IP/domain combination in the following steps.
@@ -98,7 +102,7 @@ the [vagrant_repo] and provide instructions to the project team on how to use it
         [vagrant_repo]$ git commit -a -m 'creating branch for project name'
         [vagrant_repo]$ git push origin projects/[client_repo]
 
-8. Create the setup guide for your project by replacing the [vagrant_repo] README.md 
+8. Create the setup guide for your project by replacing the [vagrant_repo] README.md
 file with setup instructions similar to the [UserQuickstart](Documentation/UserQuickstart.md).
 New members of your project team will use this guide to setup their local environment
 for the first time. Make sure it is accurate and tested well to save project time.
