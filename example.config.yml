@@ -146,7 +146,9 @@ installed_extras:
   # - xhprof
 
 # Add any extra packages you'd like to install.
-extra_packages: []
+extra_packages:
+  - firefox
+  - xvfb
 
 # `nodejs` must be in installed_extras for this to work.
 nodejs_version: "0.12"
