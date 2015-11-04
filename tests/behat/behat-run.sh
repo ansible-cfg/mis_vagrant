@@ -19,6 +19,12 @@ if [[ -z $SITE_PATH || -z $URI ]]; then
   exit 1;
 fi
 
+phantomjs=$(which phantomjs)
+
+if [ ! -z ${phantomjs} ] && !(pgrep -f "${phantomjs} --webdriver=8643" > /dev/null); then
+  forever start ${phantomjs} --webdriver=8643
+fi
+
 cd $SITE_PATH
 
 # Run behat.
