@@ -2,19 +2,17 @@
 usage()
 {
 cat << EOF
-Usage: behat-run.sh uri.dev /path/to/behat.tests
+Usage: behat-run.sh uri.dev
 
 ARGUMENTS:
    $URI: URI of site to run behat against.
-   $SITE_PATH: Absolute path to Behat tests directory.
 EOF
 }
 
 URI=$1
-SITE_PATH=$2
 
 # Exit if options aren't set.
-if [[ -z $SITE_PATH || -z $URI ]]; then
+if [[ -z $URI ]]; then
   usage
   exit 1;
 fi
@@ -25,7 +23,7 @@ if [ ! -z ${phantomjs} ] && !(pgrep -f "${phantomjs} --webdriver=8643" > /dev/nu
   forever start ${phantomjs} --webdriver=8643
 fi
 
-cd $SITE_PATH
+cd `dirname $0`
 
 # Run behat.
 if [ -f bin/behat ]; then
