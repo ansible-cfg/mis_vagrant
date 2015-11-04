@@ -72,7 +72,7 @@ is now installed in the "mis_example" directory.
 
 ### Run the behat tests.
 
-- `$ vagrant ssh -c "/vagrant/tests/behat/behat.sh http://example.mcdev /vagrant/tests/behat"`
+- `$ vagrant ssh -c "/vagrant/tests/behat/behat.sh http://example.mcdev"`
 - To run individual tests or further configuration. See tests/behat/README.md
 
 ## [Documentation](Documentation)
