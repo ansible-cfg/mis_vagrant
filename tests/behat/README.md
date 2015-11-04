@@ -62,6 +62,14 @@ Example commands:
   bin/behat --profile="smoke" - run key tests (fast test)
   bin/behat --profile="no-slow" - don't run slow tests
 
+Note:  Some tests may require Phantomjs or Selenium to launch a browser like Firefox to test javascript functionality.  The included behat-run.sh ensures that phantomjs is running.
+
+To manually start phantomjs:
+
+'phantomjs --webdriver=8643 &'
+or for vagrant
+'vagrant ssh -c "forever start  /usr/bin/phantomjs --webdriver=8643"'
+
 FEATURES AND SCENARIOS
 ----------------------
 Human-readable features and scenarios are available in the features/ directory.
