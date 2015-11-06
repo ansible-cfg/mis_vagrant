@@ -17,12 +17,12 @@
         User vagrant
 
 ### Clone these repos into the directory of your choice:
-- `$ git clone --recursive git@bitbucket.org:mediacurrent/mis_vagrant_example.git`
+- `$ git clone git@bitbucket.org:mediacurrent/mis_vagrant_example.git`
 
 ### Initialize the submodules to get the mis_example codebase
 - `$ cd mis_vagrant_example`
-- `$ git submodule init && git submodule update`
-- `$ git submodule foreach git pull origin develop`
+- `$ git submodule init && git submodule update --remote`
+- `$ git submodule foreach git checkout develop`
 
 The Example codebase ( git@bitbucket.org:mediacurrent/mis_example.git_)
 is now installed in the "mis_example" directory.
