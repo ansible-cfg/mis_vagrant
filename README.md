@@ -70,6 +70,11 @@ is now installed in the "mis_example" directory.
 
 - `$ vagrant ssh -c "/vagrant/tests/pa11y/pa11y-review.sh example.mcdev"`
 
+### Run the behat tests.
+
+- `$ vagrant ssh -c "/vagrant/tests/behat/behat.sh http://example.mcdev"`
+- To run individual tests or further configuration. See tests/behat/README.md
+
 ## [Documentation](Documentation)
 
 * [UserQuickstart](Documentation/UserQuickstart.md)
