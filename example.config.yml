@@ -212,6 +212,7 @@ composer_global_packages:
   - { name: behat/mink-goutte-driver, release: '*' }
   # - { name: behat/mink-selenium2-driver, release: '*' }
   - { name: drupal/drupal-extension, release: '*' }
+  - { name: drupal/coder, release: '*' }
 
 # MySQL Configuration.
 mysql_root_password: password
