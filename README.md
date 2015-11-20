@@ -54,23 +54,22 @@ is now installed in the "mis_example" directory.
 
 - Log out of the vagrant server (ctrl-d usually works well)
 
-### Run the code-review.sh tests.
-(Drupal 7 only)
+### Run the Coding Standards tests.
 
 *NOTE* There will be not tests run until modules are in the "sites/all/modules/custom" directory.
 
-- `$ vagrant ssh -c "/vagrant/tests/code-review.sh example.mcdev /home/vagrant/docroot"`
+- `$ vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot"`
 
-### Run the security-review.sh tests.
+### Run the Security Review tests.
 (Drupal 7 only)
 
 - `$ vagrant ssh -c "/vagrant/tests/security-review.sh example.mcdev /home/vagrant/docroot"`
 
-### Run the pa11y-review.sh tests.
+### Run the Accessibility tests.
 
 - `$ vagrant ssh -c "/vagrant/tests/pa11y/pa11y-review.sh example.mcdev"`
 
-### Run the behat tests.
+### Run the BDD system tests.
 
 - `$ vagrant ssh -c "/vagrant/tests/behat/behat.sh http://example.mcdev"`
 - To run individual tests or further configuration. See tests/behat/README.md
