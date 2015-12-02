@@ -8,3 +8,13 @@
   yum: "name={{ item }} state=installed"
   with_items: extra_packages | list
   when: ansible_os_family == 'RedHat' and extra_packages | length
+
+- name: Check if Drupal code standards folder exists.
+  shell: "{{ composer_home_path }}/vendor/bin/phpcs --config-show"
+  register: phpcs_config
+  failed_when: false
+  changed_when: false
+
+- name: Ensure Drupal code standards loaded for phpcs.
+  shell: "{{ composer_home_path }}/vendor/bin/phpcs --config-set installed_paths {{ composer_home_path }}/vendor/drupal/coder/coder_sniffer"
+  when: "phpcs_config.stdout != 'installed_paths: {{ composer_home_path }}/vendor/drupal/coder/coder_sniffer'"
