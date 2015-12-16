@@ -71,7 +71,7 @@ is now installed in the "mis_example" directory.
 
 ### Run the BDD system tests.
 
-- `$ vagrant ssh -c "/vagrant/tests/behat/behat.sh http://example.mcdev"`
+- `$ vagrant ssh -c "/vagrant/tests/behat/behat-run.sh http://example.mcdev"`
 - To run individual tests or further configuration. See tests/behat/README.md
 
 ## [Documentation](Documentation)
