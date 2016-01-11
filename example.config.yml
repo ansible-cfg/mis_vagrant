@@ -137,12 +137,6 @@ mysql_databases:
     encoding: utf8
     collation: utf8_general_ci
 
-mysql_users:
-  - name: "{{ drupal_mysql_user }}"
-    host: "%"
-    password: "{{ drupal_mysql_password }}"
-    priv: "{{ drupal_mysql_database }}.*:ALL"
-
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, make set this value to an empty set, e.g. `[]`.
 installed_extras:
@@ -208,12 +202,11 @@ php_max_input_vars: "4000"
 
 composer_path: /usr/bin/composer
 composer_home_path: '/home/vagrant/.composer'
+composer_home_owner: vagrant
+composer_home_group: vagrant
 composer_global_packages:
-  - { name: behat/mink, release: '1.5.*@stable' }
-  - { name: behat/mink-goutte-driver, release: '*' }
-  # - { name: behat/mink-selenium2-driver, release: '*' }
-  - { name: drupal/drupal-extension, release: '*' }
   - { name: drupal/coder, release: '*' }
+  - { name: drupal/drupal-extension, release: '~3.0' }
 
 # MySQL Configuration.
 mysql_root_password: password
