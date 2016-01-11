@@ -202,6 +202,8 @@ php_max_input_vars: "4000"
 
 composer_path: /usr/bin/composer
 composer_home_path: '/home/vagrant/.composer'
+composer_home_owner: vagrant
+composer_home_group: vagrant
 composer_global_packages:
   - { name: behat/mink, release: '1.5.*@stable' }
   - { name: behat/mink-goutte-driver, release: '*' }

@@ -25,3 +25,12 @@
 - name: Add repository for PHP 7.0.
   apt_repository: repo='ppa:ondrej/php-7.0'
   when: php_version == "7.0"
+
+# Ensure composer home directory owned by vagrant
+- name: Ensure composer directory exists.
+  file:
+    path: "{{ composer_home_path }}"
+    owner: "{{ composer_home_owner }}"
+    group: "{{ composer_home_group }}"
+    state: directory
+    recurse: yes
