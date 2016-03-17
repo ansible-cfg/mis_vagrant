@@ -19,20 +19,14 @@ if [[ -z $SITE_PATH || -z $URI ]]; then
   exit 1;
 fi
 
-cd $SITE_PATH
-
-# Relatively move to contrib directory.
-cd sites/all/modules/contrib
-
 # Get security_review module in case it doesn't exist.
-if [ ! -f security_review/security_review.module ]; then
-  wget http://ftp.drupal.org/files/projects/security_review-7.x-1.2.tar.gz > /dev/null 2>&1
-  tar -xvzf security_review-7.x-1.2.tar.gz > /dev/null 2>&1
-  rm security_review-7.x-1.2.tar.gz
+if [ ! -f ~/.drush/security_review/security_review.drush.inc ]; then
+  mkdir ~/.drush/security_review
+  curl http://cgit.drupalcode.org/security_review/plain/security_review.drush.inc?h=7.x-1.2  --output ~/.drush/security_review/security_review.drush.inc
+  curl http://cgit.drupalcode.org/security_review/plain/security_review.inc?h=7.x-1.2 --output ~/.drush/security_review/security_review.inc
 fi
-cd ../custom
-drush en security_review --uri=$URI -y > /dev/null 2>&1
-drush cc drush > /dev/null 2>&1
+
+cd $SITE_PATH
 
 # Run security_reviewq module.
 drush security-review --uri=$URI
