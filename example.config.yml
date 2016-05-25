@@ -172,7 +172,7 @@ installed_extras:
   # - selenium
   # - solr
   # - varnish
-  - xdebug
+  # - xdebug
   # - xhprof
 
 # Add any extra packages you'd like to install.
