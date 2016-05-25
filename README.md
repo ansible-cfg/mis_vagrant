@@ -2,9 +2,9 @@
 ## Setting up a local [Vagrant](http://vagrantup.com) environment
 
 
-### Download and install VirtualBox (>= 4.3.x) from [here](https://www.virtualbox.org/wiki/Downloads).
+### Download and install VirtualBox (>= 5.x) from [here](https://www.virtualbox.org/wiki/Downloads).
 
-### Download and install Vagrant from [here](http://www.vagrantup.com/downloads-archive.html).
+### Download and install Vagrant (>= 1.8.1) from [here](http://www.vagrantup.com/downloads-archive.html).
 
 ### Add the vagrant ssh key to your .ssh directory
 - `$ ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
