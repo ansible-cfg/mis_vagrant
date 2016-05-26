@@ -2,9 +2,9 @@
 ## Setting up a local [Vagrant](http://vagrantup.com) environment
 
 
-### Download and install VirtualBox (>= 4.3.x) from [here](https://www.virtualbox.org/wiki/Downloads).
+### Download and install VirtualBox (>= 5.x) from [here](https://www.virtualbox.org/wiki/Downloads).
 
-### Download and install Vagrant from [here](http://www.vagrantup.com/downloads-archive.html).
+### Download and install Vagrant (>= 1.8.1) from [here](http://www.vagrantup.com/downloads-archive.html).
 
 ### Add the vagrant ssh key to your .ssh directory
 - `$ ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
@@ -90,13 +90,13 @@ is now installed in the "mis_example" directory.
 
 This project aims to make spinning up a simple local Drupal test/development environment incredibly quick and easy, and to introduce new developers to the wonderful world of Drupal development on local virtual machines (instead of crufty old MAMP/WAMP-based development).
 
-It will install the following on an Ubuntu 14.04 (by default) linux VM:
+It will install the following on an Ubuntu 16.04 (by default) linux VM:
 
   - Apache 2.4.x (or Nginx 1.x)
-  - PHP 5.6.x (configurable)
-  - MySQL 5.5.x
+  - PHP 7.0.x (configurable)
+  - MySQL 5.7.x
   - Drush (configurable)
-  - Drupal 6.x, 7.x, or 8.x.x (configurable)
+  - Drupal 7.x, or 8.x.x (configurable)
   - Optional:
     - Drupal Console
     - Varnish 4.x (configurable)
@@ -106,7 +106,9 @@ It will install the following on an Ubuntu 14.04 (by default) linux VM:
     - Ruby
     - Memcached
     - Redis
+    - SQLite
     - XHProf, for profiling your code
+    - Blackfire, for profiling your code
     - XDebug, for debugging your code
     - Adminer, for accessing databases directly
     - Pimp my Log, for easy viewing of log files
@@ -127,7 +129,7 @@ There are a couple places where you can customize the VM for your needs:
   - `config.yml`: Contains variables like the VM domain name and IP address, PHP and MySQL configuration, etc.
   - `drupal.make.yml`: Contains configuration for the Drupal core version, modules, and patches that will be downloaded on Drupal's initial installation (more about [Drush make files](https://www.drupal.org/node/1432374)).
 
-If you want to switch from Drupal 8 (default) to Drupal 7 or 6 on the initial install, do the following:
+If you want to switch from Drupal 8 (default) to Drupal 7 on the initial install, do the following:
 
   1. Update the Drupal `version` and `core` inside the `drupal.make.yml` file.
   2. Update `drupal_major_version` inside `config.yml`.
@@ -156,8 +158,7 @@ Notes:
     - Copy `example.config.yml` to `config.yml`.
   3. Create a local directory where Drupal will be installed and configure the path to that directory in `config.yml` (`local_path`, inside `vagrant_synced_folders`).
   4. Open Terminal, `cd` to this directory (containing the `Vagrantfile` and this README file).
-  5. (If you have Ansible installed on Mac/Linux) Run `$ ansible-galaxy install -r provisioning/requirements.yml --force`.
-  6. Type in `vagrant up`, and let Vagrant do its magic.
+  5. Type in `vagrant up`, and let Vagrant do its magic.
 
 Note: *If there are any errors during the course of running `vagrant up`, and it drops you back to your command prompt, just run `vagrant provision` to continue building the VM from where you left off. If there are still errors after doing this a few times, post an issue to this project's issue queue on GitHub with the error.*
 
@@ -174,9 +175,11 @@ By default, this VM includes the extras listed in the `config.yml` option `insta
 
     installed_extras:
       - adminer
+      # - blackfire
       - drupalconsole
       - mailhog
-      - memcached
+      # - memcached
+      # - newrelic
       # - nodejs
       - pimpmylog
       # - redis
@@ -184,8 +187,8 @@ By default, this VM includes the extras listed in the `config.yml` option `insta
       # - selenium
       # - solr
       - varnish
-      - xdebug
-      - xhprof
+      # - xdebug
+      # - xhprof
 
 If you don't want or need one or more of these extras, just delete them or comment them from the list. This is helpful if you want to reduce PHP memory usage or otherwise conserve system resources.
 
@@ -199,8 +202,7 @@ Drupal VM follows semantic versioning, which means your configuration should con
 
   1. Read through the [release notes](https://github.com/geerlingguy/drupal-vm/releases) and add/modify `config.yml` variables mentioned therein.
   2. Do a diff of my config.yml with the updated example.config.yml (e.g. `curl https://raw.githubusercontent.com/geerlingguy/drupal-vm/master/example.config.yml | git diff --no-index config.yml -`).
-  3. If Ansible is installed, update all roles locally (`ansible-galaxy install -r provisioning/requirements.yml --force`).
-  4. Run `vagrant provision` to provision the VM, incorporating all the latest changes.
+  3. Run `vagrant provision` to provision the VM, incorporating all the latest changes.
 
 For major version upgrades (e.g. 2.x.x to 3.x.x), it may be simpler to destroy the VM (`vagrant destroy`) then build a fresh new VM (`vagrant up`) using the new version of Drupal VM.
 
