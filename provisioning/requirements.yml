@@ -37,19 +37,19 @@
 - src: geerlingguy.nodejs
   version: 3.0.0
 - src: geerlingguy.php
-  version: 2.0.3
+  version: 3.0.4
 - src: geerlingguy.php-memcached
-  version: 1.1.0
+  version: 2.0.0
 - src: geerlingguy.php-mysql
-  version: 1.2.0
+  version: 2.0.0
 - src: geerlingguy.php-pecl
   version: 1.2.1
 - src: geerlingguy.php-redis
-  version: 2.0.0
+  version: 3.0.0
 - src: geerlingguy.php-xdebug
   version: 2.1.0
 - src: geerlingguy.php-xhprof
-  version: 2.1.0
+  version: 2.1.2
 - src: geerlingguy.pimpmylog
   version: 1.0.2
 - src: geerlingguy.postfix
@@ -65,7 +65,7 @@
 - src: geerlingguy.solr
   version: 2.1.0
 - src: geerlingguy.varnish
-  version: 1.5.0
+  version: 1.6.0
 
   # Install Drupal Apachesolr role.
 - src: https://github.com/joestewart/ansible-role-drupal-apachesolr.git
