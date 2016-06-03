@@ -74,7 +74,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Vagrant box.
   config.vm.box = vconfig['vagrant_box']
-
+  config.vm.box_version = vconfig['vagrant_box_version']
   # If a hostsfile manager plugin is installed, add all server names as aliases.
   aliases = []
   if vconfig['drupalvm_webserver'] == 'apache'
