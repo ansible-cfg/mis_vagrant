@@ -40,7 +40,7 @@ specific to your project are kept and maintained over time. Remember to replace
 git submodules are in use, ensure the project repository submodule is added:
 
           [vagrant_repo]$ git checkout -b projects/[project_name]
-          [vagrant_repo]$ git submodule add -b [project_name] git@bitbucket.org:mediacurrent/project_name].git
+          [vagrant_repo]$ git submodule add -b develop git@bitbucket.org:mediacurrent/project_name].git
 
 4. Edit .gitmodules and add the line:
 

@@ -25,6 +25,6 @@ fi
 # phpcs --config-set installed_paths ${HOME}/.composer/vendor/drupal/coder/coder_sniffer
 
 # Run php code sniffer.
-phpcs --standard=Drupal ${SITE_PATH}/sites/all/modules/custom
+phpcs --standard=Drupal --extensions=php,module,inc,install,test,profile,theme ${SITE_PATH}/sites/all/modules/custom
 # Run PHP Lint.
 # find ${SITE_PATH}/sites/all/modules/custom -name '.module' -or -name '.inc'  -or -name "*.php" -print0 | xargs -0 -n1 -P8 php -l 1>/dev/null
