@@ -68,6 +68,14 @@ if ! command -v ansible >/dev/null; then
 
   echo "Installing Ansible."
   pip install ansible
+elif [[ $(pip list --outdated | grep ansible) ]]; then
+
+  echo "Upgrading Ansible."
+  apt-get update
+  apt-get install -y build-essential libssl-dev libffi-dev
+  pip install --upgrade pip
+  pip uninstall ansible -y
+  pip install ansible
 fi
 
 # Install requirements.
