@@ -219,6 +219,8 @@ extra_security_enabled: false
 drush_version: 8.1.2
 drush_keep_updated: true
 
+drupal_console_keep_updated: true
+
 firewall_allowed_tcp_ports:
   - "22"
   - "25"
@@ -270,6 +272,7 @@ composer_global_packages:
 pre_provision_scripts: []
 post_provision_scripts: []
   # - "../examples/scripts/configure-solr.sh"
+pre_provision_tasks_dir: "./scripts/pre/*"
 
 # MySQL Configuration.
 mysql_root_password: password
