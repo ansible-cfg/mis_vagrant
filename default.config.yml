@@ -59,18 +59,20 @@ drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction
 # settings below), but instead copy down a database (e.g. using drush sql-sync).
 install_site: false
 
-# Settings for installing a Drupal site (if 'install_site:' is 'true').
-drupal_major_version: 8
+# Required Drupal settings.
 drupal_core_path: "{{ drupal_composer_install_dir }}/web"
+drupal_mysql_user: root
+drupal_mysql_password: password
+drupal_mysql_database: "{{ vagrant_machine_name }}"
+
+# Settings for installing a Drupal site if 'install_site:' is 'true'.
+drupal_major_version: 8
 drupal_domain: "{{ vagrant_hostname }}"
 drupal_site_name: "Drupal"
 drupal_install_profile: standard
 drupal_enable_modules: [ 'devel' ]
 drupal_account_name: admin
 drupal_account_pass: admin
-drupal_mysql_user: root
-drupal_mysql_password: password
-drupal_mysql_database: "{{ vagrant_machine_name }}"
 
 # Additional arguments or options to pass to `drush site-install`.
 drupal_site_install_extra_args: []
@@ -92,7 +94,8 @@ configure_drush_aliases: false
 # multisite deployments, you can point multiple servernames at one documentroot.
 # View the geerlingguy.apache Ansible Role README for more options.
 apache_vhosts:
-  - servername: "example.mcdev"
+  - servername: "{{ drupal_domain }}"
+    serveralias: "www.{{ drupal_domain }}"
     documentroot: "{{ drupal_core_path }}"
     extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
@@ -146,7 +149,7 @@ apache_mods_enabled:
 # here. Set the 'is_php' property for document roots that contain PHP apps like
 # Drupal.
 nginx_hosts:
-  - server_name: "example.mcdev"
+  - server_name: "{{ drupal_domain }} www.{{ drupal_domain }}"
     root: "{{ drupal_core_path }}"
     is_php: true
 
@@ -199,19 +202,6 @@ extra_packages:
   - firefox
   - xvfb
   - sqlite
-
-# `nodejs` must be in installed_extras for this to work. Valid examples: "0.10",
-# "0.12", "4.x", "5.x".
-nodejs_version: "5.x"
-
-nodejs_npm_global_packages:
-  - name: phantomjs
-  - name: pa11y
-nodejs_install_npm_user: root
-
-# `ruby` must be in installed_extras for this to work.
-ruby_install_gems_user: "{{ drupalvm_user }}"
-ruby_install_gems: []
 
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
@@ -282,7 +272,20 @@ mysql_slow_query_time: 2
 mysql_wait_timeout: 300
 adminer_install_filename: index.php
 
-# Varnish Configuration.
+# Node.js configuration (if enabled above).
+# Valid examples: "0.10", "0.12", "4.x", "5.x".
+nodejs_version: "5.x"
+nodejs_npm_global_packages:
+  - name: phantomjs
+  - name: pa11y
+nodejs_install_npm_user: root
+# npm_config_prefix: "~/.npm-global"
+
+# Ruby Configuration (if enabled above).
+ruby_install_gems_user: "{{ drupalvm_user }}"
+ruby_install_gems: []
+
+# Varnish Configuration (if enabled above).
 varnish_listen_port: "6081"
 varnish_default_vcl_template_path: templates/drupalvm.vcl.j2
 varnish_default_backend_host: "127.0.0.1"
@@ -314,3 +317,4 @@ selenium_version: 2.46.0
 # Other configuration.
 dashboard_install_dir: /var/www/dashboard
 known_hosts_path: ~/.ssh/known_hosts
+#ssh_home: "{{ drupal_core_path }}"
