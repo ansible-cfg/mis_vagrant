@@ -1,0 +1,8 @@
+---
+
+- name: Install Latest Drupal Console.
+  get_url:
+    url: https://drupalconsole.com/installer
+    dest: "{{ drupal_console_path }}"
+    force: yes
+  when: drupal_console_keep_updated
