@@ -279,8 +279,8 @@ adminer_install_filename: index.php
 # nodejs_npm_global_packages:
 #  - name: phantomjs
 #  - name: pa11y
-# nodejs_install_npm_user: root
-# npm_config_prefix: "~/.npm-global"
+# nodejs_install_npm_user: "{{ drupalvm_user }}"
+# npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
 node_version: 6.2.2
 node_versions:
