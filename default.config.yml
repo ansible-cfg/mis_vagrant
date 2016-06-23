@@ -187,7 +187,8 @@ installed_extras:
   - mailhog
   # - memcached
   # - newrelic
-  - nodejs
+  # - nodejs
+  - npm
   - pimpmylog
   # - redis
   # - ruby
@@ -274,12 +275,22 @@ adminer_install_filename: index.php
 
 # Node.js configuration (if enabled above).
 # Valid examples: "0.10", "0.12", "4.x", "5.x".
-nodejs_version: "5.x"
-nodejs_npm_global_packages:
-  - name: phantomjs
-  - name: pa11y
-nodejs_install_npm_user: root
-# npm_config_prefix: "~/.npm-global"
+# nodejs_version: "5.x"
+# nodejs_npm_global_packages:
+#  - name: phantomjs
+#  - name: pa11y
+# nodejs_install_npm_user: "{{ drupalvm_user }}"
+# npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
+
+node_version: 6.2.2
+node_versions:
+  - 5.10.1
+  - 6.2.1
+  - 6.2.2
+
+node_packages:
+  - phantomjs
+  - pa11y
 
 # Ruby Configuration (if enabled above).
 ruby_install_gems_user: "{{ drupalvm_user }}"
