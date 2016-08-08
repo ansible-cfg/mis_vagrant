@@ -1,0 +1,9 @@
+---
+galaxy_info:
+  author: Joe Stewart
+  description: Apply Drupal Apachesolr module configuration to a Solr server.
+  company:
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.8
+dependencies:
+  - geerlingguy.solr
