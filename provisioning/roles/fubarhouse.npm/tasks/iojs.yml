@@ -1,0 +1,16 @@
+---
+# file: roles/fubarhouse.npm/tasks/iojs.yml
+
+- name: "IOJS | Check"
+  become: yes
+  become_user: "{{ fubarhouse_user }}"
+  shell:  "{{ fubarhouse_npm.nvm_symlink_exec }} ls | grep 'iojs-v{{ fubarhouse_npm.io_version }}'"
+  register: fubarhouse_npm_io_install_result
+  ignore_errors: yes
+  no_log: yes
+
+- name: IOJS | Install
+  become: yes
+  become_user: "{{ fubarhouse_user }}"
+  shell:  "{{ fubarhouse_npm.nvm_symlink_exec }} install iojs-v{{ fubarhouse_npm.io_version }}"
+  when: "'{{ fubarhouse_npm.io_version }}' not in fubarhouse_npm_io_install_result.stdout"

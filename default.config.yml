@@ -40,6 +40,7 @@ drupalvm_webserver: apache
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
 build_makefile: false
 drush_makefile_path: "{{ config_dir }}/drupal.make.yml"
+drush_make_options: "--no-gitinfofile"
 
 # Set 'build_makefile' to 'false' and this to 'true' if you are using a
 # composer based site deployment strategy.
@@ -184,6 +185,7 @@ installed_extras:
   - adminer
   # - blackfire
   - drupalconsole
+  # - elasticsearch
   - mailhog
   # - memcached
   # - newrelic
@@ -224,6 +226,7 @@ firewall_allowed_tcp_ports:
   - "8443"
   - "8643"
   - "8983"
+  - "9200"
 firewall_log_dropped_packets: false
 
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
@@ -317,7 +320,7 @@ php_xdebug_remote_host: 10.0.2.2
 php_xdebug_max_nesting_level: 256
 
 # Solr Configuration (if enabled above).
-solr_version: "5.5.1"
+solr_version: "5.5.2"
 solr_xms: "64M"
 solr_xmx: "128M"
 
