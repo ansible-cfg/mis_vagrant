@@ -284,11 +284,9 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 6.2.2
+node_version: 6.4.0
 node_versions:
-  - 5.10.1
-  - 6.2.1
-  - 6.2.2
+  - 6.4.0
 
 node_packages:
   - phantomjs
