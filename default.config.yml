@@ -258,7 +258,7 @@ composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
 composer_global_packages:
   - { name: hirak/prestissimo, release: '^0.3' }
-  - { name: drupal/coder, release: '*' }
+  - { name: drupal/coder, release: '8.2.8' }
   - { name: drupal/drupal-extension, release: '~3.0' }
 
 # Run specified scripts before or after VM is provisioned. Path is relative to
