@@ -1,0 +1,17 @@
+---
+
+- name: Check PHP CLI Xdebug
+  stat:
+    path: "{{ item_path }}/{{ php_xdebug_config_filename }}"
+  with_items: "{{  php_extension_conf_paths }}"
+  when: "'xdebug' in installed_extras and 'cli' in item_path"
+  register: php_cli_xdebug_extension
+  loop_control:
+    loop_var: item_path
+
+- name: Disable CLI PHP Xdebug.
+  command: "mv {{ item_ext.stat.path }} {{ item_ext.stat.path }}.disabled"
+  when: "php_cli_xdebug_extension is defined and php_xdebug_cli_enable == 0 and item_ext.stat | default(false) and item_ext.stat.exists"
+  with_items: "{{ php_cli_xdebug_extension.results }}"
+  loop_control:
+    loop_var: item_ext
