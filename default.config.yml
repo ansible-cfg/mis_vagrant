@@ -197,7 +197,7 @@ installed_extras:
   # - selenium
   # - solr
   # - varnish
-  # - xdebug
+  - xdebug
   # - xhprof
 
 # Add any extra packages you'd like to install.
@@ -243,7 +243,6 @@ php_opcache_enabled_in_ini: true
 php_opcache_memory_consumption: "192"
 php_opcache_max_accelerated_files: 4096
 php_max_input_vars: "4000"
-# php_extension_conf_path: /etc/php5/fpm/conf.d
 
 # Drupal VM defaults to using PHP-FPM with either Apache or Nginx. If you wish
 # to instead use Apache + mod_php with an Ubuntu base box, make sure you add
@@ -267,6 +266,7 @@ pre_provision_scripts: []
 post_provision_scripts: []
   # - "../examples/scripts/configure-solr.sh"
 pre_provision_tasks_dir: "./scripts/pre/*"
+post_provision_tasks_dir: "./scripts/post/*"
 
 # MySQL Configuration.
 mysql_root_password: password
