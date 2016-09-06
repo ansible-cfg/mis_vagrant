@@ -1,6 +1,13 @@
 ---
 
-- name: Install site_audit drush command.
+- name: Install site_audit drush command (Drupal 7).
+  become: no
+  command: "drush dl site_audit"
+    args:
+    chdir: "/home/{{ drupalvm_user }}/.drush/"
+  when: "drupal_major_version == 7"
+
+- name: Install site_audit drush command (Drupal 8).
   become: no
   git:
     repo: "https://git.drupal.org/project/site_audit.git"
