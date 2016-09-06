@@ -3,7 +3,7 @@
 - name: Install site_audit drush command (Drupal 7).
   become: no
   command: "drush dl site_audit"
-    args:
+  args:
     chdir: "/home/{{ drupalvm_user }}/.drush/"
   when: "drupal_major_version == 7"
 
