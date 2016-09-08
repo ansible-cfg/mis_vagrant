@@ -126,17 +126,15 @@ apache_vhosts:
 # Enable SSL Support on the Drupal site vhosts.
 # See https://github.com/geerlingguy/ansible-role-apache for additional options.
 # Update the file paths below if you are using a custom SSL certificate.
-# apache_vhosts_ssl:
-#   - {
-#     servername: "{{ drupal_domain }}",
-# #    serveralias: "www.{{ drupal_domain }}",
-#     documentroot: "{{ drupal_core_path }}",
-#      extra_parameters: |
-#          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
-#     certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem",
-#     certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key",
-# #    certificate_chain_file: "/path/to/certificate_chain.crt"
-#   }
+apache_vhosts_ssl:
+  - servername: "{{ drupal_domain }}"
+    serveralias: "www.{{ drupal_domain }}"
+    documentroot: "{{ drupal_core_path }}"
+    certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+    certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
+    # certificate_chain_file: "/path/to/certificate_chain.crt"
+    extra_parameters: |
+      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
 
 apache_remove_default_vhost: true
 apache_mods_enabled:
@@ -259,6 +257,9 @@ composer_global_packages:
   - { name: hirak/prestissimo, release: '^0.3' }
   - { name: drupal/coder, release: '8.2.8' }
   - { name: drupal/drupal-extension, release: '~3.0' }
+  - { name: phpmd/phpmd, release: '2.4.3' }
+  - { name: sebastian/phpcpd, release: '2.0.4' }
+  - { name: phploc/phploc, release: '3.0.1' }
 
 # Run specified scripts before or after VM is provisioned. Path is relative to
 # the `provisioning/playbook.yml` file.
