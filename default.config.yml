@@ -33,6 +33,9 @@ vagrant_synced_folders:
 vagrant_memory: 2048
 vagrant_cpus: 2
 
+# Force use of ansible_local provisioner, even if Ansible is installed on host.
+force_ansible_local: false
+
 # The web server software to use. Can be either 'apache' or 'nginx'.
 drupalvm_webserver: apache
 
@@ -81,11 +84,9 @@ drupal_site_install_extra_args: []
 # Cron jobs are added to the vagrant user's crontab. Keys include name
 # (required), minute, hour, day, weekday, month, job (required), and state.
 drupalvm_cron_jobs: []
-  # - {
-  #   name: "Drupal Cron",
+  # - name: "Drupal Cron",
   #   minute: "*/30",
   #   job: "drush -r {{ drupal_core_path }} core-cron"
-  # }
 
 # Drupal VM automatically creates a drush alias file in your ~/.drush folder if
 # this variable is 'true'.
