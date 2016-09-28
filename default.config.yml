@@ -208,7 +208,7 @@ extra_packages:
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
-drush_version: 8.1.3
+drush_version: 8.1.5
 drush_keep_updated: true
 
 drupal_console_keep_updated: true
@@ -286,9 +286,9 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 6.4.0
+node_version: 6.7.0
 node_versions:
-  - 6.4.0
+  - 6.7.0
 
 node_packages:
   - phantomjs
