@@ -22,10 +22,10 @@ vagrant_public_ip: ""
 # http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
 vagrant_synced_folders:
   # The first synced folder will be used for the default Drupal installation, if
-  # build_from_makefile is 'true'.
+  # any of the build_* settings are 'true'. By default the folder is set to
+  # the drupal-vm folder.
   - local_path: .
     destination: /home/vagrant/docroot
-    # /var/www/html
     type: nfs
     create: true
 
@@ -74,7 +74,7 @@ install_site: false
 drupal_core_path: "{{ drupal_composer_install_dir }}/web"
 drupal_db_user: drupal
 drupal_db_password: drupal
-drupal_mysql_database: "{{ vagrant_machine_name }}"
+drupal_db_name: "{{ vagrant_machine_name }}"
 
 # Settings for installing a Drupal site if 'install_site:' is 'true'.
 drupal_major_version: 8
@@ -197,7 +197,6 @@ postgresql_databases:
 postgresql_users:
   - name: "{{ drupal_db_user }}"
     password: "{{ drupal_db_password }}"
-    db: "{{ drupal_db_name }}"
     priv: "ALL"
 
 # Comment out any extra utilities you don't want to install. If you don't want
@@ -221,7 +220,7 @@ installed_extras:
   - xdebug
   # - xhprof
 
-# Add any extra packages you'd like to install.
+# Add any extra apt or yum packages you would like installed.
 extra_packages:
   - firefox
   - xvfb
@@ -230,10 +229,9 @@ extra_packages:
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
-drush_version: 8.1.5
+drush_version: "8.1.5"
 drush_keep_updated: true
-
-drupal_console_keep_updated: true
+drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 firewall_allowed_tcp_ports:
   - "22"
@@ -253,8 +251,6 @@ firewall_log_dropped_packets: false
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
 php_version: "7.0"
-php_enable_apc: false
-php_apc_enabled_in_ini: true
 php_memory_limit: "192M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
@@ -272,7 +268,6 @@ php_enable_php_fpm: true
 php_fpm_listen: "127.0.0.1:9000"
 
 composer_path: /usr/bin/composer
-composer_keep_updated: true
 composer_home_path: "/home/{{ drupalvm_user }}/.composer"
 composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
