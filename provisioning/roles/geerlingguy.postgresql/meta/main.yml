@@ -1,25 +1,25 @@
 ---
-dependencies:
-  - geerlingguy.php
+dependencies: []
 
 galaxy_info:
   author: geerlingguy
-  description: PHP MySQL support for Linux.
+  description: PostgreSQL server for Linux.
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.8
+  min_ansible_version: 2.0
   platforms:
     - name: EL
+      versions:
+      - 6
+      - 7
+    - name: Ubuntu
       versions:
       - all
     - name: Debian
       versions:
       - all
-    - name: Ubuntu
-      versions:
-      - all
   galaxy_tags:
     - database
-    - web
-    - mysql
-    - php
+    - postgresql
+    - postgres
+    - rdbms
