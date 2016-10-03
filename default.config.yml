@@ -22,22 +22,29 @@ vagrant_public_ip: ""
 # http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
 vagrant_synced_folders:
   # The first synced folder will be used for the default Drupal installation, if
-  # build_from_makefile is 'true'.
+  # any of the build_* settings are 'true'. By default the folder is set to
+  # the drupal-vm folder.
   - local_path: .
     destination: /home/vagrant/docroot
-    # /var/www/html
     type: nfs
     create: true
 
 # Memory and CPU to use for this VM.
-vagrant_memory: 2048
-vagrant_cpus: 2
+vagrant_memory: 1024
+vagrant_cpus: 1
+
+# Minimum required versions.
+drupalvm_vagrant_version_min: '1.8.5'
+drupalvm_ansible_version_min: '2.1'
 
 # Force use of ansible_local provisioner, even if Ansible is installed on host.
 force_ansible_local: false
 
 # The web server software to use. Can be either 'apache' or 'nginx'.
 drupalvm_webserver: apache
+
+# The database system to use. Can be either 'mysql' or 'pgsql'.
+drupalvm_database: mysql
 
 # Set this to 'false' if you are using a different site deployment strategy and
 # would like to configure 'vagrant_synced_folders' and 'apache_vhosts' manually.
@@ -65,9 +72,9 @@ install_site: false
 
 # Required Drupal settings.
 drupal_core_path: "{{ drupal_composer_install_dir }}/web"
-drupal_mysql_user: root
-drupal_mysql_password: password
-drupal_mysql_database: "{{ vagrant_machine_name }}"
+drupal_db_user: drupal
+drupal_db_password: drupal
+drupal_db_name: "{{ vagrant_machine_name }}"
 
 # Settings for installing a Drupal site if 'install_site:' is 'true'.
 drupal_major_version: 8
@@ -171,12 +178,26 @@ nginx_hosts:
 nginx_remove_default_vhost: true
 nginx_ppa_use: true
 
-# MySQL Databases and users. If 'install_site' is 'true', first database will
-# be used for the site.
+# MySQL databases and users.
 mysql_databases:
-  - name: "{{ drupal_mysql_database }}"
+  - name: "{{ drupal_db_name }}"
     encoding: utf8mb4
     collation: utf8mb4_general_ci
+
+mysql_users:
+  - name: "{{ drupal_db_user }}"
+    host: "%"
+    password: "{{ drupal_db_password }}"
+    priv: "{{ drupal_db_name }}.*:ALL"
+
+# PostgreSQL databases and users.
+postgresql_databases:
+  - name: "{{ drupal_db_name }}"
+
+postgresql_users:
+  - name: "{{ drupal_db_user }}"
+    password: "{{ drupal_db_password }}"
+    priv: "ALL"
 
 # Comment out any extra utilities you don't want to install. If you don't want
 # to install *any* extras, set this value to an empty set, e.g. `[]`.
@@ -199,7 +220,7 @@ installed_extras:
   - xdebug
   # - xhprof
 
-# Add any extra packages you'd like to install.
+# Add any extra apt or yum packages you would like installed.
 extra_packages:
   - firefox
   - xvfb
@@ -208,10 +229,9 @@ extra_packages:
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
-drush_version: 8.1.5
+drush_version: "8.1.5"
 drush_keep_updated: true
-
-drupal_console_keep_updated: true
+drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 firewall_allowed_tcp_ports:
   - "22"
@@ -231,8 +251,6 @@ firewall_log_dropped_packets: false
 # PHP Configuration. Currently-supported versions: 5.6, 7.0.
 # To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
 php_version: "7.0"
-php_enable_apc: false
-php_apc_enabled_in_ini: true
 php_memory_limit: "192M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
@@ -250,7 +268,6 @@ php_enable_php_fpm: true
 php_fpm_listen: "127.0.0.1:9000"
 
 composer_path: /usr/bin/composer
-composer_keep_updated: true
 composer_home_path: "/home/{{ drupalvm_user }}/.composer"
 composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
