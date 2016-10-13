@@ -75,6 +75,8 @@ drupal_core_path: "{{ drupal_composer_install_dir }}/web"
 drupal_db_user: drupal
 drupal_db_password: drupal
 drupal_db_name: "{{ vagrant_machine_name }}"
+drupal_mysql_user: root
+drupal_mysql_password: password
 
 # Settings for installing a Drupal site if 'install_site:' is 'true'.
 drupal_major_version: 8
@@ -241,6 +243,7 @@ firewall_allowed_tcp_ports:
   - "81"
   - "443"
   - "4444"
+  - "6081"
   - "8025"
   - "8080"
   - "8443"
