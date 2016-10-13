@@ -30,7 +30,7 @@ vagrant_synced_folders:
     create: true
 
 # Memory and CPU to use for this VM.
-vagrant_memory: 1024
+vagrant_memory: 2048
 vagrant_cpus: 1
 
 # Minimum required versions.
@@ -58,7 +58,7 @@ build_composer: false
 drupal_composer_path: "{{ config_dir }}/drupal.composer.json"
 drupal_composer_install_dir: "/home/vagrant/docroot"
 drupal_composer_dependencies:
-  - "drupal/devel:8.*"
+  - "drupal/devel:1.x-dev"
 
 # Set this to 'true' and 'build_makefile', 'build_composer' to 'false' if you
 # are using Composer's create-project as a site deployment strategy.
@@ -75,6 +75,8 @@ drupal_core_path: "{{ drupal_composer_install_dir }}/web"
 drupal_db_user: drupal
 drupal_db_password: drupal
 drupal_db_name: "{{ vagrant_machine_name }}"
+drupal_mysql_user: root
+drupal_mysql_password: password
 
 # Settings for installing a Drupal site if 'install_site:' is 'true'.
 drupal_major_version: 8
@@ -206,6 +208,7 @@ installed_extras:
   # - blackfire
   - drupalconsole
   # - elasticsearch
+  # - java
   - mailhog
   # - memcached
   # - newrelic
@@ -240,6 +243,7 @@ firewall_allowed_tcp_ports:
   - "81"
   - "443"
   - "4444"
+  - "6081"
   - "8025"
   - "8080"
   - "8443"
