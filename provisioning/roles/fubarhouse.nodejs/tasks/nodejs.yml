@@ -1,5 +1,5 @@
 ---
-# file: roles/fubarhouse.npm/tasks/nodejs.yml
+# Tasks file for NodeJS
 
 - name: "NodeJS | Check"
   become: yes
@@ -24,6 +24,8 @@
   become: yes
   become_user: "{{ fubarhouse_user }}"
   shell:  "{{ fubarhouse_npm.nvm_symlink_exec }} use {{ node_version }}"
+  register: fubarhouse_npm_switch
+  changed_when: fubarhouse_npm_switch.stdout.find('Now using node v{{ node_version }}') != -1
 
 - name: "NodeJS | Linking"
   become: yes
