@@ -73,7 +73,7 @@
     - { role: geerlingguy.mailhog, when: '"mailhog" in installed_extras' }
     - { role: franklinkim.newrelic, when: '"newrelic" in installed_extras' }
     - { role: geerlingguy.nodejs, when: '"nodejs" in installed_extras' }
-    - { role: fubarhouse.npm, when: '"npm" in installed_extras' }
+    - { role: fubarhouse.nodejs, when: '"npm" in installed_extras' }
     - { role: geerlingguy.redis, when: '"redis" in installed_extras' }
     - { role: geerlingguy.php-redis, when: '"redis" in installed_extras' }
     - { role: geerlingguy.ruby, when: '"ruby" in installed_extras' }
