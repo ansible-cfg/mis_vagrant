@@ -1,56 +1,89 @@
 # MIS Example
 ## Setting up a local [Vagrant](http://vagrantup.com) environment
 
+The Mediacurrent local Vagrant is based upon work from [DrupalVM](https://www.drupalvm.com/).
 
-### Download and install VirtualBox (>= 5.x) from [here](https://www.virtualbox.org/wiki/Downloads).
+### Download and install VirtualBox (>= 5.x) from [here](https://www.virtualbox.org/wiki/Downloads). To check if you have this on your Terminal use the following command:
 
-### Download and install Vagrant (>= 1.8.5) from [here](http://www.vagrantup.com/downloads-archive.html).
+`vboxmanage -v`
+
+That should return your version number. Most recently tested version to be working is 5.1.12*.
+
+### Download and install Vagrant (>= 1.8.5) from [here](http://www.vagrantup.com/downloads-archive.html). To check what version you may have you can oepn Terminal and use the following command:
+
+`vagrant --version`
+
+Note: Vagrant version 1.8.7 caused issues and should be avoided. Most  recently tested version to be working is 1.9.1.
+
+### Install Vagrant Host Manager Plugin:
+
+This plugin will automatically update your /etc/hosts on your machine so that IP addresses do not have to be mapped manually. You'll only have to install this once.
+`vagrant plugin install vagrant-hostmanager`
+
+To verify if you have the plugin you can run:
+
+`vagrant plugin list`
+
+If you have the plugin you will see it in the returned list.
 
 ### Add the vagrant ssh key to your .ssh directory
-- `$ ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
-- `$ chmod 600 ~/.ssh/vagrant_insecure_private_key`
 
-### Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines
-    Host *.mcdev
+Normally this will already be installed. This will allow you to SSH into your vagrant machine without a password. If you already have this file then the command will return a notice that the file exists. This is ok.
+- `ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
+- `chmod 600 ~/.ssh/vagrant_insecure_private_key`
+
+These commands will add a symlink to your default .ssh folder. The chmod command will change the permissions to appropriate permissions. To validate this worked properly run the following command:
+
+`ls -lah ~/.ssh/vagrant_insecure_private_key`
+
+The output of this should look like the following:
+
+```ls -lah ~/.ssh/vagrant_insecure_private_key
+lrwxr-xr-x  1 username  staff    47B Mar  8  2014 /Users/username/.ssh/vagrant_insecure_private_key -> /Users/username/.vagrant.d/insecure_private_key```
+
+
+
+### Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines: Note: This should only need to be done once. You may already have this in your ~/.ssh/config file:
+
+```    Host *.mcdev
         ForwardAgent yes
         IdentityFile ~/.ssh/vagrant_insecure_private_key
         User vagrant
+```
 
-### Clone these repos into the directory of your choice:
-- `$ git clone git@bitbucket.org:mediacurrent/mis_vagrant_example.git`
+This will allow you to ssh into any Vagrant machine from anywhere on your machine.
 
-### Initialize the submodules to get the mis_example codebase
-- `$ cd mis_vagrant_example`
-- `$ git submodule init && git submodule update --remote`
-- `$ git submodule foreach git checkout develop`
+### Clone these repos into the directory of your choice. Note: This will be where your site is located on your machine. The URL below will be the URL for your specific project's vagrant.
+- `git clone git@bitbucket.org:mediacurrent/mis_vagrant_example.git`
+
+### Initialize the submodules to get the mis_example codebase. These commands will retrieve any additional code needed for building your site including the git repository for the core drupal files (usually in a separate Bitbucket location).
+- `cd mis_vagrant_example`
+- `git submodule init && git submodule update --remote`
+- `git submodule foreach git checkout develop`
 
 The Example codebase ( git@bitbucket.org:mediacurrent/mis_example.git_)
 is now installed in the "mis_example" directory.
 
-### Edit your local `/etc/hosts` file to include the new box ips
-    192.168.50.4 example.mcdev
-
 ### Start the box from the `mis_vagrant_example` directory
-- `$ vagrant up`
+- `vagrant up`
 *You may be prompted for your sudo password for the NFS mount*
 
-### Install site
+At this point you should have a working vagrant but not a working site. To obtain a working site you'll need to install a site profile, or use a database backup from a server to install. Since this varies from project to project reference your project specific repository or Confluence space for details on site and database installation.
 
-@example.mcdev
+## Global Vagrant Helpers
 
-* `$ cd path/to/docroot`
-
-* `$ drush @example.mcdev si minimal --sites-subdir='example.mcdev' --db-url='mysql://root:password@localhost/example_mcdev' --account-mail='nothing@example.com' --account-name='admin' --account-pass='password' --site-name='Example' --site-mail='nothing@example.com' -y`
-
-* `$ chmod -R ugo+w sites/example.mcdev/files`
+By using the standard MC vagrant you get access to some additional tools outlined below.
 
 ### Generate a login link
-- `$ cd path/to/docroot`
-- `$ drush @example.mcdev uli`
+
+Login links can be generated via Drush. To do this you'll need to navigate to the docroot that Drupal is located in and use the Drush alias (@example.mcdev) provided by your project. The ULI command will return a URL you can use in your browser to login to the site.
+
+- `cd path/to/docroot`
+- `drush @example.mcdev uli`
   or
-- `$ vagrant ssh`
-- `$ cd /home/vagrant/docroot/sites/example.mcdev`
-- `$ drush uli`
+- `vagrant ssh`
+- `cd /home/vagrant/docroot/sites/example.mcdev`
+- `drush uli`
 
 - Log out of the vagrant server (ctrl-d usually works well)
 
@@ -58,20 +91,20 @@ is now installed in the "mis_example" directory.
 
 *NOTE* There will be not tests run until modules are in the "sites/all/modules/custom" directory.
 
-- `$ vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot"`
+- `vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot"`
 
 ### Run the Security Review tests.
 (Drupal 7 only)
 
-- `$ vagrant ssh -c "/vagrant/tests/security-review.sh example.mcdev /home/vagrant/docroot"`
+- `vagrant ssh -c "/vagrant/tests/security-review.sh example.mcdev /home/vagrant/docroot"`
 
 ### Run the Accessibility tests.
 
-- `$ vagrant ssh -c "/vagrant/tests/pa11y/pa11y-review.sh example.mcdev"`
+- `vagrant ssh -c "/vagrant/tests/pa11y/pa11y-review.sh example.mcdev"`
 
 ### Run the BDD system tests.
 
-- `$ vagrant ssh -c "/vagrant/tests/behat/behat-run.sh http://example.mcdev"`
+- `vagrant ssh -c "/vagrant/tests/behat/behat-run.sh http://example.mcdev"`
 - To run individual tests or further configuration. See tests/behat/README.md
 
 ## [Documentation](Documentation)
