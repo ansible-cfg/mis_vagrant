@@ -9,7 +9,7 @@ The Mediacurrent local Vagrant is based upon work from [DrupalVM](https://www.dr
 
 That should return your version number. Most recently tested version to be working is 5.1.12*.
 
-### Download and install Vagrant (>= 1.8.5) from [here](http://www.vagrantup.com/downloads-archive.html). To check what version you may have you can oepn Terminal and use the following command:
+### Download and install Vagrant (>= 1.8.6) from [here](https://www.vagrantup.com/downloads.html). To check what version you may have you can oepn Terminal and use the following command:
 
 `vagrant --version`
 
@@ -29,8 +29,9 @@ If you have the plugin you will see it in the returned list.
 ### Add the vagrant ssh key to your .ssh directory
 
 Normally this will already be installed. This will allow you to SSH into your vagrant machine without a password. If you already have this file then the command will return a notice that the file exists. This is ok.
-- `ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key`
-- `chmod 600 ~/.ssh/vagrant_insecure_private_key`
+
+```ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key
+chmod 600 ~/.ssh/vagrant_insecure_private_key```
 
 These commands will add a symlink to your default .ssh folder. The chmod command will change the permissions to appropriate permissions. To validate this worked properly run the following command:
 
@@ -39,6 +40,7 @@ These commands will add a symlink to your default .ssh folder. The chmod command
 The output of this should look like the following:
 
 ```ls -lah ~/.ssh/vagrant_insecure_private_key
+
 lrwxr-xr-x  1 username  staff    47B Mar  8  2014 /Users/username/.ssh/vagrant_insecure_private_key -> /Users/username/.vagrant.d/insecure_private_key```
 
 
