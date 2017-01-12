@@ -30,8 +30,10 @@ If you have the plugin you will see it in the returned list.
 
 Normally this will already be installed. This will allow you to SSH into your vagrant machine without a password. If you already have this file then the command will return a notice that the file exists. This is ok.
 
-```ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key
-chmod 600 ~/.ssh/vagrant_insecure_private_key```
+```bash
+ln -s ~/.vagrant.d/insecure_private_key ~/.ssh/vagrant_insecure_private_key
+chmod 600 ~/.ssh/vagrant_insecure_private_key
+```
 
 These commands will add a symlink to your default .ssh folder. The chmod command will change the permissions to appropriate permissions. To validate this worked properly run the following command:
 
@@ -39,18 +41,20 @@ These commands will add a symlink to your default .ssh folder. The chmod command
 
 The output of this should look like the following:
 
-```ls -lah ~/.ssh/vagrant_insecure_private_key
-
-lrwxr-xr-x  1 username  staff    47B Mar  8  2014 /Users/username/.ssh/vagrant_insecure_private_key -> /Users/username/.vagrant.d/insecure_private_key```
+```bash
+ls -lah ~/.ssh/vagrant_insecure_private_key
+lrwxr-xr-x  1 username  staff    47B Mar  8  2014 /Users/username/.ssh/vagrant_insecure_private_key -> /Users/username/.vagrant.d/insecure_private_key
+```
 
 
 
 ### Add mcdev top level domain to your ssh config by editing [home]/.ssh/config and adding the following lines: Note: This should only need to be done once. You may already have this in your ~/.ssh/config file:
 
-```    Host *.mcdev
-        ForwardAgent yes
-        IdentityFile ~/.ssh/vagrant_insecure_private_key
-        User vagrant
+```bash
+Host *.mcdev
+  ForwardAgent yes
+  IdentityFile ~/.ssh/vagrant_insecure_private_key
+  User vagrant
 ```
 
 This will allow you to ssh into any Vagrant machine from anywhere on your machine.
@@ -193,7 +197,7 @@ Notes:
 
   - **For faster provisioning** (macOS/Linux only): *[Install Ansible](http://docs.ansible.com/intro_installation.html) on your host machine, so Drupal VM can run the provisioning steps locally instead of inside the VM.*
   - **NFS on Linux**: *If NFS is not already installed on your host, you will need to install it to use the default NFS synced folder configuration. See guides for [Debian/Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-14-04), [Arch](https://wiki.archlinux.org/index.php/NFS#Installation), and [RHEL/CentOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-centos-6).*
-  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansibleâ€”as of February 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.8+, and Ansible 2.2.x*
+  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible—as of February 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.8+, and Ansible 2.2.x*
 
 ### 2 - Build the Virtual Machine
 
