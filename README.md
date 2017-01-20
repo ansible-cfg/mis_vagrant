@@ -18,7 +18,7 @@ Note: Vagrant version 1.8.7 caused issues and should be avoided. Most  recently 
 ### Install Vagrant Host Manager Plugin:
 
 This plugin will automatically update your /etc/hosts on your machine so that IP addresses do not have to be mapped manually. You'll only have to install this once.
-`vagrant plugin install vagrant-hostmanager`
+`vagrant plugin install vagrant-hostsupdater`
 
 To verify if you have the plugin you can run:
 
@@ -197,7 +197,7 @@ Notes:
 
   - **For faster provisioning** (macOS/Linux only): *[Install Ansible](http://docs.ansible.com/intro_installation.html) on your host machine, so Drupal VM can run the provisioning steps locally instead of inside the VM.*
   - **NFS on Linux**: *If NFS is not already installed on your host, you will need to install it to use the default NFS synced folder configuration. See guides for [Debian/Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-14-04), [Arch](https://wiki.archlinux.org/index.php/NFS#Installation), and [RHEL/CentOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-centos-6).*
-  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible—as of February 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.8+, and Ansible 2.2.x*
+  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansibleï¿½as of February 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.8+, and Ansible 2.2.x*
 
 ### 2 - Build the Virtual Machine
 
