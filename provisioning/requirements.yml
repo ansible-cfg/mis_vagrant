@@ -37,7 +37,7 @@
 - src: geerlingguy.memcached
   version: 1.0.7
 - src: geerlingguy.mysql
-  version: 2.4.2
+  version: 2.5.0
 - src: geerlingguy.nginx
   version: 1.9.6
 - src: geerlingguy.nodejs
@@ -55,7 +55,7 @@
 - src: geerlingguy.php-redis
   version: 3.1.0
 - src: geerlingguy.php-xdebug
-  version: 2.2.2
+  version: 2.3.1
 - src: geerlingguy.php-xhprof
   version: 2.2.0
 - src: geerlingguy.pimpmylog
@@ -73,7 +73,7 @@
 - src: geerlingguy.security
   version: 1.4.0
 - src: geerlingguy.solr
-  version: 3.4.0
+  version: 3.4.1
 - src: geerlingguy.varnish
   version: 1.8.1
 
