@@ -35,7 +35,7 @@ vagrant_cpus: 1
 
 # Minimum required versions.
 drupalvm_vagrant_version_min: '1.8.6'
-drupalvm_ansible_version_min: '2.1'
+drupalvm_ansible_version_min: '2.2'
 
 # Force use of ansible_local provisioner, even if Ansible is installed on host.
 force_ansible_local: false
@@ -101,6 +101,13 @@ drupalvm_cron_jobs: []
 # this variable is 'true'.
 configure_drush_aliases: false
 
+# Helper variable to configure the PHP-FPM connection for each Apache
+# VirtualHost in the `apache_vhosts` list.
+apache_vhost_php_fpm_parameters: |
+    <FilesMatch \.php$>
+      SetHandler "proxy:fcgi://{{ php_fpm_listen }}"
+    </FilesMatch>
+
 # Apache VirtualHosts. Add one for each site you are running inside the VM. For
 # multisite deployments, you can point multiple servernames at one documentroot.
 # View the geerlingguy.apache Ansible Role README for more options.
@@ -108,30 +115,24 @@ apache_vhosts:
   - servername: "{{ drupal_domain }}"
     serveralias: "www.{{ drupal_domain }}"
     documentroot: "{{ drupal_core_path }}"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
   - servername: "adminer.{{ vagrant_hostname }}"
     documentroot: "{{ adminer_install_dir }}"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ adminer_install_dir }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
   - servername: "xhprof.{{ vagrant_hostname }}"
     documentroot: "{{ php_xhprof_html_dir }}"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ php_xhprof_html_dir }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
   - servername: "pimpmylog.{{ vagrant_hostname }}"
     documentroot: "{{ pimpmylog_install_dir }}"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ pimpmylog_install_dir }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
   - servername: "{{ vagrant_ip }}"
     serveralias: "dashboard.{{ vagrant_hostname }}"
     documentroot: "{{ dashboard_install_dir }}"
-    extra_parameters: |
-          ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ dashboard_install_dir }}"
-          DirectoryIndex index.html
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
 # Enable SSL Support on the Drupal site vhosts.
 # See https://github.com/geerlingguy/ansible-role-apache for additional options.
@@ -176,6 +177,7 @@ nginx_hosts:
 
   - server_name: "{{ vagrant_ip }} dashboard.{{ vagrant_hostname }}"
     root: "{{ dashboard_install_dir }}"
+    is_php: true
 
 nginx_remove_default_vhost: true
 nginx_ppa_use: true
@@ -207,6 +209,7 @@ installed_extras:
   - adminer
   # - blackfire
   - drupalconsole
+  - drush
   # - elasticsearch
   # - java
   - mailhog
@@ -219,6 +222,7 @@ installed_extras:
   # - ruby
   # - selenium
   # - solr
+  # - upload-progress
   # - varnish
   - xdebug
   # - xhprof
@@ -232,8 +236,9 @@ extra_packages:
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
 
-drush_version: "8.1.5"
-drush_keep_updated: true
+drush_version: "8.1.9"
+drush_keep_updated: false
+drush_clone_depth: 0
 drush_composer_cli_options: "--prefer-dist --no-interaction"
 
 firewall_allowed_tcp_ports:
@@ -252,9 +257,10 @@ firewall_allowed_tcp_ports:
   - "9200"
 firewall_log_dropped_packets: false
 
-# PHP Configuration. Currently-supported versions: 5.6, 7.0.
-# To use 5.6, see: http://docs.drupalvm.com/en/latest/other/php-56/
+# PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1.
+# See version-specific notes: http://docs.drupalvm.com/en/latest/other/php/
 php_version: "7.0"
+php_install_recommends: no
 php_memory_limit: "192M"
 php_display_errors: "On"
 php_display_startup_errors: "On"
@@ -277,7 +283,7 @@ composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
 composer_global_packages:
   - { name: hirak/prestissimo, release: '^0.3' }
-  - { name: drupal/coder, release: '8.2.9' }
+  - { name: drupal/coder, release: '8.2.10' }
   - { name: drupal/drupal-extension, release: '~3.0' }
   - { name: phpmd/phpmd, release: '2.4.3' }
   - { name: sebastian/phpcpd, release: '2.0.4' }
@@ -307,9 +313,9 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 6.7.0
+node_version: 7.4.0
 node_versions:
-  - 6.7.0
+  - 7.4.0
 
 node_packages:
   - phantomjs
@@ -341,7 +347,7 @@ php_xdebug_remote_host: 10.0.2.2
 php_xdebug_max_nesting_level: 256
 
 # Solr Configuration (if enabled above).
-solr_version: "5.5.2"
+solr_version: "5.5.3"
 solr_xms: "64M"
 solr_xmx: "128M"
 
