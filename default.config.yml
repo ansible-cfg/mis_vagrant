@@ -283,7 +283,7 @@ composer_home_owner: "{{ drupalvm_user }}"
 composer_home_group: "{{ drupalvm_user }}"
 composer_global_packages:
   - { name: hirak/prestissimo, release: '^0.3' }
-  - { name: drupal/coder, release: '8.2.9' }
+  - { name: drupal/coder, release: '8.2.10' }
   - { name: drupal/drupal-extension, release: '~3.0' }
   - { name: phpmd/phpmd, release: '2.4.3' }
   - { name: sebastian/phpcpd, release: '2.0.4' }
