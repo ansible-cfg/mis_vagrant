@@ -1,6 +1,6 @@
 #/bin/sh
 # Run this on a server to perform backups. To run add a cron entry to server:
-# 0,4,*,*,* sh /path/to/backup_db.sh
+# 0 4 * * * sh /path/to/backup_db.sh
 #
 # Ensure backup_db.sh has execute permissions added: chmod a+x backup_db.sh.
 
