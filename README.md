@@ -97,7 +97,11 @@ Login links can be generated via Drush. To do this you'll need to navigate to th
 
 *NOTE* There will be not tests run until modules are in the "sites/all/modules/custom" directory.
 
+Drupal 7:
 - `vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot"`
+
+Drupal 8:
+- `vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot/web"`
 
 ### Run the Security Review tests.
 (Drupal 7 only)
@@ -198,7 +202,7 @@ Notes:
   - **For stability**: Because every version of VirtualBox introduces changes to networking, for the best stability, you should install Vagrant's `vbguest` plugin: `vagrant plugin install vagrant-vbguest`.
   - **NFS on Linux**: *If NFS is not already installed on your host, you will need to install it to use the default NFS synced folder configuration. See guides for [Debian/Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-14-04), [Arch](https://wiki.archlinux.org/index.php/NFS#Installation), and [RHEL/CentOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-centos-6).*
 
-  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible—as of late 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.10+, and Ansible 2.2.x*
+  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible-as of late 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.10+, and Ansible 2.2.x*
 
 ### 2 - Build the Virtual Machine
 
