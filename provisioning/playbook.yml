@@ -5,21 +5,21 @@
   vars_files:
     - vars/main.yml
     - ../default.config.yml
+    - "vars/{{ ansible_os_family }}.yml"
 
   pre_tasks:
-    - name: Include OS-specific variables.
-      include_vars: "{{ ansible_os_family }}.yml"
-
     - name: Define config_dir.
       set_fact:
         config_dir: "{{ playbook_dir }}/.."
       when: config_dir is not defined
       tags: ['always']
 
-    - include_vars: "{{ item }}"
+    - name: Include optional configuration files.
+      include_vars: "{{ item }}"
       with_fileglob:
         - "{{ config_dir }}/config.yml"
         - "{{ config_dir }}/local.config.yml"
+        - "{{ config_dir }}/secrets.yml"
         - "{{ config_dir }}/{{ lookup('env', 'DRUPALVM_ENV')|default(drupalvm_env, true)|default(ansible_env.DRUPALVM_ENV)|default(omit) }}.config.yml"
       tags: ['always']
 
@@ -27,9 +27,11 @@
 
     - include: tasks/init-debian.yml
       when: ansible_os_family == 'Debian'
+      tags: ['php', 'drupal']
       static: no
     - include: tasks/init-redhat.yml
       when: ansible_os_family == 'RedHat'
+      tags: ['php', 'drupal']
       static: no
 
     - name: Run configured pre-provision shell scripts.
@@ -43,24 +45,8 @@
       with_fileglob:
         - "{{ pre_provision_tasks_dir|default(omit) }}"
 
-    - name: Set the PHP webserver daemon correctly when nginx is in use.
-      set_fact:
-        php_webserver_daemon: nginx
-      when: drupalvm_webserver == 'nginx'
-      tags: ['webserver', 'database', 'php']
-
-    - name: Set the correct XHProf package when PHP 5.5 or 5.6 is used.
-      set_fact:
-        xhprof_download_url: https://github.com/phacility/xhprof/archive/master.tar.gz
-        xhprof_download_folder_name: xhprof-master
-      when: php_version == '5.5' or php_version == '5.6'
-
-    - name: Ensure PHP version -specific workspace directory exists.
-      file:
-        path: "/root/php{{ php_version }}"
-        state: directory
-        mode: 0775
-      tags: ['php']
+    - include: tasks/php.yml
+      tags: ['php', 'drupal']
 
   roles:
     # Essential roles.
@@ -71,7 +57,7 @@
     - { role: geerlingguy.apache, when: drupalvm_webserver == 'apache', tags: ['webserver']}
     - { role: geerlingguy.apache-php-fpm, when: drupalvm_webserver == 'apache', tags: ['webserver'] }
     - { role: geerlingguy.nginx, when: drupalvm_webserver == 'nginx', tags: ['webserver'] }
-    - { role: geerlingguy.php, tags: ['php'] }
+    - { role: geerlingguy.php, tags: ['php', 'drupal'] }
     - { role: geerlingguy.php-pecl, tags: ['php'] }
     - { role: geerlingguy.composer }
     - { role: geerlingguy.mysql, when: drupal_db_backend == 'mysql', tags: ['database'] }

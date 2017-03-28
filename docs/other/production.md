@@ -33,6 +33,26 @@ _Note: Having the variable set locally takes precedence over having it on the re
 
 As a precaution not to accidentally provision a production server with insecure configurations, you should set your security hardening configurations in `config.yml`, your local development overrides in `vagrant.config.yml` and finally any additional production specific overrides in `prod.config.yml`. This way, a production environment will never be provisioned with development tools, even if the `prod.config.yml` is not read.
 
+## Ansible Vault support
+
+Drupal VM will include a `secrets.yml` file included in your VM's configuration directory (alongside `config.yml`, `local.config.yml`, etc.) that you can use to store sensitive variables (e.g. MySQL's root password, Drupal's admin password). For extra security, you can encrypt this file, and require a password whenever the variable is used.
+
+First, you'd create an Ansible Vault encrypted file:
+
+    $ ansible-vault create secrets.yml
+
+Create the file inside your VM's configuration directory, add any plaintext passwords, and save it. Ansible Vault will encrypt the file, and you can edit the file using `ansible-vault edit`.
+
+When running `vagrant` commands, make sure you tell the Ansible provisioner to use `--ask-vault-pass`, e.g.:
+
+    DRUPALVM_ANSIBLE_ARGS='--ask-vault-pass' vagrant [command]
+
+And if you need to override one of the secrets stored in that file, you can do so through an environment-specific config file, for example:
+
+    vagrant.config.yml
+    prod.config.yml
+    [etc.]
+
 ## Example: Drupal VM on DigitalOcean
 
 The [`examples/prod` directory](https://github.com/geerlingguy/drupal-vm/tree/master/examples/prod) contains an example production configuration for Drupal VM which can be used to deploy Drupal VM to a production environment on a cloud provider like DigitalOcean, Linode, or AWS.
@@ -103,11 +123,11 @@ Once the initialization is complete, you can test your new admin login with `ssh
 
 Run the following command within Drupal VM's root directory (the folder containing the `Vagrantfile`):
 
-    ansible-playbook -i examples/prod/inventory provisioning/playbook.yml --sudo --ask-sudo-pass
+    DRUPALVM_ENV=prod ansible-playbook -i examples/prod/inventory provisioning/playbook.yml --sudo --ask-sudo-pass
 
 _Note: If you have installed [Drupal VM as a Composer dependency](../deployment/composer-dependency.md) you also need to specify the path of the config directory where you have your `config.yml` located._
 
-    ansible-playbook -i config/prod/inventory vendor/geerlingguy/drupal-vm/provisioning/playbook.yml -e "config_dir=$(pwd)/config" --sudo --ask-sudo-pass
+    DRUPALVM_ENV=prod ansible-playbook -i config/prod/inventory vendor/geerlingguy/drupal-vm/provisioning/playbook.yml -e "config_dir=$(pwd)/config" --sudo --ask-sudo-pass
 
 Ansible will prompt you for your admin account's `sudo` password (the same as the password you encrypted and saved as `admin_password`). Enter it and press return.
 
