@@ -288,6 +288,7 @@ composer_global_packages:
   - { name: phpmd/phpmd, release: '2.4.3' }
   - { name: sebastian/phpcpd, release: '2.0.4' }
   - { name: phploc/phploc, release: '3.0.1' }
+  - { name: sensiolabs/security-checker, release: '~3.0.5' }
 
 # Run specified scripts before or after VM is provisioned. Path is relative to
 # the `provisioning/playbook.yml` file.
