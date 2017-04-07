@@ -129,14 +129,14 @@ Drupal 8:
 
 [![Build Status](https://travis-ci.org/geerlingguy/drupal-vm.svg?branch=master)](https://travis-ci.org/geerlingguy/drupal-vm) [![Documentation Status](https://readthedocs.org/projects/drupal-vm/badge/?version=latest)](http://docs.drupalvm.com) [![Packagist](https://img.shields.io/packagist/v/geerlingguy/drupal-vm.svg)](https://packagist.org/packages/geerlingguy/drupal-vm)
 
-[Drupal VM](https://www.drupalvm.com/) is A VM for local Drupal development, built with Vagrant + Ansible.
+[Drupal VM](https://www.drupalvm.com/) is A VM for Drupal development, built with Vagrant + Ansible.
 
-This project aims to make spinning up a simple local Drupal test/development environment incredibly quick and easy, and to introduce new developers to the wonderful world of Drupal development on local virtual machines (instead of crufty old MAMP/WAMP-based development).
+Drupal VM makes building local Drupal development environments quick and easy, and introduces developers to the wonderful world of Drupal development on local virtual machines (instead of crufty old MAMP/WAMP-based development).
 
 It will install the following on an Ubuntu 16.04 (by default) linux VM:
 
   - Apache 2.4.x (or Nginx)
-  - PHP 7.0.x (configurable)
+  - PHP 7.1.x (configurable)
   - MySQL 5.7.x (or MariaDB, or PostgreSQL)
   - Drupal 7 or 8
   - Optional:
@@ -243,6 +243,8 @@ By default, this VM includes the extras listed in the `config.yml` option `insta
       # - ruby
       # - selenium
       # - solr
+      # - tideways
+      # - upload-progress
       - varnish
       # - xdebug
       # - xhprof
