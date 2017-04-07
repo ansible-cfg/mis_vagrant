@@ -97,7 +97,11 @@ Login links can be generated via Drush. To do this you'll need to navigate to th
 
 *NOTE* There will be not tests run until modules are in the "sites/all/modules/custom" directory.
 
+Drupal 7:
 - `vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot"`
+
+Drupal 8:
+- `vagrant ssh -c "/vagrant/tests/code-sniffer.sh /home/vagrant/docroot/web"`
 
 ### Run the Security Review tests.
 (Drupal 7 only)
@@ -125,14 +129,14 @@ Login links can be generated via Drush. To do this you'll need to navigate to th
 
 [![Build Status](https://travis-ci.org/geerlingguy/drupal-vm.svg?branch=master)](https://travis-ci.org/geerlingguy/drupal-vm) [![Documentation Status](https://readthedocs.org/projects/drupal-vm/badge/?version=latest)](http://docs.drupalvm.com) [![Packagist](https://img.shields.io/packagist/v/geerlingguy/drupal-vm.svg)](https://packagist.org/packages/geerlingguy/drupal-vm)
 
-[Drupal VM](https://www.drupalvm.com/) is A VM for local Drupal development, built with Vagrant + Ansible.
+[Drupal VM](https://www.drupalvm.com/) is A VM for Drupal development, built with Vagrant + Ansible.
 
-This project aims to make spinning up a simple local Drupal test/development environment incredibly quick and easy, and to introduce new developers to the wonderful world of Drupal development on local virtual machines (instead of crufty old MAMP/WAMP-based development).
+Drupal VM makes building local Drupal development environments quick and easy, and introduces developers to the wonderful world of Drupal development on local virtual machines (instead of crufty old MAMP/WAMP-based development).
 
 It will install the following on an Ubuntu 16.04 (by default) linux VM:
 
   - Apache 2.4.x (or Nginx)
-  - PHP 7.0.x (configurable)
+  - PHP 7.1.x (configurable)
   - MySQL 5.7.x (or MariaDB, or PostgreSQL)
   - Drupal 7 or 8
   - Optional:
@@ -198,7 +202,7 @@ Notes:
   - **For stability**: Because every version of VirtualBox introduces changes to networking, for the best stability, you should install Vagrant's `vbguest` plugin: `vagrant plugin install vagrant-vbguest`.
   - **NFS on Linux**: *If NFS is not already installed on your host, you will need to install it to use the default NFS synced folder configuration. See guides for [Debian/Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-ubuntu-14-04), [Arch](https://wiki.archlinux.org/index.php/NFS#Installation), and [RHEL/CentOS](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nfs-mount-on-centos-6).*
 
-  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible—as of late 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.10+, and Ansible 2.2.x*
+  - **Versions**: *Make sure you're running the latest releases of Vagrant, VirtualBox, and Ansible-as of late 2016, Drupal VM recommends: Vagrant 1.8.6, VirtualBox 5.1.10+, and Ansible 2.2.x*
 
 ### 2 - Build the Virtual Machine
 
@@ -239,6 +243,8 @@ By default, this VM includes the extras listed in the `config.yml` option `insta
       # - ruby
       # - selenium
       # - solr
+      # - tideways
+      # - upload-progress
       - varnish
       # - xdebug
       # - xhprof
