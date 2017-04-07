@@ -160,6 +160,12 @@ nginx_hosts:
   - server_name: "{{ drupal_domain }} www.{{ drupal_domain }}"
     root: "{{ drupal_core_path }}"
     is_php: true
+    extra_parameters: |
+        listen 443 ssl;
+        ssl_certificate     /etc/ssl/certs/ssl-cert-snakeoil.pem;
+        ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+        ssl_protocols       TLSv1.1 TLSv1.2;
+        ssl_ciphers         HIGH:!aNULL:!MD5;
 
   - server_name: "adminer.{{ vagrant_hostname }}"
     root: "{{ adminer_install_dir }}"
