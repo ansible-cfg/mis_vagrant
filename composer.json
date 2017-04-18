@@ -1,5 +1,5 @@
 {
-    "name": "geerlingguy/drupal-vm",
+    "name": "mediacurrent/mis_vagrant",
     "type": "vm",
     "description": "A VM for local Drupal development, built with Vagrant + Ansible",
     "keywords": ["vagrant", "vm", "virtual machine", "drupal"],
