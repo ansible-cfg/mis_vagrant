@@ -1,5 +1,61 @@
 # Drupal VM Changelog
 
+## 4.4.5 (2017-04-24)
+
+### New/changed variables in default.config.yml
+
+  * `drupalconsole` is no longer enabled globally by default (see #1335 and #1338).
+
+### Improvements
+
+  * #1333: Add docs on using Drupal VM with Wordpress and other PHP apps.
+
+### Bugfixes
+
+  * #1335: Update Drupal Console Role so it works correctly with rc17 and beyond.
+  * #1338: Remove drupalconsole from default installed_extras list.
+
+
+## 4.4.4 (2017-04-22)
+
+### New/changed variables in default.config.yml
+
+  * N/A
+
+### Improvements
+
+  * #1271: Don't run PHP role for 'drupal' tag.
+  * Updated Ansible roles: `postgresql`, `drupal`.
+  * #1323: Default synced folder type to `vagrant_synced_folder_default_type` if unset.
+
+### Bugfixes
+
+  * #1324: Only depend on `geerlingguy.nginx` when `drupalvm_webserver` is `nginx`.
+
+
+## 4.4.3 (2017-04-20)
+
+### New/changed variables in default.config.yml
+
+  * Added `ssh_home: "{{ drupal_core_path }}"` so `vagrant ssh` drops you directly into the core path by default.
+
+### Improvements
+
+  * Updated Ansible roles: `mysql`, `solr`, `nodejs`, `drupal`, `varnish`.
+  * #1177: Mention the availability of the `geerlingguy/debian8` base box.
+  * #1265: Document reverse-mount shares. Also scaffolds Issue #1258.
+  * #1272: Set ssh_home by default since it's really helpful.
+  * #1259: Update some performance-related docs.
+  * #1317: Remove duplicate handler and extract www tasks into new role.
+
+### Bugfixes
+
+  * #1294: Fix 'Cannot load Zend OPcache' notice.
+  * #1306: Fix Ansible 2.3-related bug with jinja2 inside when statement.
+  * #1302: Remove `ansible_ssh_user` variable to avoid upstream bugs.
+  * #1314: Revert "Move simple `include_vars` statement to `vars_files`"
+
+
 ## 4.4.2 (2017-04-12)
 
 ### New/changed variables in default.config.yml
