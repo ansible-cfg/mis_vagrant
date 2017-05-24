@@ -26,6 +26,7 @@ pages:
     - 'Using composer.json': 'deployment/composer.md'
     - 'Using a Drush Make file': 'deployment/drush-make.md'
     - 'Drupal VM as a Composer Dependency': 'deployment/composer-dependency.md'
+    - 'Deploying Drupal via Git': 'deployment/git.md'
   - Basic configurations:
     - 'Using different base OSes': 'configurations/base-os.md'
     - 'Using a different PHP version': 'configurations/php.md'
@@ -66,8 +67,10 @@ pages:
     - 'Vagrant and VirtualBox': 'other/vagrant-virtualbox.md'
     - 'Vagrant LXC provider': 'other/vagrant-lxc.md'
     - 'Improving Performance': 'other/performance.md'
+    - 'Docker': 'other/docker.md'
     - 'BigPipe with Drupal VM': 'other/bigpipe.md'
     - 'Drupal multisite': 'deployment/multisite.md'
     - 'Drupal 6 Notes': 'other/drupal-6.md'
     - 'Drupal VM Management Tools': 'other/management-tools.md'
     - 'Deploying to a production environment': 'other/production.md'
+    - 'Wordpress or other applications': 'other/wordpress-other-applications.md'

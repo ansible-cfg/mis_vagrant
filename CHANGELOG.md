@@ -1,5 +1,109 @@
 # Drupal VM Changelog
 
+## 4.5.0 "Break In (For Strings, Flutes, and Celesta)" (2017-05-24)
+
+### Breaking Changes
+
+  * The default `nodejs_version` is now set to `6.x`; if you need to stay on `0.12` or some other version, be sure to set the version explicitly in your own `config.yml`.
+
+### New/changed variables in default.config.yml
+
+  * Changed variables:
+    * `nodejs_version: "6.x"` (was `0.12`)
+  * New variables:
+    * Reconfigurable templates for Drush Aliases:
+      * `drush_aliases_host_template: "templates/drupalvm.aliases.drushrc.php.j2"`
+      * `drush_aliases_guest_template: "templates/drupalvm-local.aliases.drushrc.php.j2"`
+    * Reconfigurable template for Nginx hosts:
+      * `nginx_vhost_template: "templates/nginx-vhost.conf.j2"`
+    * `firewall_enabled: true` (allows the disabling of Drupal VM's default firewall, e.g. for Docker usage)
+    * `php_xdebug_remote_host: "{{ ansible_default_ipv4.gateway }}"` (prevents warnings when using Xdebug)
+    * New Docker configuration options:
+      * `docker_container_name: drupal-vm`
+      * `docker_image_name: drupal-vm`
+      * `docker_image_path: ~/Downloads`
+    * New hostname configuration options:
+      * `hostname_configure: true`
+      * `hostname_fqdn: "{{ vagrant_hostname }}"`
+
+### Improvements
+
+  * #1206: Add instructions for running Drupal VM inside Docker.
+  * #1356: Add an official geerlingguy/drupal-vm image on Docker Hub.
+  * #1366: Make Drupal VM Docker image easier to use for single-site installations.
+  * #1377: Extract php-versions (version switching tasks) into standalone role so anyone can use it.
+  * #1353: Update default Node.js version to 6.x.
+  * #1327: Refactor task includes into drupalvm Ansible roles.
+  * #1329: Update Nginx role, allowing use of extensible Nginx templates.
+  * #1254: Refactor Drupal VM's Nginx templates to allow for extensibility.
+  * #1349: Make it easier to install Node.js global packages by name.
+  * #1258: Finalize documentation for Git-based deployment.
+  * Updated roles: Firewall, Nginx, Node.js, Apache, Selenium.
+
+### Bugfixes
+
+  * #1351: Fix documentation bug concerning paths in example.drupal.composer.json.
+  * #1304: Fix documentation bug concerning Behat paths.
+  * #1350: Set the `php_xdebug_remote_host` to prevent Xdebug warnings.
+  * #1347: Fix LoadError message on vagrant up/down.
+
+
+## 4.4.5 (2017-04-24)
+
+### New/changed variables in default.config.yml
+
+  * `drupalconsole` is no longer enabled globally by default (see #1335 and #1338).
+
+### Improvements
+
+  * #1333: Add docs on using Drupal VM with Wordpress and other PHP apps.
+
+### Bugfixes
+
+  * #1335: Update Drupal Console Role so it works correctly with rc17 and beyond.
+  * #1338: Remove drupalconsole from default installed_extras list.
+
+
+## 4.4.4 (2017-04-22)
+
+### New/changed variables in default.config.yml
+
+  * N/A
+
+### Improvements
+
+  * #1271: Don't run PHP role for 'drupal' tag.
+  * Updated Ansible roles: `postgresql`, `drupal`.
+  * #1323: Default synced folder type to `vagrant_synced_folder_default_type` if unset.
+
+### Bugfixes
+
+  * #1324: Only depend on `geerlingguy.nginx` when `drupalvm_webserver` is `nginx`.
+
+
+## 4.4.3 (2017-04-20)
+
+### New/changed variables in default.config.yml
+
+  * Added `ssh_home: "{{ drupal_core_path }}"` so `vagrant ssh` drops you directly into the core path by default.
+
+### Improvements
+
+  * Updated Ansible roles: `mysql`, `solr`, `nodejs`, `drupal`, `varnish`.
+  * #1177: Mention the availability of the `geerlingguy/debian8` base box.
+  * #1265: Document reverse-mount shares. Also scaffolds Issue #1258.
+  * #1272: Set ssh_home by default since it's really helpful.
+  * #1259: Update some performance-related docs.
+  * #1317: Remove duplicate handler and extract www tasks into new role.
+
+### Bugfixes
+
+  * #1294: Fix 'Cannot load Zend OPcache' notice.
+  * #1306: Fix Ansible 2.3-related bug with jinja2 inside when statement.
+  * #1302: Remove `ansible_ssh_user` variable to avoid upstream bugs.
+  * #1314: Revert "Move simple `include_vars` statement to `vars_files`"
+
+
 ## 4.4.2 (2017-04-12)
 
 ### New/changed variables in default.config.yml
