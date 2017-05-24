@@ -11,7 +11,7 @@
 
 - name: Disable CLI PHP Xdebug.
   command: "mv {{ item_ext.stat.path }} {{ item_ext.stat.path }}.disabled"
-  when: "php_cli_xdebug_extension is defined and php_xdebug_cli_enable == 0 and item_ext.stat | default(false) and item_ext.stat.exists"
+  when: "php_cli_xdebug_extension is defined and item_ext.stat | default(false) and item_ext.stat.exists"
   with_items: "{{ php_cli_xdebug_extension.results }}"
   loop_control:
     loop_var: item_ext
