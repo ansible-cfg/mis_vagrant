@@ -7,7 +7,7 @@
 - src: franklinkim.newrelic
   version: 1.6.0
 - src: fubarhouse.nodejs
-  version: 1.6.0
+  version: 1.7.1
 - src: geerlingguy.adminer
   version: 1.1.1
 - src: geerlingguy.apache
