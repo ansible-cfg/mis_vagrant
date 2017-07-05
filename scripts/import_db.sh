@@ -4,6 +4,11 @@
 #  - Allow to specify database backup URL or filepath (avoid download).
 #  - Allow import from S3 or URL to avoid SSH public key requirement.
 
+# Choose wget or ssh.
+DL_TYPE=wget
+
+WGET_PATH=http://path/to/db.sql.gz
+
 # SSH connection details to find DB backup.
 SSH=username@ssh.host
 
@@ -32,7 +37,19 @@ fi
 
 echo "Import database from " $SSH
 
-time scp $SSH:$SSH_PATH $DOC/db.sql.gz
+if [ "$DL_TYPE" = "ssh" ]
+then
+  echo "Import database from " $SSH
+
+  time scp $SSH:$SSH_PATH $DOC/db.sql.gz
+fi
+if [ "$DL_TYPE" = "wget" ]
+then
+  echo "Import database from " $WGET_PATH
+
+  time wget $WGET_PATH -O $DOC/db.sql.gz
+fi
+
 gunzip $DOC/db.sql.gz
 
 echo "Downloading DB complete. Time to download noted above...Importing DB"
