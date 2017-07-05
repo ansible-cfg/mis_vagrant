@@ -334,9 +334,15 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 7.4.0
+node_version: 7.9.0
 node_versions:
-  - 7.4.0
+  - 7.9.0
+
+fubarhouse_user: vagrant
+fubarhouse_user_dir: /home/vagrant
+
+shell_profiles:
+  - .bashrc
 
 node_packages:
   - eslint
