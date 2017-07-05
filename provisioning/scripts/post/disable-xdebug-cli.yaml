@@ -8,6 +8,7 @@
   register: php_cli_xdebug_extension
   loop_control:
     loop_var: item_path
+  tags: ['xdebug']
 
 - name: Disable CLI PHP Xdebug.
   command: "mv {{ item_ext.stat.path }} {{ item_ext.stat.path }}.disabled"
@@ -15,3 +16,4 @@
   with_items: "{{ php_cli_xdebug_extension.results }}"
   loop_control:
     loop_var: item_ext
+  tags: ['xdebug']
