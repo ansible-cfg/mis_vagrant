@@ -328,6 +328,8 @@ node_versions:
   - 7.4.0
 
 node_packages:
+  - eslint
+  - forever
   - phantomjs
   - pa11y
 
