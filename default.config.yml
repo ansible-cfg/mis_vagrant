@@ -157,8 +157,7 @@ apache_vhosts_ssl:
     certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
     certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
     # certificate_chain_file: "/path/to/certificate_chain.crt"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
 apache_packages_state: latest
 apache_remove_default_vhost: true
@@ -257,7 +256,7 @@ extra_packages:
   - sqlite
 
 # You can configure almost anything else on the server in the rest of this file.
-drush_version: "8.1.14"
+drush_version: "8.1.15"
 
 extra_security_enabled: false
 
@@ -337,9 +336,10 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 7.9.0
+node_version: 6.11.4
 node_versions:
-  - 7.9.0
+  - 6.11.4
+  - 8.7.0
 
 fubarhouse_user: vagrant
 fubarhouse_user_dir: /home/vagrant
@@ -375,7 +375,6 @@ php_xdebug_remote_enable: 1
 php_xdebug_remote_connect_back: 0
 # Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
 php_xdebug_idekey: PHPSTORM
-php_xdebug_remote_host: 10.0.2.2
 php_xdebug_max_nesting_level: 256
 php_xdebug_remote_host: "{{ ansible_default_ipv4.gateway }}"
 
