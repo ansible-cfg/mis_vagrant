@@ -6,9 +6,9 @@
 #   - geerlingguy/debian8
 #   - geerlingguy/ubuntu1604
 #   - geerlingguy/ubuntu1404
-#   - geerlingguy/ubuntu1204
 vagrant_box: mediacurrent/mis_ubuntu1604 # geerlingguy/ubuntu1604
 vagrant_box_version: ">=0.1.0"
+
 vagrant_user: vagrant
 vagrant_synced_folder_default_type: nfs
 vagrant_gui: false
@@ -88,6 +88,7 @@ drupal_core_owner: "{{ drupalvm_user }}"
 drupal_db_user: drupal
 drupal_db_password: drupal
 drupal_db_name: "{{ vagrant_machine_name }}"
+drupal_db_host: localhost
 drupal_mysql_user: root
 drupal_mysql_password: password
 
@@ -156,13 +157,13 @@ apache_vhosts_ssl:
     certificate_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
     certificate_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"
     # certificate_chain_file: "/path/to/certificate_chain.crt"
-    extra_parameters: |
-      ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
+    extra_parameters: "{{ apache_vhost_php_fpm_parameters }}"
 
 apache_packages_state: latest
 apache_remove_default_vhost: true
 apache_mods_enabled:
   - expires.load
+  - headers.load
   - ssl.load
   - rewrite.load
   - proxy.load
@@ -255,7 +256,7 @@ extra_packages:
   - sqlite
 
 # You can configure almost anything else on the server in the rest of this file.
-drush_version: "8.1.12"
+drush_version: "8.1.15"
 
 extra_security_enabled: false
 
@@ -279,7 +280,7 @@ firewall_log_dropped_packets: false
 firewall_disable_firewalld: true
 firewall_disable_ufw: true
 
-# PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1.
+# PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1, 7.2.
 # See version-specific notes: http://docs.drupalvm.com/en/latest/configurations/php/
 php_version: "7.1"
 php_install_recommends: no
@@ -312,11 +313,12 @@ composer_global_packages:
   - { name: phploc/phploc, release: '3.0.1' }
   - { name: sensiolabs/security-checker, release: '~3.0.5' }
 
-# Run specified scripts before or after VM is provisioned. Path is relative to
-# the `provisioning/playbook.yml` file.
+# Run specified scripts before or after VM is provisioned. Use {{ playbook_dir }}
+# to reference the provisioning/ folder in Drupal VM or {{ config_dir }} to
+# reference the directory where your `config.yml` is.
 pre_provision_scripts: []
 post_provision_scripts: []
-  # - "../examples/scripts/configure-solr.sh"
+  # - "{{ playbook_dir }}/../examples/scripts/configure-solr.sh"
 pre_provision_tasks_dir: "./scripts/pre/*"
 post_provision_tasks_dir: "./scripts/post/*"
 
@@ -334,9 +336,10 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 7.9.0
+node_version: 6.11.4
 node_versions:
-  - 7.9.0
+  - 6.11.4
+  - 8.7.0
 
 fubarhouse_user: vagrant
 fubarhouse_user_dir: /home/vagrant
@@ -372,7 +375,6 @@ php_xdebug_remote_enable: 1
 php_xdebug_remote_connect_back: 0
 # Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
 php_xdebug_idekey: PHPSTORM
-php_xdebug_remote_host: 10.0.2.2
 php_xdebug_max_nesting_level: 256
 php_xdebug_remote_host: "{{ ansible_default_ipv4.gateway }}"
 
