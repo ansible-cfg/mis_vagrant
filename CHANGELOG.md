@@ -1,5 +1,83 @@
 # Drupal VM Changelog
 
+## 4.8.0 "Tower Music / Let Us Pray" (2018-01-30)
+
+This release is all about Drush. Please read my blog post [Drupal VM 4.8 and Drush 9.0.0 - Some major changes](https://www.jeffgeerling.com/blog/2018/drupal-vm-48-and-drush-900-some-major-changes) for details and more background.
+
+If you have Drush 8 installed on your host machine, primarily use Drush _outside_ of Drupal VM, and don't use a Drush make file, none of the breaking changes should affect you.
+
+### Breaking Changes
+
+  * Drush is no longer installed inside Drupal VM if you have `drush` in `installed_extras`. Drush Launcher is installed by default.
+  * The `drush_version` configuration option is no longer used by default.
+  * Drush make files cannot be built with Drush 9+. If you have `drupal_build_makefile: true` in your `config.yml`, you _must_ add configuration to install an older version of Drush inside Drupal VM. See the [Drupal VM Drush make docs](http://docs.drupalvm.com/en/latest/deployment/drush-make/).
+
+### New/changed variables in default.config.yml
+
+  * Added the following variables to support Drush 9:
+    * `drush_aliases_host_template_yml: "templates/drupalvm.aliases.yml.j2"`
+    * `drush_aliases_guest_template_yml: "templates/drupalvm-local.aliases.yml.j2"`
+  * Removed now-unused variable: `drush_version: "8.1.15"` (Drush Launcher is installed by default inside Drupal VM).
+
+### Improvements
+
+  * #1672: Upgrade Drupal VM to use Drush Launcher and natively support Drush 9.0.0.
+  * #1595: Create Drush global aliases that work for Drush 9+ and work outside Drupal VM.
+  * Updated roles: drush.
+
+### Bugfixes
+
+N/A
+
+
+## 4.7.2 (2018-01-29)
+
+### Breaking Changes
+
+N/A
+
+### New/changed variables in default.config.yml
+
+  * #1624: Added `beet/box` to list of recommended base boxes (for faster Ubuntu 16.04 provisioning).
+  * #1668: Fixed some comments which had incorrect variable references.
+  * Updated `drush_version` to `"8.1.15"` (was `"8.1.14"`).
+
+### Improvements
+
+  * Updated roles: drush.
+
+### Bugfixes
+
+  * #1659: Mention changes required for CentOS when using specialized synced folder methods.
+  * #1539: Update Drush role so Drush installs correctly on Debian 8 and 9.
+
+
+## 4.7.1 (2018-01-23)
+
+### Breaking Changes
+
+N/A
+
+### New/changed variables in default.config.yml
+
+  * `nodejs_npm_global_packages` now adds `npm` by default (see #1651).
+  * `solr_version` is now `5.5.5` by default (was `5.5.3`).
+
+### Improvements
+
+  * #1602: Add machine name to dashboard header.
+  * #1651: Update NPM when provisioning (as per NPM's recommendation).
+  * Solr default version updated to `5.5.5`.
+  * Updated roles: php-xdebug, solr, mysql, postfix.
+
+### Bugfixes
+
+  * #1606: Fix vagrant-cachier for modern nfs installations with udp disabled.
+  * #1585: Fix typo in README.md
+  * #1653: Fix typo in mkdocs.yml
+  * #1617: Fix typos in PHP.md
+
+
 ## 4.7.0 "Water, Music, and Tronaction" (2017-10-06)
 
 ### Breaking Changes

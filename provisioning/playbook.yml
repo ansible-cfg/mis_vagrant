@@ -113,6 +113,7 @@
       tags: ['database']
 
     - include: tasks/drush-aliases.yml
+      when: configure_drush_aliases
 
     - include: tasks/cron.yml
       tags: ['cron']
