@@ -338,10 +338,10 @@ adminer_install_filename: index.php
 # nodejs_install_npm_user: "{{ drupalvm_user }}"
 # npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
-node_version: 6.11.4
+node_version: 8.7.0
 node_versions:
-  - 6.11.4
   - 8.7.0
+  - 9.4.0
 
 fubarhouse_user: vagrant
 fubarhouse_user_dir: /home/vagrant
