@@ -259,6 +259,9 @@ extra_packages:
   - sqlite
 
 # You can configure almost anything else on the server in the rest of this file.
+drush_launcher_version: "0.5.1"
+drush_launcher_phar_url: https://github.com/drush-ops/drush-launcher/releases/download/{{ drush_launcher_version }}/drush.phar
+
 extra_security_enabled: false
 
 firewall_enabled: true
