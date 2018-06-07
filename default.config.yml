@@ -48,7 +48,7 @@ vagrant_plugins:
 
 # Minimum required versions.
 drupalvm_vagrant_version_min: '1.8.6'
-drupalvm_ansible_version_min: '2.2'
+drupalvm_ansible_version_min: '2.4'
 
 # Force use of ansible_local provisioner, even if Ansible is installed on host.
 force_ansible_local: false
@@ -225,6 +225,7 @@ postgresql_databases:
 postgresql_users:
   - name: "{{ drupal_db_user }}"
     password: "{{ drupal_db_password }}"
+    db: "{{ drupal_db_name }}"
     priv: "ALL"
 
 # Comment out any extra utilities you don't want to install. If you don't want
@@ -375,7 +376,7 @@ pimpmylog_grant_all_privs: true
 # XDebug configuration. XDebug is disabled by default for better performance.
 php_xdebug_default_enable: 0
 php_xdebug_coverage_enable: 0
-php_xdebug_cli_enable: 1
+php_xdebug_cli_disable: yes
 php_xdebug_remote_enable: 1
 php_xdebug_remote_connect_back: 0
 # Use PHPSTORM for PHPStorm, sublime.xdebug for Sublime Text.
