@@ -9,16 +9,12 @@
   - "{{ shell_profiles }}"
 
 - name: "NVM | Clean-up"
-  become: yes
-  become_user: "root"
   file:
     path: "{{ nvm_install_dir }}"
     state: absent
   when: nodejs_clean_install|bool == true
 
 - name: NVM | Clean-up default version from shell profiles
-  become: yes
-  become_user: "root"
   lineinfile:
     dest: "{{ fubarhouse_user_dir }}/{{ item }}"
     regexp: '.nvm/v{{ node_version }}/bin'
@@ -30,8 +26,6 @@
   when: item.stat.exists|bool == true
 
 - name: NVM | Clean-up other versions from shell profiles
-  become: yes
-  become_user: "root"
   lineinfile:
     dest: "{{ fubarhouse_user_dir }}/{{ item[0].item }}"
     regexp: '.nvm/v{{ item[1] }}/bin'
@@ -46,14 +40,13 @@
   - item[0].stat.exists|bool == true
 
 - name: "NodeJS | Remove imported exports not associated to specific versions"
-  become: yes
-  become_user: "{{ fubarhouse_user }}"
   lineinfile:
     dest: "{{ fubarhouse_user_dir }}/{{ item.item }}"
     line: "export PATH=$PATH:$(npm config --global get prefix)/bin"
     state: absent
   with_items: "{{ available_shell_profiles.stdout }}"
   when:
+  - available_shell_profiles.stdout is defined
   - nodejs_clean_install|bool == true
   - item.stat.exists|bool == true
 
@@ -63,31 +56,103 @@
   register: fubarhouse_npm_nvm_installed
 
 - name: "NVM | Ensure permissions are set"
-  become: yes
-  become_user: "root"
   file:
-    path: "{{ item.path }}"
+    path: "{{ item }}"
+    state: directory
+    mode: 0777
+    owner: "{{ fubarhouse_user }}"
+    recurse: no
+  with_items:
+    - "/usr/local/lib/node_modules"
+    - "{{ fubarhouse_user_dir }}/.npm"
+    - "{{ fubarhouse_user_dir }}/.nvm"
+  changed_when: false
+
+- name: "NVM | Get distribution"
+  get_url:
+    url: "https://github.com/creationix/nvm/archive/v{{ nvm_version }}.tar.gz"
+    dest: "/tmp/{{ nvm_version }}.tar.gz"
+  when:
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Create temporary extraction directory"
+  file:
+    state: directory
+    mode: 0777
+    path: "/tmp/nvm-{{ nvm_version }}"
+  when:
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Create pernament extraction directory"
+  file:
+    state: directory
+    mode: 0777
+    path: "{{ nvm_install_dir }}"
+  when:
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Unpack distribution"
+  unarchive:
+    src: "/tmp/{{ nvm_version }}.tar.gz"
+    dest: "/tmp/nvm-{{ nvm_version }}"
+    copy: "no"
+  when:
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Moving to installation directory"
+  synchronize:
+    src: "/tmp/nvm-{{ nvm_version }}/nvm-{{ nvm_version }}"
+    dest: "{{ nvm_install_dir }}"
+    delete: yes
+    recursive: yes
+  when:
+    - ansible_ssh_user is undefined
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Moving to installation directory"
+  shell: "cp -rf /tmp/nvm-{{ nvm_version }}/nvm-{{ nvm_version }}/* {{ nvm_install_dir }}/"
+  when:
+    - ansible_ssh_user is defined
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Remove temporary data"
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - "/tmp/{{ nvm_version }}.tar.gz"
+  - "/tmp/nvm-{{ nvm_version }}"
+  when:
+    - fubarhouse_npm_nvm_installed.stat.exists|bool == false
+    - install_nvm_git|bool == false
+
+- name: "NVM | Clone"
+  git:
+    repo: "https://github.com/creationix/nvm.git"
+    dest: "{{ nvm_install_dir }}"
+    clone: yes
+    update: no
+    version: "{{ nvm_version }}"
+  when: install_nvm_git|bool == true
+
+- name: "NVM | Install"
+  shell: "{{ nvm_install_dir }}/install.sh"
+  when: fubarhouse_npm_nvm_installed.stat.exists|bool == false
+
+- name: "NVM | Ensure permissions are set"
+  file:
+    path: "{{ nvm_install_dir }}"
     state: directory
     mode: 0777
     owner: "{{ fubarhouse_user }}"
     recurse: yes
-  with_items: "{{ nodejs_folder_paths }}"
   changed_when: false
-
-- name: "NVM | Clone/Update"
-  become: yes
-  become_user: "{{ fubarhouse_user }}"
-  git:
-    repo: "{{ nvm_repo }}"
-    dest: "{{ nvm_install_dir }}"
-    clone: yes
-    update: no
-    version: master
-    recursive: false
-
-- name: "NVM | Install"
-  shell: "{{ nvm_install_dir }}/install.sh"
-  when: fubarhouse_npm_nvm_installed.stat.exists == false
 
 - name: "NVM | Create an executable"
   template:
@@ -95,18 +160,13 @@
     dest: "{{ nvm_symlink_exec }}"
     owner: "{{ fubarhouse_user }}"
     mode: 0755
-  when: fubarhouse_npm_nvm_installed.stat.exists == false
 
 - name: "NVM | Get versions"
-  become: yes
-  become_user: "{{ fubarhouse_user }}"
   shell: "{{ nvm_symlink_exec }} ls-remote"
   register: nodejs_available_versions
   changed_when: false
 
 - name: NVM | Ensure shell profiles are available
-  become: yes
-  become_user: "root"
   stat:
     path: "{{ fubarhouse_user_dir }}/{{ item }}"
   register: available_shell_profiles
@@ -114,8 +174,6 @@
   failed_when: false
 
 - name: NVM | Ensure shell profiles are configured for default version
-  become: yes
-  become_user: "root"
   lineinfile:
     dest: "{{ fubarhouse_user_dir }}/{{ item.item.item }}"
     regexp: '{{ nvm_install_dir }}/v{{ node_version }}/bin'
@@ -126,8 +184,6 @@
   when: item.item.stat.exists|bool == true
 
 - name: NVM | Ensure shell profiles are configured for other versions
-  become: yes
-  become_user: "root"
   lineinfile:
     dest: "{{ fubarhouse_user_dir }}/{{ item[0].item.item }}"
     regexp: '{{ nvm_install_dir }}/v{{ item[1] }}/bin'
